@@ -32,3 +32,32 @@ export async function getDashboardMetrics() {
     profit: toNumber(orderMetrics._sum.profit),
   };
 }
+
+export async function getRecentOrders() {
+  const orders = await prisma.order.findMany({
+    take: 5,
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      customer: true,
+      items: {
+        include: {
+          product: true,
+        },
+      },
+    },
+  });
+
+  return orders.map((order) => {
+    const firstItem = order.items[0];
+
+    return {
+      id: order.orderNumber,
+      customer: `${order.customer.firstName} ${order.customer.lastName ?? ""}`.trim(),
+      product: firstItem?.product.name ?? "Produit inconnu",
+      amount: toNumber(order.totalAmount),
+      status: order.status,
+    };
+  });
+}
