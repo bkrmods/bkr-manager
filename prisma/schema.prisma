@@ -1,0 +1,233 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ProductStatus {
+  ACTIVE
+  OUT_OF_STOCK
+  ARCHIVED
+}
+
+enum ComponentType {
+  MOVEMENT
+  CASE
+  DIAL
+  HANDS
+  BRACELET
+  BEZEL
+  CRYSTAL
+  CROWN
+  OTHER
+}
+
+enum ComponentStatus {
+  ACTIVE
+  OUT_OF_STOCK
+  ARCHIVED
+}
+
+enum BuildStatus {
+  PLANNED
+  COMPLETED
+  CANCELLED
+}
+
+enum CustomerPlatform {
+  VINTED
+  INSTAGRAM
+  TIKTOK
+  WEBSITE
+  MANUAL
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PREPARING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum InventoryMovementType {
+  PURCHASE
+  SALE
+  BUILD
+  RETURN
+  ADJUSTMENT
+}
+
+model Product {
+  id                String        @id @default(cuid())
+  name              String
+  sku               String        @unique
+  description       String?
+  category          String
+  sellingPrice      Decimal       @db.Decimal(10, 2)
+  costPrice         Decimal       @db.Decimal(10, 2)
+  margin            Decimal       @db.Decimal(10, 2)
+  stock             Int           @default(0)
+  lowStockThreshold Int           @default(3)
+  status            ProductStatus @default(ACTIVE)
+  imageUrl          String?
+
+  builds             Build[]
+  orderItems         OrderItem[]
+  inventoryMovements InventoryMovement[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Component {
+  id                String          @id @default(cuid())
+  name              String
+  sku               String          @unique
+  type              ComponentType
+  supplierId        String?
+  unitCost          Decimal         @db.Decimal(10, 2)
+  stock             Int             @default(0)
+  lowStockThreshold Int             @default(5)
+  status            ComponentStatus @default(ACTIVE)
+
+  supplier           Supplier?           @relation(fields: [supplierId], references: [id])
+  buildComponents    BuildComponent[]
+  inventoryMovements InventoryMovement[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([supplierId])
+  @@index([type])
+}
+
+model Supplier {
+  id                  String  @id @default(cuid())
+  name                String
+  country             String?
+  alibabaUrl          String?
+  whatsapp            String?
+  email               String?
+  currency            String  @default("USD")
+  averageDeliveryDays Int?
+  qualityRating       Int?
+  notes               String?
+
+  components Component[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Build {
+  id        String      @id @default(cuid())
+  productId String
+  quantity  Int         @default(1)
+  totalCost Decimal     @db.Decimal(10, 2)
+  status    BuildStatus @default(PLANNED)
+
+  product    Product          @relation(fields: [productId], references: [id])
+  components BuildComponent[]
+
+  createdAt DateTime @default(now())
+
+  @@index([productId])
+}
+
+model BuildComponent {
+  id           String  @id @default(cuid())
+  buildId      String
+  componentId  String
+  quantityUsed Int
+  unitCost     Decimal @db.Decimal(10, 2)
+
+  build     Build     @relation(fields: [buildId], references: [id])
+  component Component @relation(fields: [componentId], references: [id])
+
+  @@unique([buildId, componentId])
+  @@index([buildId])
+  @@index([componentId])
+}
+
+model Customer {
+  id         String           @id @default(cuid())
+  firstName  String
+  lastName   String?
+  email      String?
+  phone      String?
+  platform   CustomerPlatform @default(MANUAL)
+  address    String?
+  totalSpent Decimal          @default(0) @db.Decimal(10, 2)
+  orderCount Int              @default(0)
+  notes      String?
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([platform])
+}
+
+model Order {
+  id              String           @id @default(cuid())
+  orderNumber     String           @unique
+  customerId      String
+  platform        CustomerPlatform @default(MANUAL)
+  status          OrderStatus      @default(PENDING)
+  totalAmount     Decimal          @db.Decimal(10, 2)
+  totalCost       Decimal          @db.Decimal(10, 2)
+  profit          Decimal          @db.Decimal(10, 2)
+  shippingCarrier String?
+  trackingNumber  String?
+
+  customer Customer    @relation(fields: [customerId], references: [id])
+  items    OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([customerId])
+  @@index([platform])
+  @@index([status])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10, 2)
+  unitCost  Decimal @db.Decimal(10, 2)
+  profit    Decimal @db.Decimal(10, 2)
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model InventoryMovement {
+  id          String                @id @default(cuid())
+  type        InventoryMovementType
+  productId   String?
+  componentId String?
+  quantity    Int
+  reason      String
+
+  product   Product?   @relation(fields: [productId], references: [id])
+  component Component? @relation(fields: [componentId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([type])
+  @@index([productId])
+  @@index([componentId])
+}
