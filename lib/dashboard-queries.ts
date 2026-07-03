@@ -61,3 +61,21 @@ export async function getRecentOrders() {
     };
   });
 }
+
+export async function getLowStockProducts() {
+  const products = await prisma.product.findMany({
+    orderBy: {
+      stock: "asc",
+    },
+    select: {
+      id: true,
+      name: true,
+      stock: true,
+      lowStockThreshold: true,
+    },
+  });
+
+  return products
+    .filter((product) => product.stock <= product.lowStockThreshold)
+    .slice(0, 5);
+}
