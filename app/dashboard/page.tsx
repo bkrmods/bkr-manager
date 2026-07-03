@@ -8,12 +8,57 @@ import LowStock from "@/components/dashboard/widgets/LowStock";
 import MonthlyGoal from "@/components/dashboard/widgets/MonthlyGoal";
 import RecentActivity from "@/components/dashboard/widgets/RecentActivity";
 
-import { dashboardStats } from "@/lib/dashboard-data";
+import { getDashboardMetrics } from "@/lib/dashboard-queries";
 
-export default function DashboardPage() {
+import {
+  Package,
+  ShoppingCart,
+  TrendingUp,
+  Wallet,
+} from "lucide-react";
+
+export const dynamic = "force-dynamic";
+
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
+export default async function DashboardPage() {
+  const metrics = await getDashboardMetrics();
+
+  const dashboardStats = [
+    {
+      title: "Chiffre d’affaires",
+      value: formatCurrency(metrics.revenue),
+      icon: Wallet,
+      change: "Données Neon",
+    },
+    {
+      title: "Commandes",
+      value: metrics.orders.toString(),
+      icon: ShoppingCart,
+      change: "Commandes enregistrées",
+    },
+    {
+      title: "Stock",
+      value: metrics.stock.toString(),
+      icon: Package,
+      change: "Montres disponibles",
+    },
+    {
+      title: "Bénéfices",
+      value: formatCurrency(metrics.profit),
+      icon: TrendingUp,
+      change: "Profit total",
+    },
+  ];
+
   return (
     <div className="space-y-8 p-8">
-
       <PageHeader
         title="Dashboard"
         subtitle="Bienvenue sur BKR Manager."
@@ -41,7 +86,6 @@ export default function DashboardPage() {
       <RecentActivity />
 
       <RecentOrders />
-
     </div>
   );
 }
