@@ -1,43 +1,51 @@
 import DashboardSection from "../DashboardSection";
-import { monthlyGoal } from "@/lib/monthly-goal";
+import { getMonthlyGoal } from "@/lib/dashboard-queries";
 
-export default function MonthlyGoal() {
-  const percentage = Math.round(
-    (monthlyGoal.current / monthlyGoal.target) * 100
-  );
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
+export default async function MonthlyGoal() {
+  const goal = await getMonthlyGoal();
+
+  const progressWidth = Math.min(goal.percentage, 100);
 
   return (
     <DashboardSection
       title="🎯 Objectif du mois"
-      subtitle="Progression du chiffre d’affaires"
+      subtitle="Progression du chiffre d’affaires depuis Neon"
     >
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <span className="text-gray-400">
-            Chiffre d’affaires
-          </span>
+        <div>
+          <p className="text-3xl font-bold text-white">
+            {formatCurrency(goal.current)}
+          </p>
 
-          <span className="font-bold text-white">
-            {monthlyGoal.current.toLocaleString("fr-FR")} €
-          </span>
+          <p className="mt-2 text-sm text-gray-400">
+            Objectif mensuel : {formatCurrency(goal.target)}
+          </p>
         </div>
 
         <div className="h-3 overflow-hidden rounded-full bg-gray-800">
           <div
             className="h-full rounded-full bg-blue-600 transition-all duration-700"
             style={{
-              width: `${percentage}%`,
+              width: `${progressWidth}%`,
             }}
           />
         </div>
 
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-400">
-            Objectif : {monthlyGoal.target.toLocaleString("fr-FR")} €
+        <div className="flex items-center justify-between text-sm">
+          <span className="text-green-400">
+            {goal.percentage} % atteint
           </span>
 
-          <span className="font-semibold text-green-400">
-            {percentage} %
+          <span className="text-gray-400">
+            Reste : {formatCurrency(goal.remaining)}
           </span>
         </div>
       </div>
