@@ -1,18 +1,23 @@
+import PageHeader from "@/components/shared/PageHeader";
+
 import StatCard from "@/components/dashboard/stats/StatCard";
+import SalesChart from "@/components/dashboard/charts/SalesChart";
+import RecentOrders from "@/components/dashboard/tables/RecentOrders";
+
+import LowStock from "@/components/dashboard/widgets/LowStock";
+import MonthlyGoal from "@/components/dashboard/widgets/MonthlyGoal";
+import RecentActivity from "@/components/dashboard/widgets/RecentActivity";
+
 import { dashboardStats } from "@/lib/dashboard-data";
 
 export default function DashboardPage() {
   return (
     <div className="space-y-8 p-8">
-      <div>
-        <h1 className="text-4xl font-bold text-white">
-          Dashboard
-        </h1>
 
-        <p className="mt-2 text-gray-400">
-          Bienvenue sur BKR Manager.
-        </p>
-      </div>
+      <PageHeader
+        title="Dashboard"
+        subtitle="Bienvenue sur BKR Manager."
+      />
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {dashboardStats.map((stat) => (
@@ -25,6 +30,18 @@ export default function DashboardPage() {
           />
         ))}
       </div>
+
+      <SalesChart />
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <LowStock />
+        <MonthlyGoal />
+      </div>
+
+      <RecentActivity />
+
+      <RecentOrders />
+
     </div>
   );
 }
