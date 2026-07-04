@@ -1,11 +1,27 @@
-import Link from "next/link";
+"use client";
 
-import { createProduct } from "@/app/inventory/actions";
+import Link from "next/link";
+import { useActionState } from "react";
+
+import {
+  createProduct,
+  type CreateProductState,
+} from "@/app/inventory/actions";
+
+const initialState: CreateProductState = {
+  success: false,
+  message: "",
+};
 
 export default function ProductForm() {
+  const [state, formAction, isPending] = useActionState(
+    createProduct,
+    initialState
+  );
+
   return (
     <form
-      action={createProduct}
+      action={formAction}
       className="rounded-2xl border border-gray-800 bg-[#111827] p-6"
     >
       <div className="mb-6">
@@ -17,6 +33,12 @@ export default function ProductForm() {
           Ajoute une montre prête à vendre dans Neon.
         </p>
       </div>
+
+      {state.message && (
+        <div className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-400">
+          {state.message}
+        </div>
+      )}
 
       <div className="grid gap-6 md:grid-cols-2">
         <div>
@@ -144,9 +166,10 @@ export default function ProductForm() {
 
         <button
           type="submit"
-          className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-500"
+          disabled={isPending}
+          className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Ajouter le produit
+          {isPending ? "Création..." : "Ajouter le produit"}
         </button>
       </div>
     </form>
