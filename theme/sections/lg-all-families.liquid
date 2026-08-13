@@ -1,0 +1,144 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Toutes les familles de la boutique, automatiquement.
+  Chaque collection devient une carte ; son premier produit sert de visuel et
+  ses produits alimentent le nuancier.
+{% endcomment %}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="familles">
+    <div class="lg-wrap lg-content">
+      <header class="lg-head">
+        <div>
+          <p class="lg-eyebrow" data-lg-reveal>{{ section.settings.eyebrow | escape }}</p>
+          <h1 class="lg-h2" data-lg-split>{{ section.settings.heading | escape }}</h1>
+        </div>
+        <span class="lg-family__count" data-lg-reveal>{{ collections.size }} familles</span>
+      </header>
+
+      <div class="lg-families" data-lg-stagger="100">
+        {%- for fam in collections -%}
+          {%- if fam.all_products_count == 0 and section.settings.hide_empty -%}
+            {%- continue -%}
+          {%- endif -%}
+
+          {%- capture first_dial %}{% render 'lg-dial-color', product: fam.products.first, fallback: '#9fb4c7' %}{% endcapture -%}
+
+          <article
+            class="lg-family lg-glass"
+            style="--lg-accent: {{ first_dial | strip }};"
+            data-lg-family
+            data-lg-tilt="5"
+            data-lg-reveal
+          >
+            <span class="lg-family__glow"></span>
+
+            <div class="lg-family__top">
+              <div>
+                <h2 class="lg-h3">{{ fam.title | escape }}</h2>
+                {%- if fam.description != blank -%}
+                  <p class="lg-fine" style="margin: 8px 0 0;">
+                    {{ fam.description | strip_html | truncate: 70 }}
+                  </p>
+                {%- endif -%}
+              </div>
+              <span class="lg-family__count">{{ fam.all_products_count }} coloris</span>
+            </div>
+
+            <div class="lg-family__stage">
+              <div class="lg-family__media">
+                {%- for product in fam.products limit: 8 -%}
+                  {%- if product.featured_media != blank -%}
+                    <img
+                      class="lg-family__watch"
+                      data-lg-colorway
+                      src="{{ product.featured_media | image_url: width: 640 }}"
+                      alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                      width="{{ product.featured_media.width }}"
+                      height="{{ product.featured_media.height }}"
+                      loading="lazy"
+                    >
+                  {%- else -%}
+                    <div class="lg-family__watch" data-lg-colorway>
+                      {{ 'product-1' | placeholder_svg_tag: 'lg-placeholder' }}
+                    </div>
+                  {%- endif -%}
+                {%- else -%}
+                  <div class="lg-family__watch is-active" data-lg-colorway>
+                    {{ 'product-1' | placeholder_svg_tag: 'lg-placeholder' }}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+
+            <div class="lg-family__foot">
+              {%- if fam.products.size > 0 -%}
+                <div class="lg-swatches" role="group" aria-label="Coloris de la famille {{ fam.title | escape }}">
+                  {%- for product in fam.products limit: 8 -%}
+                    {%- capture swatch_color %}{% render 'lg-dial-color', product: product, fallback: '#9fb4c7' %}{% endcapture -%}
+                    <button
+                      type="button"
+                      class="lg-swatch"
+                      style="--lg-swatch: {{ swatch_color | strip }};"
+                      data-lg-swatch
+                      data-accent="{{ swatch_color | strip }}"
+                      data-name="{{ product.title | escape }}"
+                      data-price="{{ product.price | money }}"
+                      data-url="{{ product.url }}"
+                      aria-label="{{ product.title | escape }}"
+                    ></button>
+                  {%- endfor -%}
+                </div>
+
+                <div class="lg-family__label">
+                  <span class="lg-family__name" data-lg-name>{{ fam.products.first.title | escape }}</span>
+                  <span class="lg-family__price" data-lg-price>{{ fam.products.first.price | money }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <a class="lg-family__link" data-lg-href href="{{ fam.url }}">
+              <span class="visually-hidden">Découvrir la famille {{ fam.title | escape }}</span>
+            </a>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Toutes familles",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Le catalogue"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Toutes les familles."
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_empty",
+      "label": "Masquer les collections vides",
+      "default": true
+    }
+  ],
+  "presets": [{ "name": "Verre — Toutes familles" }]
+}
+{% endschema %}

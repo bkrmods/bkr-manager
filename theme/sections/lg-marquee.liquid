@@ -1,0 +1,64 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <div class="lg-marquee lg-content" style="--lg-marquee-speed: {{ section.settings.speed }}s;">
+    <div class="lg-marquee__track" data-lg-marquee>
+      {%- for block in section.blocks -%}
+        <span class="lg-marquee__item" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Bandeau",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Durée d'un cycle",
+      "min": 15,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 45
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Mention",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Mouvement Seiko NH35"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Verre — Bandeau",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Mouvement Seiko NH35" } },
+        { "type": "item", "settings": { "text": "Verre saphir bombé" } },
+        { "type": "item", "settings": { "text": "Étanche 200 m" } },
+        { "type": "item", "settings": { "text": "Montage à la main en France" } },
+        { "type": "item", "settings": { "text": "Réglage ± 8 s / jour" } },
+        { "type": "item", "settings": { "text": "Garantie 2 ans" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

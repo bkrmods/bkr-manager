@@ -1,0 +1,103 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="{{ section.settings.anchor | default: 'contact' | handle }}">
+    <div class="lg-wrap lg-content">
+      <div class="lg-cta lg-glass" style="--lg-accent: {{ section.settings.accent }};" data-lg-reveal>
+        <span class="lg-cta__glow"></span>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="lg-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 class="lg-h2" data-lg-split>{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="lg-lede" style="text-align: center;">{{ section.settings.text | escape }}</p>
+        {%- endif -%}
+        <div class="lg-hero__actions" style="justify-content: center;">
+          {%- if section.settings.button_label != blank -%}
+            <a
+              class="lg-btn lg-btn--solid"
+              href="{{ section.settings.button_link | default: '#' }}"
+              data-lg-magnetic="0.2"
+            >
+              {{ section.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a class="lg-btn" href="{{ section.settings.button_link_2 | default: '#' }}" data-lg-magnetic="0.2">
+              {{ section.settings.button_label_2 | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Appel à l'action",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre (pour les liens #)",
+      "default": "contact"
+    },
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "Teinte du halo",
+      "default": "#4a6076"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Sur mesure"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Une idée précise en tête ?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texte",
+      "default": "Décrivez la famille de départ et les pièces voulues. On vous répond sous 48 heures avec un prix et un délai."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Bouton principal",
+      "default": "Demander un devis"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Lien du bouton principal"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Bouton secondaire",
+      "default": "Voir le catalogue"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Lien du bouton secondaire"
+    }
+  ],
+  "presets": [{ "name": "Verre — Appel à l'action" }]
+}
+{% endschema %}

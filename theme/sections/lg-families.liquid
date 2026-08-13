@@ -1,0 +1,231 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Une carte par famille (= une collection).
+  Les produits de la collection deviennent les coloris : un point de couleur
+  par produit, l'image bascule au survol, le prix et le lien suivent.
+{% endcomment %}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="{{ section.settings.anchor | default: 'familles' | handle }}">
+    <div class="lg-wrap lg-content">
+      <header class="lg-head">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="lg-eyebrow" data-lg-reveal>{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          <h2 class="lg-h2" data-lg-split>{{ section.settings.heading | escape }}</h2>
+        </div>
+        {%- if section.settings.link_label != blank -%}
+          <a
+            class="lg-btn"
+            href="{{ section.settings.link_url | default: routes.collections_url }}"
+            data-lg-reveal
+            data-lg-magnetic="0.18"
+          >
+            {{ section.settings.link_label | escape }}
+          </a>
+        {%- endif -%}
+      </header>
+
+      {%- if section.settings.description != blank -%}
+        <p class="lg-lede" style="margin-top: -18px; margin-bottom: 46px;" data-lg-reveal>
+          {{ section.settings.description | escape }}
+        </p>
+      {%- endif -%}
+
+      <div class="lg-families" data-lg-stagger="110">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign fam = block.settings.collection
+            assign fam_title = block.settings.title | default: fam.title
+            assign limit = block.settings.colorways_limit | default: 8
+            assign accent = block.settings.accent
+          -%}
+
+          <article
+            class="lg-family lg-glass"
+            style="--lg-accent: {{ accent }};"
+            data-lg-family
+            data-lg-tilt="5"
+            data-lg-reveal
+            {{ block.shopify_attributes }}
+          >
+            <span class="lg-family__glow"></span>
+
+            <div class="lg-family__top">
+              <div>
+                <h3 class="lg-h3">{{ fam_title | escape }}</h3>
+                {%- if block.settings.caption != blank -%}
+                  <p class="lg-fine" style="margin: 8px 0 0;">{{ block.settings.caption | escape }}</p>
+                {%- endif -%}
+              </div>
+              {%- if fam.products_count > 0 -%}
+                <span class="lg-family__count">{{ fam.products_count }} coloris</span>
+              {%- endif -%}
+            </div>
+
+            <div class="lg-family__stage">
+              <div class="lg-family__media">
+                {%- if fam.products.size > 0 -%}
+                  {%- for product in fam.products limit: limit -%}
+                    {%- if product.featured_media != blank -%}
+                      <img
+                        class="lg-family__watch"
+                        data-lg-colorway
+                        src="{{ product.featured_media | image_url: width: 640 }}"
+                        alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                        width="{{ product.featured_media.width }}"
+                        height="{{ product.featured_media.height }}"
+                        loading="lazy"
+                      >
+                    {%- else -%}
+                      <div class="lg-family__watch" data-lg-colorway>
+                        {{ 'product-1' | placeholder_svg_tag: 'lg-placeholder' }}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  <div class="lg-family__watch is-active" data-lg-colorway>
+                    {{ 'product-1' | placeholder_svg_tag: 'lg-placeholder' }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <div class="lg-family__foot">
+              {%- if fam.products.size > 0 -%}
+                <div class="lg-swatches" role="group" aria-label="Coloris de la famille {{ fam_title | escape }}">
+                  {%- for product in fam.products limit: limit -%}
+                    {%- capture swatch_color %}{% render 'lg-dial-color', product: product, fallback: accent %}{% endcapture -%}
+                    <button
+                      type="button"
+                      class="lg-swatch"
+                      style="--lg-swatch: {{ swatch_color | strip }};"
+                      data-lg-swatch
+                      data-accent="{{ swatch_color | strip }}"
+                      data-name="{{ product.title | escape }}"
+                      data-price="{{ product.price | money }}"
+                      data-url="{{ product.url }}"
+                      aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                      aria-label="{{ product.title | escape }}"
+                    ></button>
+                  {%- endfor -%}
+                </div>
+
+                <div class="lg-family__label">
+                  <span class="lg-family__name" data-lg-name>{{ fam.products.first.title | escape }}</span>
+                  <span class="lg-family__price" data-lg-price>{{ fam.products.first.price | money }}</span>
+                </div>
+              {%- else -%}
+                <p class="lg-fine" style="margin-top: 20px;">
+                  Ajoutez des produits à cette collection : chaque produit deviendra un coloris.
+                </p>
+              {%- endif -%}
+            </div>
+
+            <a class="lg-family__link" data-lg-href href="{{ fam.url | default: '#' }}">
+              <span class="visually-hidden">Découvrir la famille {{ fam_title | escape }}</span>
+            </a>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Familles",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre (pour les liens #)",
+      "default": "familles"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Le catalogue"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Une famille, tous ses coloris."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Lien d'en-tête",
+      "default": "Tout voir"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Cible du lien d'en-tête"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "family",
+      "name": "Famille",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection de la famille"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nom affiché",
+          "info": "Laissez vide pour reprendre le nom de la collection."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Légende",
+          "default": "36 & 41 mm · index appliqués"
+        },
+        {
+          "type": "color",
+          "id": "accent",
+          "label": "Teinte de la famille",
+          "default": "#9fb4c7"
+        },
+        {
+          "type": "range",
+          "id": "colorways_limit",
+          "label": "Coloris affichés",
+          "min": 2,
+          "max": 12,
+          "step": 1,
+          "default": 8
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Verre — Familles",
+      "blocks": [{ "type": "family" }, { "type": "family" }]
+    }
+  ]
+}
+{% endschema %}

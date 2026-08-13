@@ -1,0 +1,131 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="{{ section.settings.anchor | default: 'faq' | handle }}">
+    <div class="lg-wrap lg-content">
+      <header class="lg-head" style="justify-content: center; text-align: center;">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="lg-eyebrow" data-lg-reveal>{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          <h2 class="lg-h2" data-lg-split>{{ section.settings.heading | escape }}</h2>
+        </div>
+      </header>
+
+      <div class="lg-faq" data-lg-stagger="70">
+        {%- for block in section.blocks -%}
+          <details class="lg-glass lg-glass--sm" data-lg-reveal {{ block.shopify_attributes }}>
+            <summary>
+              {{ block.settings.question | escape }}
+              <i aria-hidden="true"></i>
+            </summary>
+            <div class="lg-faq__body">{{ block.settings.answer }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — FAQ",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre (pour les liens #)",
+      "default": "faq"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Questions fréquentes"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Ce qu'on nous demande le plus."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Un mod, c'est quoi exactement ?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Réponse",
+          "default": "<p>Une montre assemblée à partir d'un mouvement Seiko et de pièces sélectionnées, montée et réglée à la main.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Verre — FAQ",
+      "blocks": [
+        {
+          "type": "qa",
+          "settings": {
+            "question": "Un Seiko mod, c'est quoi exactement ?",
+            "answer": "<p>Une montre assemblée pièce par pièce autour d'un mouvement automatique Seiko NH35. Boîtier, lunette, cadran, aiguilles et bracelet sont choisis séparément, puis montés et réglés à la main dans notre atelier. Ce n'est ni une contrefaçon ni une montre de série : chaque pièce est unique par sa combinaison.</p>"
+          }
+        },
+        {
+          "type": "qa",
+          "settings": {
+            "question": "Quel est le délai de fabrication ?",
+            "answer": "<p>Comptez 5 à 10 jours ouvrés pour un coloris en stock, et 2 à 3 semaines pour une configuration sur mesure. Vous recevez une photo de votre montre avant l'expédition.</p>"
+          }
+        },
+        {
+          "type": "qa",
+          "settings": {
+            "question": "La montre est-elle réglée avant l'envoi ?",
+            "answer": "<p>Oui. Chaque mouvement passe au chronocomparateur dans cinq positions. Nous n'expédions pas une montre au-delà de 8 secondes d'écart par jour.</p>"
+          }
+        },
+        {
+          "type": "qa",
+          "settings": {
+            "question": "Puis-je nager avec ?",
+            "answer": "<p>Les boîtiers plongeur sont testés à 200 m et conviennent à la nage et au snorkeling. Nous déconseillons la douche chaude, qui fatigue les joints. Un contrôle d'étanchéité tous les deux ans est recommandé.</p>"
+          }
+        },
+        {
+          "type": "qa",
+          "settings": {
+            "question": "Que couvre la garantie ?",
+            "answer": "<p>Deux ans sur le mouvement et le montage. L'usure normale du bracelet et les rayures du verre ne sont pas couvertes. Le service après-vente se fait directement à l'atelier.</p>"
+          }
+        },
+        {
+          "type": "qa",
+          "settings": {
+            "question": "Puis-je commander une combinaison qui n'est pas au catalogue ?",
+            "answer": "<p>Oui. Écrivez-nous avec la famille de départ et les pièces souhaitées : nous confirmons la faisabilité, le prix et le délai sous 48 heures.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

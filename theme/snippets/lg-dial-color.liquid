@@ -1,0 +1,40 @@
+{% comment %}
+  Renvoie la couleur de cadran d'un produit, en hexadécimal.
+
+  Ordre de résolution :
+    1. le métachamp  custom.dial_color  (type « couleur » ou texte « #rrggbb ») ;
+    2. sinon, un mot-clé reconnu dans le titre du produit ;
+    3. sinon, la couleur de repli passée en paramètre.
+
+  Utilisation :
+    {% render 'lg-dial-color', product: product, fallback: '#9fb4c7' %}
+{% endcomment %}
+
+{%- liquid
+  assign fallback_color = fallback | default: '#9fb4c7'
+  assign resolved = ''
+
+  assign meta = product.metafields.custom.dial_color
+  if meta != blank
+    assign resolved = meta | downcase
+  endif
+
+  if resolved == blank
+    assign haystack = product.title | downcase
+
+    assign keys = 'noir,black,bleu,blue,vert,green,gris,grey,gray,blanc,white,argent,silver,or,gold,dore,doré,champagne,bordeaux,rouge,red,rose,pink,violet,purple,marron,brown,chocolat,turquoise,glace,ice,saumon,salmon,panda,tiffany,anthracite,creme,crème,ivoire' | split: ','
+    assign vals = '#14171c,#14171c,#1f4d8f,#1f4d8f,#1d6b4f,#1d6b4f,#7c8792,#7c8792,#7c8792,#e8ecef,#e8ecef,#c3ccd4,#c3ccd4,#c8a253,#c8a253,#c8a253,#c8a253,#d6c08a,#7a1f2b,#7a1f2b,#7a1f2b,#d59ba6,#d59ba6,#5b4b8a,#5b4b8a,#5a3b2b,#5a3b2b,#5a3b2b,#2aa5b5,#bfe0ef,#bfe0ef,#e0917c,#e0917c,#f2f2f2,#86d6c8,#2b2f36,#efe7d6,#efe7d6,#efe7d6' | split: ','
+
+    for key in keys
+      if haystack contains key
+        assign resolved = vals[forloop.index0]
+        break
+      endif
+    endfor
+  endif
+
+  if resolved == blank
+    assign resolved = fallback_color
+  endif
+-%}
+{{- resolved -}}

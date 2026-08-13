@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "families": {
+      "type": "lg-all-families",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "eyebrow": "Le catalogue",
+        "heading": "Toutes les familles.",
+        "hide_empty": true
+      }
+    },
+    "cta": {
+      "type": "lg-cta",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "contact",
+        "accent": "#4a6076",
+        "eyebrow": "Sur mesure",
+        "heading": "Rien qui corresponde ?",
+        "text": "On monte aussi des pièces uniques. Décrivez ce que vous cherchez, on vous répond sous 48 heures.",
+        "button_label": "Demander un devis",
+        "button_link": "/pages/contact",
+        "button_label_2": "",
+        "button_link_2": ""
+      }
+    }
+  },
+  "order": ["families", "cta"]
+}

@@ -1,0 +1,176 @@
+{
+  "sections": {
+    "lg_hero": {
+      "type": "lg-hero",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "label": "Depuis",
+            "value": "2021"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "label": "Montres montées",
+            "value": "800+"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "label": "Familles",
+            "value": "6"
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "label": "Atelier",
+            "value": "France"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "eyebrow": "L'atelier",
+        "heading": "Une pièce à la fois,",
+        "heading_accent": "sur un seul établi.",
+        "subheading": "Pas de chaîne de montage, pas de sous-traitance. Chaque montre est ouverte, montée, réglée et contrôlée par la même personne, puis photographiée avant de partir.",
+        "button_label": "Voir les familles",
+        "button_link": "shopify://collections",
+        "button_label_2": "Nous écrire",
+        "button_link_2": "/pages/contact",
+        "show_scroll_cue": false,
+        "scroll_cue_label": ""
+      }
+    },
+    "lg_steps": {
+      "type": "lg-steps",
+      "blocks": {
+        "e1": {
+          "type": "step",
+          "settings": {
+            "title": "Sélection",
+            "text": "Boîtier, lunette, cadran et aiguilles choisis pièce par pièce, puis contrôlés à la loupe. Toute pièce marquée part au rebut."
+          }
+        },
+        "e2": {
+          "type": "step",
+          "settings": {
+            "title": "Montage",
+            "text": "Pose du mouvement NH35, alignement des aiguilles et du guichet de date sous binoculaire, dans une boîte à poussière."
+          }
+        },
+        "e3": {
+          "type": "step",
+          "settings": {
+            "title": "Réglage",
+            "text": "Passage au chronocomparateur dans cinq positions, ajustement de la raquetterie jusqu'à moins de 8 secondes d'écart par jour."
+          }
+        },
+        "e4": {
+          "type": "step",
+          "settings": {
+            "title": "Contrôle",
+            "text": "Test d'étanchéité à sec, nettoyage aux ultrasons, 24 heures de marche à vide, puis photo de la pièce exacte qui part chez vous."
+          }
+        }
+      },
+      "block_order": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "methode",
+        "eyebrow": "La méthode",
+        "heading": "Du boîtier nu à la montre réglée.",
+        "description": "Quatre étapes, aucune sous-traitance."
+      }
+    },
+    "lg_specs": {
+      "type": "lg-specs",
+      "blocks": {
+        "p1": {
+          "type": "spec",
+          "settings": {
+            "value": "5",
+            "unit": "positions",
+            "label": "Contrôle au chronocomparateur",
+            "animate_number": true
+          }
+        },
+        "p2": {
+          "type": "spec",
+          "settings": {
+            "value": "24",
+            "unit": "h",
+            "label": "Marche à vide avant envoi",
+            "animate_number": true
+          }
+        },
+        "p3": {
+          "type": "spec",
+          "settings": {
+            "value": "8",
+            "unit": "s/jour",
+            "label": "Écart toléré au maximum",
+            "animate_number": true
+          }
+        },
+        "p4": {
+          "type": "spec",
+          "settings": {
+            "value": "2",
+            "unit": "ans",
+            "label": "Garantie atelier",
+            "animate_number": true
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "exigences",
+        "eyebrow": "Nos exigences",
+        "heading": "Ce qu'on refuse de laisser passer."
+      }
+    },
+    "lg_cta": {
+      "type": "lg-cta",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "contact",
+        "accent": "#4a6076",
+        "eyebrow": "Sur mesure",
+        "heading": "Un projet en tête ?",
+        "text": "Décrivez la famille de départ et les pièces voulues. Réponse sous 48 heures avec un prix et un délai.",
+        "button_label": "Demander un devis",
+        "button_link": "/pages/contact",
+        "button_label_2": "Voir le catalogue",
+        "button_link_2": "shopify://collections"
+      }
+    }
+  },
+  "order": [
+    "lg_hero",
+    "lg_steps",
+    "lg_specs",
+    "lg_cta"
+  ]
+}

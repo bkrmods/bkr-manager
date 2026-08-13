@@ -1,0 +1,128 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Page de famille : tous les coloris de la collection, en cartes de verre.
+  Sur un modèle de collection, la collection courante est utilisée
+  automatiquement ; ailleurs, on peut en choisir une dans l'éditeur.
+{% endcomment %}
+
+{%- liquid
+  assign fam = collection
+  if section.settings.collection != blank
+    assign fam = section.settings.collection
+  endif
+  assign heading = section.settings.heading | default: fam.title
+-%}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="coloris">
+    <div class="lg-wrap lg-content">
+      <header class="lg-head">
+        <div>
+          <p class="lg-eyebrow" data-lg-reveal>
+            {{ section.settings.eyebrow | default: 'Famille' | escape }}
+          </p>
+          <h1 class="lg-h2" data-lg-split>{{ heading | escape }}</h1>
+          {%- if fam.description != blank and section.settings.show_description -%}
+            <div class="lg-lede" data-lg-reveal>{{ fam.description }}</div>
+          {%- endif -%}
+        </div>
+        {%- if fam.products_count > 0 -%}
+          <span class="lg-family__count" data-lg-reveal>{{ fam.products_count }} coloris</span>
+        {%- endif -%}
+      </header>
+
+      <div class="lg-grid" data-lg-stagger="70">
+        {%- for product in fam.products -%}
+          {%- capture dial %}{% render 'lg-dial-color', product: product, fallback: '#9fb4c7' %}{% endcapture -%}
+
+          <article
+            class="lg-card lg-glass"
+            style="--lg-accent: {{ dial | strip }};"
+            data-lg-reveal
+            data-lg-tilt="6"
+          >
+            <span class="lg-card__glow"></span>
+
+            <div class="lg-card__media">
+              {%- if product.featured_media != blank -%}
+                <img
+                  src="{{ product.featured_media | image_url: width: 720 }}"
+                  alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                  width="{{ product.featured_media.width }}"
+                  height="{{ product.featured_media.height }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'lg-placeholder' }}
+              {%- endif -%}
+            </div>
+
+            <div class="lg-card__body">
+              <span class="lg-card__dot" style="--lg-swatch: {{ dial | strip }};" aria-hidden="true"></span>
+              <h3 class="lg-card__title">{{ product.title | escape }}</h3>
+              <p class="lg-card__price">
+                {%- if product.compare_at_price > product.price -%}
+                  <s>{{ product.compare_at_price | money }}</s>
+                {%- endif -%}
+                {{ product.price | money }}
+              </p>
+            </div>
+
+            {%- unless product.available -%}
+              <span class="lg-card__flag">Épuisé</span>
+            {%- endunless -%}
+
+            <a class="lg-family__link" href="{{ product.url }}">
+              <span class="visually-hidden">{{ product.title | escape }}</span>
+            </a>
+          </article>
+        {%- else -%}
+          <p class="lg-lede">Aucun coloris pour le moment.</p>
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Coloris",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Facultatif sur une page de collection : la collection courante est utilisée par défaut."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Famille"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "info": "Laissez vide pour reprendre le nom de la collection."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Afficher la description de la collection",
+      "default": true
+    }
+  ],
+  "presets": [{ "name": "Verre — Coloris" }]
+}
+{% endschema %}

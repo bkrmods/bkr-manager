@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "lg_faq": {
+      "type": "lg-faq",
+      "blocks": {
+        "q1": {
+          "type": "qa",
+          "settings": {
+            "question": "Un Seiko mod, c'est quoi exactement ?",
+            "answer": "<p>Une montre assemblée pièce par pièce autour d'un mouvement automatique Seiko NH35. Boîtier, lunette, cadran, aiguilles et bracelet sont choisis séparément, puis montés et réglés à la main dans notre atelier. Ce n'est ni une contrefaçon ni une montre de série : chaque pièce est unique par sa combinaison.</p>"
+          }
+        },
+        "q2": {
+          "type": "qa",
+          "settings": {
+            "question": "Comment lire le catalogue ?",
+            "answer": "<p>Le catalogue est rangé par famille. Une famille regroupe un boîtier et une silhouette ; à l'intérieur, chaque coloris de cadran est une référence à part, avec son stock et son prix. Cliquez sur une pastille de couleur pour basculer d'un coloris à l'autre.</p>"
+          }
+        },
+        "q3": {
+          "type": "qa",
+          "settings": {
+            "question": "Quel est le délai de fabrication ?",
+            "answer": "<p>5 à 10 jours ouvrés pour un coloris en stock, 2 à 3 semaines pour une configuration sur mesure. Vous recevez une photo de votre montre avant l'expédition.</p>"
+          }
+        },
+        "q4": {
+          "type": "qa",
+          "settings": {
+            "question": "La montre est-elle réglée avant l'envoi ?",
+            "answer": "<p>Oui. Chaque mouvement passe au chronocomparateur dans cinq positions. Nous n'expédions pas une montre au-delà de 8 secondes d'écart par jour.</p>"
+          }
+        },
+        "q5": {
+          "type": "qa",
+          "settings": {
+            "question": "Puis-je nager avec ?",
+            "answer": "<p>Les boîtiers plongeur sont testés à 200 m et conviennent à la nage et au snorkeling. Nous déconseillons la douche chaude, qui fatigue les joints. Un contrôle d'étanchéité tous les deux ans est recommandé.</p>"
+          }
+        },
+        "q6": {
+          "type": "qa",
+          "settings": {
+            "question": "Quelle taille choisir ?",
+            "answer": "<p>Pour un poignet de 15 à 17 cm, un boîtier 36 mm passe très bien ; au-delà de 17 cm, le 40-41 mm est plus équilibré. En cas de doute, envoyez-nous une photo de votre poignet avec un mètre ruban.</p>"
+          }
+        },
+        "q7": {
+          "type": "qa",
+          "settings": {
+            "question": "Que couvre la garantie ?",
+            "answer": "<p>Deux ans sur le mouvement et le montage. L'usure normale du bracelet et les rayures du verre ne sont pas couvertes. Le service après-vente se fait directement à l'atelier.</p>"
+          }
+        },
+        "q8": {
+          "type": "qa",
+          "settings": {
+            "question": "Puis-je retourner ma montre ?",
+            "answer": "<p>14 jours pour les pièces du catalogue, non portées et dans leur emballage d'origine. Les montages sur mesure ne sont pas repris, sauf défaut de notre part.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "faq",
+        "eyebrow": "Aide",
+        "heading": "Questions fréquentes."
+      }
+    },
+    "lg_cta": {
+      "type": "lg-cta",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "contact",
+        "accent": "#4a6076",
+        "eyebrow": "Toujours un doute ?",
+        "heading": "Écrivez-nous.",
+        "text": "Une question sur une pièce, une taille ou un délai : on répond sous 48 heures.",
+        "button_label": "Nous contacter",
+        "button_link": "/pages/contact",
+        "button_label_2": "",
+        "button_link_2": ""
+      }
+    }
+  },
+  "order": [
+    "lg_faq",
+    "lg_cta"
+  ]
+}
