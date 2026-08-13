@@ -23,7 +23,7 @@
             {%- continue -%}
           {%- endif -%}
 
-          {%- capture first_dial %}{% render 'lg-dial-color', product: fam.products.first, fallback: '#9fb4c7' %}{% endcapture -%}
+          {%- capture first_dial %}{% render 'lg-dial-color', product: fam.products.first, fallback: '#1c5a4b' %}{% endcapture -%}
 
           <article
             class="lg-family lg-glass"
@@ -76,7 +76,7 @@
               {%- if fam.products.size > 0 -%}
                 <div class="lg-swatches" role="group" aria-label="Coloris de la famille {{ fam.title | escape }}">
                   {%- for product in fam.products limit: 8 -%}
-                    {%- capture swatch_color %}{% render 'lg-dial-color', product: product, fallback: '#9fb4c7' %}{% endcapture -%}
+                    {%- capture swatch_color %}{% render 'lg-dial-color', product: product, fallback: '#1c5a4b' %}{% endcapture -%}
                     <button
                       type="button"
                       class="lg-swatch"

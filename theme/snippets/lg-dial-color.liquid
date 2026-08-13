@@ -7,11 +7,11 @@
     3. sinon, la couleur de repli passée en paramètre.
 
   Utilisation :
-    {% render 'lg-dial-color', product: product, fallback: '#9fb4c7' %}
+    {% render 'lg-dial-color', product: product, fallback: '#1c5a4b' %}
 {% endcomment %}
 
 {%- liquid
-  assign fallback_color = fallback | default: '#9fb4c7'
+  assign fallback_color = fallback | default: '#1c5a4b'
   assign resolved = ''
 
   assign meta = product.metafields.custom.dial_color
