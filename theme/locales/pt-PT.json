@@ -320,7 +320,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Impostos, descontos e envio calculados na finalização da compra."
     },
     "footer": {
-      "payment": "Métodos de pagamento"
+      "payment": "Métodos de pagamento",
+      "legal": "Informações legais"
     },
     "featured_blog": {
       "view_all": "Ver tudo",

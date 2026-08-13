@@ -320,7 +320,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Taxele, reducerile și transportul sunt calculate la finalizarea comenzii."
     },
     "footer": {
-      "payment": "Metode de plată"
+      "payment": "Metode de plată",
+      "legal": "Informații juridice"
     },
     "featured_blog": {
       "view_all": "Afișați tot",

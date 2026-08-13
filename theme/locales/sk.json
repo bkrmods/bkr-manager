@@ -330,7 +330,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Dane, zľavy a doprava sa vypočítajú pri platbe."
     },
     "footer": {
-      "payment": "Spôsoby platby"
+      "payment": "Spôsoby platby",
+      "legal": "Právne informácie"
     },
     "featured_blog": {
       "view_all": "Zobraziť všetko",

@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Οι φόροι, οι εκπτώσεις και τα έξοδα αποστολής υπολογίζονται κατά την ολοκλήρωση της αγοράς."
     },
     "footer": {
-      "payment": "Μέθοδοι πληρωμής"
+      "payment": "Μέθοδοι πληρωμής",
+      "legal": "Νομικές πληροφορίες"
     },
     "featured_blog": {
       "view_all": "Προβολή όλων",

@@ -41,6 +41,77 @@
     if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
       assign only_empty_brand = true
     endif
+
+    # ---------------------------------------------------------------------
+    # Pages légales
+    # On construit une seule liste, visible en bas de chaque page, à partir
+    # de trois sources dans cet ordre : le menu légal s'il est renseigné,
+    # sinon les pages désignées par leur handle, puis les politiques
+    # Shopify (confidentialité, remboursement, CGV de la boutique…).
+    # Les doublons sont écartés sur le titre, pour qu'une même page présente
+    # comme page ET comme politique n'apparaisse qu'une fois.
+    # Chaque entrée est stockée sous la forme  titre~|~url  et les entrées
+    # sont séparées par ~~.
+    # ---------------------------------------------------------------------
+    assign legal_entries = ''
+    assign legal_keys = ''
+
+    # `| plus: 0` ramène un menu non renseigné (nil) à 0 : comparer nil à un
+    # nombre déclencherait une erreur Liquid visible en boutique.
+    assign legal_menu_count = section.settings.legal_menu.links.size | plus: 0
+
+    if legal_menu_count > 0
+      for legal_link in section.settings.legal_menu.links
+        assign legal_key = legal_link.title | downcase | strip
+        assign legal_key_test = '~' | append: legal_key | append: '~'
+        unless legal_keys contains legal_key_test
+          assign legal_keys = legal_keys | append: legal_key_test
+          assign legal_entries = legal_entries | append: legal_link.title | append: '~|~' | append: legal_link.url | append: '~~'
+        endunless
+      endfor
+    else
+      assign legal_handles = section.settings.legal_page_handles | split: ','
+      for legal_handle in legal_handles
+        # Nom distinct : réassigner la variable de boucle ne la modifierait pas.
+        assign legal_handle_clean = legal_handle | strip
+        assign legal_page = pages[legal_handle_clean]
+        if legal_page != blank and legal_page.title != blank
+          assign legal_key = legal_page.title | downcase | strip
+          assign legal_key_test = '~' | append: legal_key | append: '~'
+          unless legal_keys contains legal_key_test
+            assign legal_keys = legal_keys | append: legal_key_test
+            assign legal_entries = legal_entries | append: legal_page.title | append: '~|~' | append: legal_page.url | append: '~~'
+          endunless
+        endif
+      endfor
+    endif
+
+    if section.settings.show_policy
+      for policy in shop.policies
+        if policy != blank
+          assign legal_key = policy.title | downcase | strip
+          assign legal_key_test = '~' | append: legal_key | append: '~'
+          unless legal_keys contains legal_key_test
+            assign legal_keys = legal_keys | append: legal_key_test
+            assign legal_entries = legal_entries | append: policy.title | append: '~|~' | append: policy.url | append: '~~'
+          endunless
+        endif
+      endfor
+    endif
+
+    assign legal_links = legal_entries | split: '~~'
+
+    assign show_legal_bar = false
+    if section.settings.show_legal_bar and legal_links.size > 0
+      assign show_legal_bar = true
+    endif
+
+    # Quand la barre légale est active, on retire ces mêmes liens des colonnes
+    # de menu : ils descendent en bas de page au lieu d'être dupliqués.
+    assign dedupe_legal_in_menus = false
+    if show_legal_bar and section.settings.legal_remove_from_menus
+      assign dedupe_legal_in_menus = true
+    endif
   -%}
   {%- if section.blocks.size > 0
     or section.settings.newsletter_enable
@@ -90,6 +161,13 @@
                     {%- if block.settings.menu != blank -%}
                       <ul class="footer-block__details-content list-unstyled">
                         {%- for link in block.settings.menu.links -%}
+                          {%- if dedupe_legal_in_menus -%}
+                            {%- assign link_key = link.title | downcase | strip -%}
+                            {%- assign link_key_test = '~' | append: link_key | append: '~' -%}
+                            {%- if legal_keys contains link_key_test -%}
+                              {%- continue -%}
+                            {%- endif -%}
+                          {%- endif -%}
                           <li>
                             <a
                               href="{{ link.url }}"
@@ -297,13 +375,42 @@
         {%- endif -%}
       </div>
     </div>
+    {%- if show_legal_bar -%}
+      <div class="footer__legal page-width">
+        {%- if section.settings.legal_heading != blank -%}
+          <h2 class="footer__legal-heading">{{ section.settings.legal_heading | escape }}</h2>
+        {%- else -%}
+          <h2 class="visually-hidden">{{ 'sections.footer.legal' | t }}</h2>
+        {%- endif -%}
+        <ul class="footer__legal-list list-unstyled" role="list">
+          {%- for legal_entry in legal_links -%}
+            {%- assign legal_parts = legal_entry | split: '~|~' -%}
+            {%- if legal_parts.size == 2 -%}
+              <li class="footer__legal-item">
+                <a
+                  href="{{ legal_parts[1] }}"
+                  class="footer__legal-link link link--text"
+                >
+                  {{- legal_parts[0] | escape -}}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
         <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
+        {%- comment -%}
+          Les politiques sont déjà listées dans la barre légale ci-dessus ;
+          on ne les répète ici que si cette barre est désactivée.
+        {%- endcomment -%}
+        {%- if section.settings.show_policy and show_legal_bar == false -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
@@ -491,6 +598,43 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "header",
+      "content": "Informations légales",
+      "info": "Les pages légales sont toujours affichées en bas de chaque page de la boutique."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_legal_bar",
+      "default": true,
+      "label": "Afficher la barre légale"
+    },
+    {
+      "type": "text",
+      "id": "legal_heading",
+      "label": "Titre de la barre légale",
+      "info": "Laissez vide pour n'afficher que les liens."
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Menu légal",
+      "info": "Facultatif. S'il est renseigné, il remplace la liste de pages ci-dessous."
+    },
+    {
+      "type": "text",
+      "id": "legal_page_handles",
+      "default": "mentions-legales, cgv, confidentialite, politique-de-remboursement, livraison-et-retours, garantie",
+      "label": "Pages légales (handles)",
+      "info": "Séparés par des virgules. Le handle est la fin de l'adresse de la page : /pages/mentions-legales. Les pages introuvables sont ignorées."
+    },
+    {
+      "type": "checkbox",
+      "id": "legal_remove_from_menus",
+      "default": true,
+      "label": "Retirer ces liens des colonnes de menu",
+      "info": "Évite d'afficher deux fois les mêmes liens légaux dans le pied de page."
     },
     {
       "type": "header",

@@ -506,3 +506,64 @@
     }
   }
 }
+
+/* ==========================================================================
+   Barre légale — code couleur BKRmods
+   Toutes les pages légales, visibles en bas de chaque page. Les couleurs
+   viennent de la charte définie dans liquid-glass.css ; le repli
+   currentColor garantit un rendu correct si la barre est utilisée dans un
+   contexte où la charte n'est pas chargée.
+   ========================================================================== */
+
+.footer__legal {
+  margin-top: 2.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--lg-line, rgba(var(--color-foreground), 0.08));
+}
+
+.footer__legal-heading {
+  margin: 0 0 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lg-ink-faint, currentColor);
+}
+
+.footer__legal-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem 2.4rem;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .footer__legal-list {
+    justify-content: flex-start;
+  }
+}
+
+.footer__legal-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer__legal-link {
+  display: block;
+  padding: 0.6rem 0;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--lg-ink-soft, currentColor);
+  text-decoration: none;
+  transition: color 0.3s var(--lg-ease, ease);
+}
+
+.footer__legal-link:hover,
+.footer__legal-link:focus-visible {
+  color: var(--lg-ink, currentColor);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}

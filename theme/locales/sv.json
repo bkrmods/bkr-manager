@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Skatter, rabatter och fraktkostnad beräknas i kassan."
     },
     "footer": {
-      "payment": "Betalningsmetoder"
+      "payment": "Betalningsmetoder",
+      "legal": "Juridisk information"
     },
     "featured_blog": {
       "view_all": "Visa alla",

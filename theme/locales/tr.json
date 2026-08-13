@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Vergiler, indirimler ve kargo, ödeme sayfasında hesaplanır."
     },
     "footer": {
-      "payment": "Ödeme yöntemleri"
+      "payment": "Ödeme yöntemleri",
+      "legal": "Yasal bilgiler"
     },
     "featured_blog": {
       "view_all": "Tümünü görüntüle",

@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Pajak, diskon, dan biaya pengiriman dihitung saat checkout."
     },
     "footer": {
-      "payment": "Metode pembayaran"
+      "payment": "Metode pembayaran",
+      "legal": "Informasi hukum"
     },
     "featured_blog": {
       "view_all": "Lihat semua",

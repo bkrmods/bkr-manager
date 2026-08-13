@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Az adókat, a kedvezményeket és a szállítási költséget a megrendeléskor számítjuk ki"
     },
     "footer": {
-      "payment": "Fizetési módok"
+      "payment": "Fizetési módok",
+      "legal": "Jogi információk"
     },
     "featured_blog": {
       "view_all": "Az összes megtekintése",

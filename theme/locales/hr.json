@@ -320,7 +320,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Porezi, popusti i poštarina obračunavaju se prilikom plaćanja."
     },
     "footer": {
-      "payment": "Načini plaćanja"
+      "payment": "Načini plaćanja",
+      "legal": "Pravne informacije"
     },
     "featured_blog": {
       "view_all": "Prikaži sve",

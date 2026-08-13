@@ -320,7 +320,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Tributos, descontos e frete calculados no checkout."
     },
     "footer": {
-      "payment": "Formas de pagamento"
+      "payment": "Formas de pagamento",
+      "legal": "Informações legais"
     },
     "featured_blog": {
       "view_all": "Ver tudo",

@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Verot, alennukset ja toimituskulut lasketaan kassalla."
     },
     "footer": {
-      "payment": "Maksutavat"
+      "payment": "Maksutavat",
+      "legal": "Oikeudelliset tiedot"
     },
     "featured_blog": {
       "view_all": "Näytä kaikki",

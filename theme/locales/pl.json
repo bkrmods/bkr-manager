@@ -330,7 +330,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Obliczenie podatków, rabatów i wysyłki przy realizacji zakupu."
     },
     "footer": {
-      "payment": "Metody płatności"
+      "payment": "Metody płatności",
+      "legal": "Informacje prawne"
     },
     "featured_blog": {
       "view_all": "Wyświetl wszystkie",

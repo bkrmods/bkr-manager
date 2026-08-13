@@ -330,7 +330,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Davki, popusti in strošek dostave se obračunajo ob zaključku nakupa."
     },
     "footer": {
-      "payment": "Načini plačila"
+      "payment": "Načini plačila",
+      "legal": "Pravne informacije"
     },
     "featured_blog": {
       "view_all": "Prikaži vse",

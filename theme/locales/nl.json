@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Belastingen, kortingen en verzending worden bij de checkout berekend."
     },
     "footer": {
-      "payment": "Betaalmethoden"
+      "payment": "Betaalmethoden",
+      "legal": "Juridische informatie"
     },
     "featured_blog": {
       "view_all": "Alles bekijken",

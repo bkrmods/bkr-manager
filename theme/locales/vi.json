@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Thuế, ưu đãi giảm giá và phí vận chuyển được tính khi thanh toán."
     },
     "footer": {
-      "payment": "Phương thức thanh toán"
+      "payment": "Phương thức thanh toán",
+      "legal": "Thông tin pháp lý"
     },
     "featured_blog": {
       "view_all": "Xem tất cả",

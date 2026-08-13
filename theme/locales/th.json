@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "ระบบจะคำนวณภาษี ส่วนลด และค่าจัดส่งในขั้นตอนการชำระเงิน"
     },
     "footer": {
-      "payment": "วิธีการชำระเงิน"
+      "payment": "วิธีการชำระเงิน",
+      "legal": "ข้อมูลทางกฎหมาย"
     },
     "featured_blog": {
       "view_all": "ดูทั้งหมด",

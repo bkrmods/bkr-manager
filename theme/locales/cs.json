@@ -330,7 +330,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Daně, slevy a poštovné se vypočítají na pokladně."
     },
     "footer": {
-      "payment": "Platební metody"
+      "payment": "Platební metody",
+      "legal": "Právní informace"
     },
     "featured_blog": {
       "view_all": "Zobrazit vše",

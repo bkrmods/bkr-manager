@@ -310,7 +310,8 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Skatter, rabatter og levering beregnes ved betaling."
     },
     "footer": {
-      "payment": "Betalingsmetoder"
+      "payment": "Betalingsmetoder",
+      "legal": "Juridiske oplysninger"
     },
     "featured_blog": {
       "view_all": "Se alle",
