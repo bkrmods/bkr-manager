@@ -53,7 +53,20 @@ littéraux `#1C5A4B` / `#F3F3F1` des trois réglages d'accent.
 | Libellé sur bouton vert | 7,23:1 | AA |
 | Badge épuisé | 14,46:1 | AA |
 
+## Logo
+
+Le lettrage BKR (600 × 168, fond transparent, aux couleurs de la charte) est
+chargé dans la bibliothèque de fichiers Shopify et référencé par le réglage
+natif `settings.logo` :
+
+    shopify://shop_images/bkr-logo.png
+
+Horizon prévoit aussi `settings.logo_inverse`, utilisé uniquement quand
+l'en-tête transparent est actif et qu'une version alternative est nécessaire.
+Le lettrage étant déjà clair sur fond transparent, il fonctionne sur les deux
+états — inutile pour l'instant.
+
 ## Fichiers versionnés
 
-- `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges)
-- `sections/header-group.json` — en-tête pointé sur le menu `bkr-main`
+- `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
+- `sections/header-group.json` — en-tête sur le menu `bkr-main`, barre d'annonce en français
