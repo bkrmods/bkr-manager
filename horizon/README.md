@@ -12,6 +12,28 @@ d'origine, non copié dans le dépôt pour éviter un fork inutile à maintenir.
 | Base | Horizon (Theme Store 2481), copie du thème live |
 | Thème live | **Horizon**, `186380222800`, `MAIN` — non modifié |
 
+## Deux formes du même fichier
+
+Les gabarits JSON sont versionnés ici **en clair**, indentés, pour être relus et
+commentés en revue. Ils sont envoyés à Shopify **compactés**.
+
+La raison est mécanique : `themeFilesUpsert` ne fait pas de correctif partiel.
+Ajouter une section à la page d'accueil oblige à retransmettre `index.json` en
+entier. En clair il pèse 33 976 octets, compacté 19 228 — 43 % de moins à chaque
+écriture, et ça continuera de compter à mesure que la page s'allonge.
+
+    python3 horizon/compacter.py horizon/templates/index.json
+
+Le script écrit un `.min.json` à côté (ignoré par git) et affiche le nombre exact
+d'octets. **C'est la vérification d'après-écriture** : le champ `size` renvoyé
+par l'API doit valoir exactement ce nombre. S'il diffère, le contenu transmis
+n'est pas celui du fichier local — relire, ne pas supposer.
+
+L'écart entre les deux formes n'est que de l'espacement : `json.loads` des deux
+côtés donne le même objet. Et Shopify réindente le fichier de lui-même dès que
+quelqu'un enregistre depuis l'éditeur de thème, donc la forme stockée n'est de
+toute façon jamais stable dans le temps.
+
 ## Restauration
 
 Deux niveaux de retour arrière, sans dépendre de ce dépôt :

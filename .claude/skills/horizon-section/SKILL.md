@@ -60,8 +60,15 @@ dans un `group` : vérifié parce que `group` accepte `@theme`.
 **4. Construire le JSON en local**, le valider (`json.loads`), puis l'écrire via
 `themeFilesUpsert`. Écrire le fichier entier — l'API ne fait pas de patch.
 
-**5. Relire ce qui a été stocké** quand le changement est structurant, et
-vérifier que le thème live n'a pas bougé (`updatedAt`).
+Le dépôt garde la version indentée, lisible ; Shopify reçoit la version
+compactée, 43 % plus légère. `python3 horizon/compacter.py <gabarit>` produit
+celle-ci et affiche sa taille exacte en octets.
+
+**5. Comparer la taille stockée à celle du fichier compacté.** Le `size` renvoyé
+par l'API doit valoir exactement le nombre d'octets affiché par `compacter.py` :
+c'est une vérification à coût nul qui attrape une transmission tronquée ou
+altérée. Relire le contenu quand le changement est structurant, et vérifier que
+le thème live n'a pas bougé (`updatedAt`).
 
 **6. Miroir dans git.** Seuls les fichiers réellement modifiés vont dans
 `horizon/`, avec le même chemin que dans le thème. Ne pas copier Horizon en
