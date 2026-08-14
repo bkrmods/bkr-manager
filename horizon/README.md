@@ -75,8 +75,9 @@ Tout est natif, aucun CSS ajouté :
 - barre d'annonce en français, une ligne, sans promotion
 - sélecteurs pays et langue **coupés** : la boutique n'a qu'un marché (France)
   et qu'une langue (fr), ils n'avaient rien à afficher
-- `enable_transparent_header_home` reste à `false` : l'interrupteur est natif,
-  il s'activera avec le Hero, sinon l'en-tête flotterait au-dessus du vide
+- `enable_transparent_header_home: true` : l'en-tête flotte au-dessus du Hero
+  sur l'accueil, puis reprend son fond noir au défilement. Réglage natif,
+  aucun CSS ni JS ajouté.
 
 ## Pied de page
 
@@ -102,8 +103,40 @@ inventé, les champs attendent les vrais comptes.
 Le formulaire d'inscription qu'Horizon plaçait dans le pied de page a été
 retiré : le cahier des charges en fait une section de la page d'accueil.
 
+## Hero — page d'accueil
+
+Section native `hero`, plein écran (`section_height: "full-screen"`), contenu
+aligné en bas à gauche. Quatre blocs, tous éditables depuis l'éditeur :
+
+| Bloc | Contenu |
+| --- | --- |
+| Sur-titre | `BKR MODS` |
+| Titre | `<h1>Seiko Mods sélectionnées pour se démarquer.</h1>` |
+| Sous-titre | Mouvements éprouvés. Matériaux sélectionnés. Design sans compromis. |
+| CTA | « Découvrir les montres » (vert) + « Arabic Dial » (contour ivoire) |
+
+Points de vigilance tenus :
+
+- **Un seul H1.** Dans Horizon, le bloc `text` rend le HTML du réglage tel quel
+  et `type_preset` ne fait que la taille. Le `<h1>` est donc explicite et
+  unique ; le sur-titre et le sous-titre sont des `<p>` stylés, pas des titres.
+- **LCP.** La section étant en première position, Horizon passe automatiquement
+  l'image du Hero en `fetchpriority="high"` avec `srcset` complet — rien à
+  forcer.
+- **Lisibilité.** Overlay en dégradé du noir de charte (`#0E0E0EA6`) monté vers
+  le haut : le texte se détache quelle que soit la photo.
+- **Mobile.** Les deux boutons passent en pleine largeur sous 750 px
+  (`width_mobile: "fill"`), et le Hero occupe `100svh` — pas de barre d'adresse
+  qui rogne la hauteur.
+- **Aucun effet gratuit** : `blurred_reflection` laissé à `false`.
+
+**Média** : aucune image n'est encore chargée, Horizon affiche donc son
+placeholder. Les réglages `image_1` (desktop) et `image_1_mobile` (avec
+`custom_mobile_media`) attendent les vraies photos.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
 - `sections/header-group.json` — en-tête : menu `bkr-main`, annonce en français, sélecteurs coupés
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
+- `templates/index.json` — page d'accueil : Hero BKR (la démo d'usine d'Horizon est retirée)
