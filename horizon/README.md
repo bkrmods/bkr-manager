@@ -156,9 +156,65 @@ de stock : la sobriété fait partie du positionnement.
 Tant que la collection est vide, la section ne rend rien. C'est le comportement
 attendu, pas une erreur.
 
+## Collections — page d'accueil
+
+« Choisissez votre style. » : trois cartes éditoriales, une par famille.
+
+| Carte | Collection | Accroche |
+| --- | --- | --- |
+| Arabic Dial | `arabic-dial` | Cadran arabe, chiffres orientaux. |
+| Chronographes VK63 | `chronographe-vk63` | Compteurs, poussoirs, méca-quartz VK63. |
+| Automatiques NH35 | `automatique-nh35` | Mécanique automatique NH35. |
+
+**Cette section est 100 % native**, contrairement à ce que l'audit annonçait. Le
+bloc `collection-card` d'Horizon accepte des blocs enfants (`text`, `button`,
+`group`, `collection-title`) : le texte court et le CTA par carte, qu'on croyait
+impossibles sans code, sont des réglages. Aucun fichier `.liquid` créé.
+
+Montage :
+
+- section `_blocks` (la section générique d'Horizon, « section personnalisée »),
+  en colonne : titre, sous-titre, puis un `group`
+- le `group` est en ligne avec `vertical_on_mobile: true` — trois colonnes au-delà
+  de 750 px, empilées en dessous
+- chaque `collection-card` porte sa collection, un `collection-title`, un `text`
+  et un `button` en style `link`
+
+Choix retenus :
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `placement` | `on_image` | le texte se pose sur la photo : plus éditorial, moins de hauteur qu'une légende sous l'image |
+| `image_ratio` | `square` | trois portraits côte à côte donnaient des cartes très hautes ; empilées sur 375 px, la page devenait interminable |
+| `toggle_overlay` | `true`, dégradé `#0E0E0EA6` vers le haut | même recette que le Hero : le texte reste lisible quelle que soit la photo |
+| `border_radius` | `4` | le rayon de la charte |
+| CTA | `style_class: "link"` | la carte entière est déjà cliquable ; un gros bouton vert ferait doublon et sortirait le vert de son rôle d'accent |
+
+Le titre de chaque carte vient du bloc natif `collection-title` : il suit le titre
+de la collection dans l'admin Shopify. Renommer la collection renomme la carte —
+rien à toucher dans le thème.
+
+**Média** : aucune photo de collection n'est chargée, Horizon affiche son
+placeholder. Les images se déposent sur la collection elle-même, dans l'admin.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
 - `sections/header-group.json` — en-tête : menu `bkr-main`, annonce en français, sélecteurs coupés
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
-- `templates/index.json` — page d'accueil : Hero BKR + Best-sellers (la démo d'usine d'Horizon est retirée)
+- `templates/index.json` — page d'accueil : Hero BKR + Best-sellers + Collections (la démo d'usine d'Horizon est retirée)
+
+## Collections Shopify
+
+| Handle | Titre | Rôle |
+| --- | --- | --- |
+| `seiko-mod` | Toutes les Seiko Mods | catalogue complet |
+| `arabic-dial` | Arabic Dial | axe cadran |
+| `chronographe-vk63` | Chronographes VK63 | axe mouvement |
+| `automatique-nh35` | Automatiques NH35 | axe mouvement |
+| `best-sellers` | Best-sellers | sélection manuelle, ordre réglé à la souris |
+
+`automatique-nh35` a été créée pour la section Collections : elle complète l'axe
+mouvement ouvert par `chronographe-vk63` (méca-quartz d'un côté, automatique de
+l'autre). Toutes sont manuelles et publiées sur la boutique en ligne. Toutes sont
+vides pour l'instant — les produits n'existent pas encore.

@@ -81,9 +81,18 @@ moins cher que de lire un schéma de 55 Ko.
 
 ## Pièges déjà rencontrés
 
-**Le champ `size` de l'API n'est pas une taille en octets.** Il vaut environ
-0,81 × la taille réelle. Ne pas s'en servir pour comparer un fichier local à sa
-version stockée — relire le contenu.
+**Le champ `size` de l'API ne se lit pas les yeux fermés.** Sur un
+`templates/index.json` il correspondait exactement au nombre d'octets envoyés ;
+sur un autre fichier il valait environ 0,81 × la taille du fichier local. Il sert
+donc à détecter un écart grossier, jamais à conclure qu'un fichier est identique
+— pour ça, relire le contenu.
+
+**La section générique s'appelle `_blocks`.** C'est la « section personnalisée »
+d'Horizon : elle accepte `@theme`, `@app` et `_divider`, et porte les réglages de
+mise en page habituels (direction, largeur, fond, marges). Le préfixe `_` ne la
+rend pas privée — elle a un `preset`, donc l'éditeur l'ajoute comme n'importe
+quelle autre. C'est l'hôte à utiliser dès qu'on veut composer une section à
+partir de blocs sans écrire de fichier.
 
 **Le tag HTML vient du réglage, pas du preset.** Dans un bloc `text`, le HTML
 saisi dans `text` est rendu tel quel et `type_preset` ne fait que la taille.
@@ -126,7 +135,15 @@ Plusieurs besoins qui semblaient exiger du développement se sont révélés nat
 l'en-tête transparent au-dessus du Hero, les colonnes de menu repliables en
 accordéon sur mobile, la liste des politiques du pied de page, les
 caractéristiques produit branchées sur des metafields, `fetchpriority="high"` sur
-l'image du Hero.
+l'image du Hero, et les cartes de collection avec texte et CTA propres à chaque
+carte — `collection-card` accepte `text`, `button`, `group` et `collection-title`
+comme blocs enfants, ce que l'audit avait annoncé comme impossible.
+
+Attention au piège inverse : `collection-list` accepte bien des blocs, mais ils
+ne rendent que dans l'en-tête de section. Ses cartes viennent d'un unique gabarit
+`_collection-card` statique répété sur le réglage `collection_list` — donc pas de
+texte ni de CTA différents d'une carte à l'autre. Pour ça, il faut des blocs
+`collection-card` publics posés à la main dans une section `_blocks`.
 
 L'ordre de préférence est : natif Horizon → réglage à ajuster → gabarit JSON →
 section sur mesure. Chaque fichier ajouté doit avoir une raison d'exister qu'on
