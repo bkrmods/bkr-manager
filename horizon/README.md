@@ -134,9 +134,31 @@ Points de vigilance tenus :
 placeholder. Les réglages `image_1` (desktop) et `image_1_mobile` (avec
 `custom_mobile_media`) attendent les vraies photos.
 
+## Best-sellers — page d'accueil
+
+Section native `product-list` branchée sur la collection manuelle
+`best-sellers`, dont l'ordre se réorganise à la souris dans l'admin Shopify —
+c'est la « sélection configurable » du cahier des charges, sans code.
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `max_products` | 4 | quatre montres maximum sur desktop |
+| `columns` | 4 | une ligne, pas de grille qui s'étale |
+| `carousel_on_mobile` | `true` | défilement horizontal fluide sous 750 px |
+| `mobile_card_size` | `72cqw` | la carte suivante dépasse du bord : le geste de swipe est visible sans flèche |
+| `image_ratio` | `adapt` | la photo garde son cadrage d'origine et domine la carte |
+
+En-tête de section : `<h2>Les plus recherchées.</h2>` et un lien « Tout voir »
+qui pointe automatiquement vers la collection de la section. La carte produit
+n'affiche que photo, titre et prix — pas de badge de réduction, pas de mention
+de stock : la sobriété fait partie du positionnement.
+
+Tant que la collection est vide, la section ne rend rien. C'est le comportement
+attendu, pas une erreur.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
 - `sections/header-group.json` — en-tête : menu `bkr-main`, annonce en français, sélecteurs coupés
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
-- `templates/index.json` — page d'accueil : Hero BKR (la démo d'usine d'Horizon est retirée)
+- `templates/index.json` — page d'accueil : Hero BKR + Best-sellers (la démo d'usine d'Horizon est retirée)
