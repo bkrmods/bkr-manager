@@ -305,12 +305,60 @@ commerciale honnête, **pas la mention légale de transparence** : celle-là res
 bloc `media` attend la vraie photo — idéalement un plan serré d'atelier plutôt
 qu'un packshot, pour rester dans le registre pédagogique.
 
+## Page Collections — `/collections`
+
+Entrée « Collections » dans `bkr-main`, en deuxième position, juste après
+« Montres ». Type de lien natif `COLLECTIONS` : Shopify résout l'URL lui-même,
+rien n'est écrit en dur.
+
+La page utilise `main-collection-list`, gabarit `templates/list-collections.json` :
+titre `<h1>Toutes nos familles.</h1>`, sous-titre, puis la grille de cartes.
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `columns` | 3 | quatre cartes par ligne écrasaient les titres |
+| `mobile_columns` | 2 (défaut) | deux carrés tiennent bien à 375 px |
+| `placement` | `below_image` | le titre sous l'image : plus lisible qu'en surimpression quand il y a une dizaine de cartes |
+| `image_ratio` | `square` | même cadrage que les cartes de l'accueil |
+
+**Le plafond de 4 collections du gabarit d'usine n'en était pas un.** Le réglage
+`max_collections` n'est lu que par la disposition `editorial` ; en `grid`, la
+section boucle sur un `max_items = 20` écrit en dur dans le Liquid. Le réglage a
+donc été retiré, il ne servait à rien.
+
+### Les familles
+
+Sept familles demandées par le client, nommées par leur silhouette :
+
+| Demandé | Collection BKR | Handle |
+| --- | --- | --- |
+| Datejust | Classique Date | `classique-date` |
+| Day-Date | Jour & Date | `jour-date` |
+| GMT-Master II | Double Fuseau | `double-fuseau` |
+| Daytona | Chronographes VK63 | `chronographe-vk63` *(existait déjà)* |
+| Nautilus | Bracelet Intégré | `bracelet-integre` |
+| Royal Oak | Octogonale | `octogonale` |
+| Yacht-Master | Lunette Tournante | `lunette-tournante` |
+
+**Pourquoi pas les noms d'origine.** Datejust, Day-Date, GMT-Master II, Daytona
+et Yacht-Master sont des marques déposées Rolex ; Nautilus appartient à Patek
+Philippe, Royal Oak à Audemars Piguet. Les employer comme noms de gamme sur une
+boutique de montres modifiées est le point le plus exposé juridiquement de tout
+le projet — c'est aussi la règle que le client avait posée lui-même en
+abandonnant la taxonomie Datejust / Diver / Explorer / GMT.
+
+**Ce que ça coûte.** Les requêtes réelles sont « seiko mod royal oak », « seiko
+mod daytona ». Les noms descriptifs n'ont presque aucun volume de recherche : le
+trafic viendra des pages produit et des guides, pas des titres de collection.
+Le compromis est assumé, il n'est pas gratuit.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
 - `sections/header-group.json` — en-tête : menu `bkr-main`, annonce en français, sélecteurs coupés
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
-- `templates/index.json` — page d'accueil : Hero BKR + Best-sellers + Collections (la démo d'usine d'Horizon est retirée)
+- `templates/index.json` — page d'accueil : Hero BKR + Best-sellers + Collections + Qu'est-ce qu'une Mod ?
+- `templates/list-collections.json` — page `/collections` : toutes les familles
 
 ## Collections Shopify
 

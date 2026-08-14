@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "main": {
+      "type": "main-collection-list",
+      "blocks": {
+        "entete": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "gap": 8,
+            "padding-block-end": 16
+          },
+          "blocks": {
+            "titre": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>Toutes nos familles.</h1>",
+                "width": "100%",
+                "max_width": "narrow",
+                "type_preset": "h2"
+              }
+            },
+            "sous_titre": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Par silhouette, par cadran ou par mouvement.</p>",
+                "text_color": "{{ settings.color_palette.color1 }}",
+                "width": "100%",
+                "max_width": "narrow"
+              }
+            }
+          },
+          "block_order": [
+            "titre",
+            "sous_titre"
+          ]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "border_radius": 4
+          },
+          "blocks": {
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "square",
+                "border_radius": 4
+              }
+            },
+            "titre_carte": {
+              "type": "collection-title",
+              "settings": {
+                "type_preset": "h5"
+              }
+            }
+          },
+          "block_order": [
+            "titre_carte"
+          ]
+        }
+      },
+      "block_order": [
+        "entete"
+      ],
+      "name": "t:names.collection_list",
+      "settings": {
+        "columns": 3,
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 48,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

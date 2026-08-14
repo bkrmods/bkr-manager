@@ -31,15 +31,28 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 
 ### Collections
 
-| Handle | Titre |
-| --- | --- |
-| `seiko-mod` | Toutes les Seiko Mods |
-| `arabic-dial` | Arabic Dial |
-| `chronographe-vk63` | Chronographes VK63 |
-| `automatique-nh35` | Automatiques NH35 |
-| `best-sellers` | Best-sellers (manuelle, ordre réglé à la souris) |
+| Handle | Titre | Axe |
+| --- | --- | --- |
+| `seiko-mod` | Toutes les Seiko Mods | catalogue |
+| `arabic-dial` | Arabic Dial | cadran |
+| `chronographe-vk63` | Chronographes VK63 | mouvement / silhouette |
+| `automatique-nh35` | Automatiques NH35 | mouvement |
+| `best-sellers` | Best-sellers | sélection manuelle |
+| `classique-date` | Classique Date | silhouette |
+| `jour-date` | Jour & Date | silhouette |
+| `double-fuseau` | Double Fuseau | silhouette |
+| `bracelet-integre` | Bracelet Intégré | silhouette |
+| `octogonale` | Octogonale | silhouette |
+| `lunette-tournante` | Lunette Tournante | silhouette |
 
 Toutes vides : **il n'y a encore aucun produit dans la boutique.**
+
+Les six familles de silhouette ont été demandées sous les noms Datejust,
+Day-Date, GMT-Master II, Daytona, Nautilus, Royal Oak et Yacht-Master. Ce sont
+des marques déposées de Rolex, Patek Philippe et Audemars Piguet : elles ont été
+traduites en noms descriptifs. Le détail et le coût SEO du choix sont dans
+`horizon/README.md`. **Si le client tranche pour les noms d'origine, c'est sa
+décision : renommer les collections suffit, la structure ne bouge pas.**
 
 ### Menus
 
@@ -121,6 +134,7 @@ la deuxième lecture est la plus défendable.
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
 | **URL des réseaux sociaux** | champs volontairement vides. |
 | **Semrush** | à ré-authentifier. |
+| **Collection `frontpage` à dépublier** | Shopify crée d'office une collection « Page d'accueil », vide, qui s'affiche donc comme une carte sur `/collections`. La dépublier demande une case à décocher dans l'admin : le connecteur bloque `publishableUnpublish`. Collections → Page d'accueil → Publication → décocher « Boutique en ligne ». |
 
 ## Règles absolues
 
