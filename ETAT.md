@@ -73,6 +73,9 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 - **Accueil / Collections** — « Choisissez votre style. », trois cartes
   éditoriales natives (`collection-card` accepte `text`, `button`, `group`,
   `collection-title` comme enfants) dans une section `_blocks`.
+- **Accueil / Qu'est-ce qu'une Seiko Mod ?** — section native
+  `media-with-content`, preset éditorial : image débordante à gauche, texte
+  pédagogique et CTA à droite. Aucune caractéristique technique avancée.
 - **Metafields** `bkr.*` créés, avec la consigne « ne pas inventer » dans leur
   description.
 - **Trois skills** dans `.claude/skills/` : `bkr-charte`, `horizon-section`,
@@ -82,14 +85,29 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 
 **Page d'accueil**, dans l'ordre du cahier des charges §15 :
 
-1. La Sélection BKR
-2. Qu'est-ce qu'une Mod ?
-3. Every detail matters (vidéo)
-4. Caractéristiques
-5. Guides SEO
-6. Avis clients — **section à laisser masquée** tant qu'il n'y a pas de vrais avis
-7. Réseaux sociaux
-8. Newsletter
+1. La Sélection BKR — **spec à récupérer**, voir ci-dessous
+2. Every detail matters (vidéo)
+3. Caractéristiques
+4. Guides SEO
+5. Avis clients — **section à laisser masquée** tant qu'il n'y a pas de vrais avis
+6. Réseaux sociaux
+7. Newsletter
+
+L'ordre des sections se règle à la souris dans l'éditeur : construire dans le
+désordre ne coûte rien.
+
+### La Sélection BKR — à clarifier avant de construire
+
+Le texte du cahier des charges §15 n'est plus dans le dépôt et le nom seul est
+ambigu. Deux lectures possibles, qui ne donnent pas la même section :
+
+- une **sélection maison** de produits — mais la section Best-sellers en est
+  déjà une, on ferait deux grilles quasi identiques ;
+- une **mise en avant d'une seule montre**, avec son histoire et un CTA — plus
+  cohérent visuellement, et ça évite la redite.
+
+Demander au client de recoller le paragraphe §15 avant d'écrire. En attendant,
+la deuxième lecture est la plus défendable.
 
 **Ensuite** : gabarits de collection, gabarit produit réutilisable, QA.
 

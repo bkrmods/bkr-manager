@@ -197,6 +197,44 @@ rien à toucher dans le thème.
 **Média** : aucune photo de collection n'est chargée, Horizon affiche son
 placeholder. Les images se déposent sur la collection elle-même, dans l'admin.
 
+## Qu'est-ce qu'une Seiko Mod ? — page d'accueil
+
+Section native `media-with-content`, preset éditorial : un visuel qui déborde
+jusqu'au bord de l'écran, le texte à côté. C'est la section pédagogique du
+cahier des charges, et elle porte une partie du SEO de la page d'accueil.
+
+| Bloc | Contenu |
+| --- | --- |
+| Sur-titre | `LE MODDING` |
+| Titre | `<h2>Qu'est-ce qu'une Seiko Mod ?</h2>` |
+| Texte | deux paragraphes : ce qui change sur la montre, puis ce que ça produit |
+| CTA | « Découvrir les Seiko Mods » → `seiko-mod`, bouton vert |
+
+La section a deux blocs statiques imposés par Horizon, `media` et `content` —
+leurs identifiants ne sont pas libres, ils sont appelés en dur dans le Liquid
+(`content_for 'block', id: 'media'`). Le bloc `content` accepte `@theme`, donc
+les quatre blocs ci-dessus sont des blocs normaux, éditables et réordonnables.
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `media_width` | `medium` | moitié-moitié : le texte a la place de respirer sans que l'image devienne un timbre-poste |
+| `media_height` | `60svh` | Horizon rabat automatiquement à 50svh sous 750 px |
+| `extend_media` | `true` | l'image touche le bord de l'écran, le texte reste dans la grille : c'est ce qui fait l'effet éditorial |
+| `media_position` | `left` | alterne avec le reste de la page |
+
+**Sur le texte.** Il décrit ce qu'est une mod — cadran, aiguilles, verre,
+lunette, bracelet, réassemblage — sans avancer une seule caractéristique
+chiffrée : pas d'étanchéité, pas de calibre, pas de matériau. Ces valeurs se
+renseignent produit par produit, via les metafields `bkr.*`.
+
+Il dit aussi qu'une mod « n'est pas une Seiko de série ». C'est une phrase
+commerciale honnête, **pas la mention légale de transparence** : celle-là reste
+à rédiger et à valider par le client, ce n'est pas un choix de développeur.
+
+**Média** : aucune image chargée, placeholder Shopify. Le réglage `image` du
+bloc `media` attend la vraie photo — idéalement un plan serré d'atelier plutôt
+qu'un packshot, pour rester dans le registre pédagogique.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)

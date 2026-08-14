@@ -806,11 +806,145 @@
         "padding-block-start": 64,
         "padding-block-end": 80
       }
+    },
+    "quest_ce_quune_mod": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "name": "t:names.media",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "name": "t:names.content",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 20
+          },
+          "blocks": {
+            "surtitre": {
+              "type": "text",
+              "settings": {
+                "text": "<p>LE MODDING</p>",
+                "text_color": "{{ settings.color_palette.color1 }}",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "h6",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "titre": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Qu'est-ce qu'une Seiko Mod ?</h2>",
+                "text_color": "{{ settings.color_palette.foreground }}",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "texte": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Une Seiko Mod part d'une base Seiko, puis change de visage : cadran, aiguilles, verre, lunette, bracelet. Les pièces sont choisies une par une, et la montre est réassemblée à la main.</p><p>Le résultat n'est pas une Seiko de série et ne cherche pas à l'être. C'est une pièce montée à l'unité, dans une combinaison qu'on ne croise pas en vitrine.</p>",
+                "text_color": "{{ settings.color_palette.foreground }}",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "cta": {
+              "type": "button",
+              "settings": {
+                "label": "Découvrir les Seiko Mods",
+                "link": "shopify://collections/seiko-mod",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "surtitre",
+            "titre",
+            "texte",
+            "cta"
+          ]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "left",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "page-width",
+        "extend_media": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "hero_bkr",
     "best_sellers",
-    "collections_bkr"
+    "collections_bkr",
+    "quest_ce_quune_mod"
   ]
 }
