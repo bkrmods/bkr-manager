@@ -12,6 +12,52 @@ d'origine, non copié dans le dépôt pour éviter un fork inutile à maintenir.
 | Base | Horizon (Theme Store 2481), copie du thème live |
 | Thème live | **Horizon**, `186380222800`, `MAIN` — non modifié |
 
+## Ce que les gabarits contiennent
+
+**Uniquement les réglages volontairement choisis.** Horizon applique la valeur
+par défaut de son schéma pour tout réglage absent : réécrire `"border": "none"`
+ou `"padding-block-end": 0` n'ajoute rien, sinon du bruit qui masque les vraies
+décisions. `index.json` est passé de 33 976 à 10 195 octets par ce seul nettoyage
+et par le compactage — sans qu'une seule valeur de rendu change.
+
+Deux familles de réglages ont disparu en masse :
+
+- **Les réglages de typographie sous `type_preset`.** `font`, `font_size`,
+  `line_height`, `letter_spacing`, `case` et `wrap` ne sont lus que si
+  `type_preset` vaut `custom` — `snippets/typography-style.liquid` enferme tout
+  son contenu dans ce test. Aucun bloc du projet n'utilise `custom` : ces six
+  réglages n'ont jamais rien fait. Le `font_size: "0.75rem"` du sur-titre du
+  Hero, en particulier, n'a jamais été appliqué ; la taille vient du preset `h6`.
+- **Les couleurs qui répètent la palette.** Un `text_color` absent hérite déjà de
+  `settings.color_palette.foreground`. Le laisser vide, c'est suivre la charte
+  automatiquement ; l'écrire en dur, c'est un endroit de plus à corriger le jour
+  où la charte bouge. Les seules couleurs encore écrites sont celles qui
+  s'écartent volontairement de la valeur héritée — `color1` sur les sous-titres.
+
+Les sections `hero` et `product-list` gardent tous leurs réglages : leurs
+schémas font 44 et 27 Ko, les lire coûtait plus que le nettoyage ne rapportait.
+À faire le jour où on doit les ouvrir pour une autre raison.
+
+## Deux valeurs d'énumération qui n'existaient pas
+
+Corrigées le 14 août, après lecture des schémas `button` et `_product-list-button` :
+
+| Écrit | Valide ? | Corrigé en |
+| --- | --- | --- |
+| `style_class: "link"` | non | `"button-unstyled"` |
+| `width_mobile: "fill"` | non | `"custom"` |
+
+Les deux venaient du même réflexe : recopier une valeur qui *paraît* juste —
+`fill` existe bien sur un `group`, `link` décrit bien l'effet voulu — au lieu de
+la lire dans le schéma du bloc concerné. Horizon ne signale rien : le rendu
+retombe silencieusement sur la valeur par défaut. Les quatre CTA en style lien
+étaient donc des boutons pleins, et les trois boutons « pleine largeur sur
+mobile » ne l'étaient pas.
+
+C'est exactement le piège que le skill `horizon-section` décrit, et il a quand
+même été tendu deux fois : lire le schéma **du bloc qu'on écrit**, pas d'un bloc
+voisin qui lui ressemble.
+
 ## Deux formes du même fichier
 
 Les gabarits JSON sont versionnés ici **en clair**, indentés, pour être relus et
@@ -148,8 +194,10 @@ Points de vigilance tenus :
 - **Lisibilité.** Overlay en dégradé du noir de charte (`#0E0E0EA6`) monté vers
   le haut : le texte se détache quelle que soit la photo.
 - **Mobile.** Les deux boutons passent en pleine largeur sous 750 px
-  (`width_mobile: "fill"`), et le Hero occupe `100svh` — pas de barre d'adresse
-  qui rogne la hauteur.
+  (`width_mobile: "custom"`, la largeur personnalisée valant 100 % par défaut),
+  et le Hero occupe `100svh` — pas de barre d'adresse qui rogne la hauteur.
+  Le bloc `button` n'a que deux largeurs, `fit-content` et `custom` : il n'y a
+  pas de valeur `fill` comme sur un `group`.
 - **Aucun effet gratuit** : `blurred_reflection` laissé à `false`.
 
 **Média** : aucune image n'est encore chargée, Horizon affiche donc son
@@ -210,7 +258,7 @@ Choix retenus :
 | `image_ratio` | `square` | trois portraits côte à côte donnaient des cartes très hautes ; empilées sur 375 px, la page devenait interminable |
 | `toggle_overlay` | `true`, dégradé `#0E0E0EA6` vers le haut | même recette que le Hero : le texte reste lisible quelle que soit la photo |
 | `border_radius` | `4` | le rayon de la charte |
-| CTA | `style_class: "link"` | la carte entière est déjà cliquable ; un gros bouton vert ferait doublon et sortirait le vert de son rôle d'accent |
+| CTA | `style_class: "button-unstyled"` | la carte entière est déjà cliquable ; un gros bouton vert ferait doublon et sortirait le vert de son rôle d'accent |
 
 Le titre de chaque carte vient du bloc natif `collection-title` : il suit le titre
 de la collection dans l'admin Shopify. Renommer la collection renomme la carte —

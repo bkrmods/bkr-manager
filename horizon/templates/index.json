@@ -15,105 +15,32 @@
           "type": "text",
           "settings": {
             "text": "<p>BKR MODS</p>",
-            "text_color": "{{ settings.color_palette.foreground }}",
-            "width": "fit-content",
             "max_width": "none",
-            "alignment": "left",
-            "type_preset": "h6",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "type_preset": "h6"
+          }
         },
         "titre": {
           "type": "text",
           "settings": {
             "text": "<h1>Seiko Mods sélectionnées pour se démarquer.</h1>",
-            "text_color": "{{ settings.color_palette.foreground }}",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h1",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "type_preset": "h1"
+          }
         },
         "sous_titre": {
           "type": "text",
           "settings": {
             "text": "<p>Mouvements éprouvés. Matériaux sélectionnés. Design sans compromis.</p>",
-            "text_color": "{{ settings.color_palette.foreground }}",
             "width": "100%",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "max_width": "narrow"
+          }
         },
         "cta": {
           "type": "group",
           "settings": {
             "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 16,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-start": 16
           },
           "blocks": {
             "cta_principal": {
@@ -121,30 +48,20 @@
               "settings": {
                 "label": "Découvrir les montres",
                 "link": "shopify://collections/seiko-mod",
-                "open_in_new_tab": false,
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
+                "width_mobile": "custom"
+              }
             },
             "cta_secondaire": {
               "type": "button",
               "settings": {
                 "label": "Arabic Dial",
                 "link": "shopify://collections/arabic-dial",
-                "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "rgba(0,0,0,0)",
                 "custom_button_text": "{{ settings.color_palette.foreground }}",
                 "custom_button_border": "{{ settings.color_palette.foreground }}",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
+                "width_mobile": "custom"
+              }
             }
           },
           "block_order": [
@@ -245,21 +162,14 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
+              }
             },
             "voir_tout": {
               "type": "_product-list-button",
               "settings": {
                 "label": "Tout voir",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
+                "style_class": "button-unstyled"
+              }
             }
           },
           "block_order": [
@@ -296,8 +206,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
+              }
             },
             "titre_produit": {
               "type": "product-title",
@@ -320,8 +229,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
+              }
             },
             "prix": {
               "type": "price",
@@ -342,8 +250,7 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
+              }
             }
           },
           "block_order": [
@@ -381,26 +288,10 @@
           "type": "text",
           "settings": {
             "text": "<h2>Choisissez votre style.</h2>",
-            "text_color": "{{ settings.color_palette.foreground }}",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h3",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "type_preset": "h3"
+          }
         },
         "sous_titre": {
           "type": "text",
@@ -409,57 +300,14 @@
             "text_color": "{{ settings.color_palette.color1 }}",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 12,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "padding-block-end": 12
+          }
         },
         "cartes": {
           "type": "group",
           "settings": {
             "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-start",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "open_in_new_tab": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "vertical_alignment": "flex-start"
           },
           "blocks": {
             "carte_arabic_dial": {
@@ -467,12 +315,7 @@
               "settings": {
                 "collection": "arabic-dial",
                 "placement": "on_image",
-                "horizontal_alignment": "flex-start",
                 "vertical_alignment": "flex-end",
-                "collection_card_gap": 8,
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
                 "border_radius": 4
               },
               "blocks": {
@@ -485,76 +328,30 @@
                     "toggle_overlay": true,
                     "overlay_color": "#0E0E0EA6",
                     "overlay_style": "gradient",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
                     "border_radius": 4
-                  },
-                  "blocks": {}
+                  }
                 },
                 "titre_carte": {
                   "type": "collection-title",
                   "settings": {
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h5",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "text_color": "{{ settings.color_palette.foreground }}",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                    "type_preset": "h5"
+                  }
                 },
                 "accroche": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Cadran arabe, chiffres orientaux. La montre qu'on remarque sans qu'elle en fasse trop.</p>",
-                    "text_color": "{{ settings.color_palette.foreground }}",
                     "width": "100%",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                    "max_width": "narrow"
+                  }
                 },
                 "cta": {
                   "type": "button",
                   "settings": {
                     "label": "Voir la collection",
                     "link": "shopify://collections/arabic-dial",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
+                    "style_class": "button-unstyled"
+                  }
                 }
               },
               "block_order": [
@@ -568,12 +365,7 @@
               "settings": {
                 "collection": "chronographe-vk63",
                 "placement": "on_image",
-                "horizontal_alignment": "flex-start",
                 "vertical_alignment": "flex-end",
-                "collection_card_gap": 8,
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
                 "border_radius": 4
               },
               "blocks": {
@@ -586,76 +378,30 @@
                     "toggle_overlay": true,
                     "overlay_color": "#0E0E0EA6",
                     "overlay_style": "gradient",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
                     "border_radius": 4
-                  },
-                  "blocks": {}
+                  }
                 },
                 "titre_carte": {
                   "type": "collection-title",
                   "settings": {
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h5",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "text_color": "{{ settings.color_palette.foreground }}",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                    "type_preset": "h5"
+                  }
                 },
                 "accroche": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Compteurs, poussoirs, mouvement méca-quartz VK63. Le geste du chronographe.</p>",
-                    "text_color": "{{ settings.color_palette.foreground }}",
                     "width": "100%",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                    "max_width": "narrow"
+                  }
                 },
                 "cta": {
                   "type": "button",
                   "settings": {
                     "label": "Voir la collection",
                     "link": "shopify://collections/chronographe-vk63",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
+                    "style_class": "button-unstyled"
+                  }
                 }
               },
               "block_order": [
@@ -669,12 +415,7 @@
               "settings": {
                 "collection": "automatique-nh35",
                 "placement": "on_image",
-                "horizontal_alignment": "flex-start",
                 "vertical_alignment": "flex-end",
-                "collection_card_gap": 8,
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
                 "border_radius": 4
               },
               "blocks": {
@@ -687,76 +428,30 @@
                     "toggle_overlay": true,
                     "overlay_color": "#0E0E0EA6",
                     "overlay_style": "gradient",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
                     "border_radius": 4
-                  },
-                  "blocks": {}
+                  }
                 },
                 "titre_carte": {
                   "type": "collection-title",
                   "settings": {
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h5",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "text_color": "{{ settings.color_palette.foreground }}",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                    "type_preset": "h5"
+                  }
                 },
                 "accroche": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Mécanique automatique NH35. Elle se remonte au rythme du poignet.</p>",
-                    "text_color": "{{ settings.color_palette.foreground }}",
                     "width": "100%",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
+                    "max_width": "narrow"
+                  }
                 },
                 "cta": {
                   "type": "button",
                   "settings": {
                     "label": "Voir la collection",
                     "link": "shopify://collections/automatique-nh35",
-                    "open_in_new_tab": false,
-                    "style_class": "link",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
+                    "style_class": "button-unstyled"
+                  }
                 }
               },
               "block_order": [
@@ -780,29 +475,8 @@
       ],
       "name": "t:names.section",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
         "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
         "padding-block-start": 64,
         "padding-block-end": 80
       }
@@ -814,11 +488,7 @@
           "type": "_media-without-appearance",
           "name": "t:names.media",
           "static": true,
-          "settings": {
-            "media_type": "image",
-            "image_position": "cover"
-          },
-          "blocks": {}
+          "settings": {}
         },
         "content": {
           "type": "_content-without-appearance",
@@ -826,7 +496,6 @@
           "static": true,
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
             "gap": 20
           },
           "blocks": {
@@ -835,89 +504,34 @@
               "settings": {
                 "text": "<p>LE MODDING</p>",
                 "text_color": "{{ settings.color_palette.color1 }}",
-                "width": "fit-content",
                 "max_width": "none",
-                "alignment": "left",
-                "type_preset": "h6",
-                "font": "var(--font-subheading--family)",
-                "font_size": "0.75rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+                "type_preset": "h6"
+              }
             },
             "titre": {
               "type": "text",
               "settings": {
                 "text": "<h2>Qu'est-ce qu'une Seiko Mod ?</h2>",
-                "text_color": "{{ settings.color_palette.foreground }}",
                 "width": "100%",
                 "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+                "type_preset": "h3"
+              }
             },
             "texte": {
               "type": "text",
               "settings": {
                 "text": "<p>Une Seiko Mod part d'une base Seiko, puis change de visage : cadran, aiguilles, verre, lunette, bracelet. Les pièces sont choisies une par une, et la montre est réassemblée à la main.</p><p>Le résultat n'est pas une Seiko de série et ne cherche pas à l'être. C'est une pièce montée à l'unité, dans une combinaison qu'on ne croise pas en vitrine.</p>",
-                "text_color": "{{ settings.color_palette.foreground }}",
                 "width": "100%",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
+                "max_width": "narrow"
+              }
             },
             "cta": {
               "type": "button",
               "settings": {
                 "label": "Découvrir les Seiko Mods",
                 "link": "shopify://collections/seiko-mod",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
+                "width_mobile": "custom"
+              }
             }
           },
           "block_order": [
@@ -930,14 +544,10 @@
       },
       "name": "t:names.media_with_text",
       "settings": {
-        "media_position": "left",
         "media_width": "medium",
         "media_height": "60svh",
         "section_width": "page-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "background_color": "{{ settings.color_palette.background }}"
       }
     }
   },

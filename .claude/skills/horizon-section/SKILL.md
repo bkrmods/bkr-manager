@@ -86,7 +86,38 @@ Corollaire utile : les fichiers déjà présents (`templates/index.json` d'usine
 les `presets` d'une section) sont une mine de valeurs prouvées. Les lire coûte
 moins cher que de lire un schéma de 55 Ko.
 
+## N'écrire que ce qui est voulu
+
+Un réglage absent prend la valeur par défaut de son schéma. Réécrire cette
+valeur par défaut n'ajoute rien : ça alourdit le fichier et ça noie les vraies
+décisions au milieu du bruit. Le gabarit doit se lire comme la liste de ce qu'on
+a choisi.
+
+Deux cas où le réglage écrit ne servait à rien du tout :
+
+- **La typographie hors preset `custom`.** `font`, `font_size`, `line_height`,
+  `letter_spacing`, `case`, `wrap` ne sont lus que si `type_preset == 'custom'` —
+  `snippets/typography-style.liquid` enferme tout son contenu dans ce test.
+  Avec `type_preset: "h6"`, un `font_size: "0.75rem"` n'a aucun effet.
+- **`text_color` égal à la palette.** Absent, il hérite déjà de
+  `settings.color_palette.foreground`. L'écrire en dur crée un endroit de plus à
+  corriger le jour où la charte change.
+
+Corollaire : ne supprimer un réglage qu'après avoir **lu** son défaut dans le
+schéma. Supprimer en supposant le défaut, c'est le même pari perdant que d'en
+inventer la valeur.
+
 ## Pièges déjà rencontrés
+
+**Une valeur d'énumération plausible n'est pas une valeur valide.** Deux erreurs
+réelles sur ce projet, trouvées seulement en relisant les schémas après coup :
+`style_class: "link"` sur un `button` — les valeurs sont `button`,
+`button-secondary`, `button-unstyled`, `button-custom` — et `width_mobile:
+"fill"` sur un `button`, qui n'accepte que `fit-content` et `custom`. Les deux
+venaient d'un bloc voisin : `fill` existe sur un `group`, et « link » décrit
+bien l'effet voulu. Horizon n'a rien signalé, le rendu est simplement retombé
+sur le défaut. **Lire le schéma du bloc qu'on écrit, pas celui qui lui
+ressemble.**
 
 **Le champ `size` de l'API ne se lit pas les yeux fermés.** Sur un
 `templates/index.json` il correspondait exactement au nombre d'octets envoyés ;
