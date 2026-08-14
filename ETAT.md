@@ -97,7 +97,7 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
-| **Mot de passe de la boutique** | la vitrine est protégée : aucune vérification visuelle possible à 375 / 390 / 430 px. Toute la QA est structurelle pour l'instant. |
+| **Accès réseau à la vitrine** | le client a fourni le mot de passe de la boutique (le demander, il n'est pas versionné). Mais la politique réseau de l'environnement d'exécution bloque `*.myshopify.com` et `bkrmods.fr` : seuls GitHub et les dépôts de paquets sont autorisés. Résultat identique à avant — **aucune vérification visuelle possible à 375 / 390 / 430 px**, la QA reste structurelle. Deux sorties : autoriser ces domaines dans les réglages de l'environnement, ou faire les captures d'écran soi-même et me les envoyer. |
 | **Photos** | Hero, cartes de collection et fiches produit affichent les placeholders Shopify. Le Drive est vide. C'est le principal frein du projet. |
 | **Produits** | la boutique est vide : les sections branchées sur une collection ne rendent rien, ce qui est le comportement attendu. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
