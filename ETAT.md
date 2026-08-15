@@ -145,7 +145,7 @@ la deuxième lecture est la plus défendable.
 
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
-| **Accès réseau à la vitrine** | le client a fourni le mot de passe de la boutique (le demander, il n'est pas versionné). Mais la politique réseau de l'environnement d'exécution bloque `*.myshopify.com` et `bkrmods.fr` : seuls GitHub et les dépôts de paquets sont autorisés. Résultat identique à avant — **aucune vérification visuelle possible à 375 / 390 / 430 px**, la QA reste structurelle. Deux sorties : autoriser ces domaines dans les réglages de l'environnement, ou faire les captures d'écran soi-même et me les envoyer. |
+| **Accès réseau à la vitrine** | le client a fourni le mot de passe de la boutique (le demander, il n'est pas versionné). Mais la politique réseau de l'environnement bloque `*.myshopify.com`, `bkrmods.fr` et `cdn.shopify.com` : seuls GitHub et les dépôts de paquets sont joignables. **Aucune vérification visuelle possible**, la QA reste structurelle. Chromium est déjà installé et `horizon/apercu.mjs` est écrit et prêt : il ne manque que l'autorisation réseau, à donner dans les réglages de l'environnement Claude Code. À défaut, le client envoie des captures — c'est comme ça qu'a été trouvé le chevron invisible du menu. |
 | **Photos** | Hero, cartes de collection et fiches produit affichent les placeholders Shopify. Le Drive est vide. C'est le principal frein du projet. |
 | **Produits** | la boutique est vide : les sections branchées sur une collection ne rendent rien, ce qui est le comportement attendu. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |

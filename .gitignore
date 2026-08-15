@@ -44,3 +44,5 @@ next-env.d.ts
 
 # Sortie de horizon/compacter.py : dérivée, jamais versionnée
 horizon/**/*.min.json
+
+captures/

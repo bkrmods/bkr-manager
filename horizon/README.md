@@ -530,6 +530,36 @@ ce snippet, le conflit se résout en trois secondes.
 qu'on y ajoute doit d'abord avoir échoué à être un réglage natif, et porter en
 commentaire la raison qui l'a rendue nécessaire.
 
+## Voir le rendu
+
+Toute la QA du projet est **structurelle** : les schémas sont lus, les valeurs
+vérifiées, les tailles comparées à l'octet — mais personne n'a regardé la page.
+Le chevron invisible du menu est ce que ça coûte : une configuration
+parfaitement correcte, et une fonctionnalité que personne ne trouve.
+
+`horizon/apercu.mjs` capture le thème de dev à 375, 390, 430 et 1440 px.
+
+    npm i -D playwright
+    BKR_MDP=<mot de passe boutique> node horizon/apercu.mjs / /collections
+
+Chromium est **déjà** dans l'environnement (`PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`) :
+ne jamais lancer `playwright install`. Seul le pilote npm manque.
+
+Le script déverrouille la vitrine protégée, charge chaque page en aperçu du
+thème de dev, la parcourt de haut en bas pour forcer l'hydratation des sections
+d'Horizon — sans ce défilement tout ce qui est sous la ligne de flottaison est
+capturé vide — puis écrit les PNG dans `captures/`, ignoré par git.
+
+**Il n'a jamais pu être exécuté.** La politique réseau de l'environnement bloque
+`*.myshopify.com`, `bkrmods.fr` et `cdn.shopify.com` : seuls GitHub et les
+dépôts de paquets sont joignables. Sa syntaxe est vérifiée, son comportement
+non. Pour l'ouvrir, il faut autoriser ces domaines dans les réglages de
+l'environnement Claude Code — **`cdn.shopify.com` compris**, sinon la page se
+charge sans styles ni images et la capture ne vaut rien.
+
+Le mot de passe passe par l'environnement, jamais par le disque : il n'a rien à
+faire dans le dépôt.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
