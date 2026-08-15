@@ -189,6 +189,13 @@ pauvre alors que le mécanisme était déjà là.
 Le réglage `menu_style` était sur `featured_products` — hérité, jamais choisi.
 Avec une boutique vide, le panneau aurait affiché des cartes produit fantômes.
 
+**Le chevron.** Horizon dessine le bouton qui signale un sous-menu, mais le
+laisse à `opacity: 0` et `pointer-events: none` : il n'apparaît qu'à la
+navigation au clavier. Le panneau s'ouvre bien au survol — sans que rien ne
+l'annonce. Le client a regardé son en-tête et conclu que le menu déroulant
+manquait ; un visiteur aurait fait pareil. C'est la seule règle CSS du projet,
+elle vit dans `assets/bkr.css`.
+
 **Piste non prise :** `type_case_primary_link: "uppercase"` donnerait un menu
 plus éditorial. C'est un choix esthétique qui se teste à l'œil, pas à l'aveugle —
 une case à cocher dans l'éditeur.
@@ -499,9 +506,35 @@ qui ne pose aucune question de marque.
 La collection catalogue `seiko-mod` (« Toutes les Seiko Mods ») n'est pas une
 famille : c'est la cible du CTA du Hero et de l'entrée de menu « Montres ».
 
+## La seule feuille de style du projet
+
+`assets/bkr.css`, chargée par `snippets/stylesheets.liquid` juste après
+`base.css`. Elle contient **une règle**.
+
+Jusqu'ici tout passait par les réglages natifs et la palette : c'était le but,
+et ça reste la règle. Mais le chevron des sous-menus est codé en dur dans la
+feuille de style du bloc `_header-menu`, sans réglage pour le révéler. Les
+options étaient :
+
+| Option | Pourquoi non |
+| --- | --- |
+| Modifier `blocks/_header-menu.liquid` | 30 Ko de thème forkés pour deux propriétés, à re-fusionner à chaque mise à jour d'Horizon |
+| Injecter du CSS par un bloc `custom-liquid` | la feuille arriverait en fin de page, et la règle serait planquée dans un gabarit JSON |
+| Un fichier CSS dédié | 1,5 Ko, une ligne ajoutée à un snippet de 126 octets, et la raison écrite à côté de la règle |
+
+`snippets/stylesheets.liquid` est donc le seul fichier Liquid d'Horizon modifié
+sur tout le projet, et la modification tient en une ligne. Si Horizon met à jour
+ce snippet, le conflit se résout en trois secondes.
+
+**La règle pour la suite :** ce fichier n'est pas un fourre-tout. Toute règle
+qu'on y ajoute doit d'abord avoir échoué à être un réglage natif, et porter en
+commentaire la raison qui l'a rendue nécessaire.
+
 ## Fichiers versionnés
 
 - `config/settings_data.json` — design system BKR (palette, boutons, rayons, badges, logo)
+- `assets/bkr.css` — une règle : rendre visible le chevron des sous-menus
+- `snippets/stylesheets.liquid` — une ligne ajoutée pour charger `bkr.css`
 - `sections/header-group.json` — en-tête : menu `bkr-main`, annonce en français, sélecteurs coupés
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
 - `templates/index.json` — page d'accueil : Hero BKR + Best-sellers + Collections + Qu'est-ce qu'une Mod ?
