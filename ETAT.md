@@ -86,8 +86,8 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   au-dessus du Hero. Sélecteurs pays et langue coupés (un seul marché, une seule
   langue).
 - **Pied de page** — quatre colonnes de menu repliables en accordéon sur mobile,
-  bloc natif des politiques Shopify, réseaux sociaux **vidés** (pas de lien
-  inventé).
+  bloc natif des politiques Shopify, Instagram et TikTok renseignés (URL
+  nettoyées de leurs paramètres de suivi), les autres réseaux vides.
 - **Accueil / Hero** — plein écran, un seul `<h1>`, deux CTA, overlay dégradé.
 - **Accueil / Best-sellers** — `product-list` sur la collection manuelle
   `best-sellers`, carrousel sous 750 px.
@@ -100,6 +100,8 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 - **Accueil / Caractéristiques** — « Sur chaque montre. », trois points
   (assemblage, mouvements, paiement). Volontairement trois et pas six : les
   autres auraient été des promesses non confirmées.
+- **Accueil / Newsletter** — bloc natif `email-signup`, bouton intégré au champ,
+  centrée. Aucune promesse de remise ni de fréquence.
 - **Metafields** `bkr.*` créés, avec la consigne « ne pas inventer » dans leur
   description.
 - **Trois skills** dans `.claude/skills/` : `bkr-charte`, `horizon-section`,
@@ -113,8 +115,12 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 2. Every detail matters (vidéo) — **bloquée**, aucune vidéo dans la bibliothèque
 3. Guides SEO — **bloquée**, le blog `guides` n'a pas encore d'articles
 4. Avis clients — **section à laisser masquée** tant qu'il n'y a pas de vrais avis
-5. Réseaux sociaux — **bloquée**, aucune URL de compte
-6. Newsletter — constructible tout de suite
+5. Réseaux sociaux — Instagram et TikTok sont dans le pied de page. Une section
+   dédiée sur l'accueil reste possible, elle n'a pas été demandée.
+
+**Mention RGPD sous le champ newsletter** : consentement + lien vers la politique
+de confidentialité. Obligatoire pour une collecte d'e-mails, mais c'est un texte
+juridique — à faire rédiger, pas à inventer.
 
 L'ordre des sections se règle à la souris dans l'éditeur : construire dans le
 désordre ne coûte rien.

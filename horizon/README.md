@@ -164,9 +164,21 @@ sur mobile elles se replient en accordéons avec séparateurs — pied de page
 compact sur 375 px.
 
 Sous cette grille, `footer-utilities` porte le copyright, le bloc natif
-`footer-policy-list` (les politiques Shopify) et les réseaux sociaux. **Les URL
-sociales d'usine (`facebook.com`, `x.com`…) ont été vidées** : aucun lien
-inventé, les champs attendent les vrais comptes.
+`footer-policy-list` (les politiques Shopify) et les réseaux sociaux.
+
+| Réseau | URL |
+| --- | --- |
+| Instagram | `https://www.instagram.com/bkrmods` |
+| TikTok | `https://www.tiktok.com/@bkrmods` |
+
+Facebook, YouTube et X restent **vides** : pas de compte, donc pas de lien. Le
+bloc `social-links` n'affiche que les champs renseignés.
+
+Les deux URL ont été nettoyées de leurs paramètres de suivi avant enregistrement
+— celle d'Instagram arrivait avec `igsi` et `utm_source=qr`, hérités d'un partage
+par QR code. Ces paramètres n'ont aucun sens dans un lien permanent de pied de
+page : ils faussent les statistiques d'Instagram en attribuant à un QR code des
+visites venues du site.
 
 Le formulaire d'inscription qu'Horizon plaçait dans le pied de page a été
 retiré : le cahier des charges en fait une section de la page d'accueil.
@@ -337,6 +349,37 @@ Le jeu d'icônes d'Horizon est orienté alimentaire et textile — `apple`,
 `carrot`, `gluten_free`, `shirt`. Trois seulement conviennent à une boutique
 d'horlogerie, ce qui a fixé le nombre de colonnes autant que la prudence
 éditoriale.
+
+## Newsletter — page d'accueil
+
+Dernière section avant le pied de page, centrée : titre, une ligne, le champ.
+
+| Bloc | Contenu |
+| --- | --- |
+| Titre | `<h2>Les nouvelles pièces, en premier.</h2>` |
+| Sous-titre | Inscrivez-vous pour être prévenu des prochaines montres. |
+| Formulaire | bloc natif `email-signup`, bouton « S'inscrire » |
+
+**Le titre est un bloc `text` séparé, pas le réglage `heading` du formulaire.**
+Ce réglage existe, mais il rend une `<div class="email-signup__heading h3">` :
+l'apparence d'un titre sans en être un. Sur la seule page qui porte le `<h1>` du
+site, mieux vaut un vrai `<h2>`.
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `integrated_button` | `true` | le bouton se loge dans le champ : une seule ligne au lieu de deux, ce qui compte à 375 px |
+| `width` / `custom_width` | `custom` / 50 | un champ d'e-mail sur toute la largeur d'un écran 1440 est disgracieux. Sous 750 px, Horizon force `width: 100%` de toute façon |
+| `label` | S'inscrire | plutôt que la flèche seule : plus explicite, et la zone cliquable est plus grande |
+
+**Aucune promesse.** Pas de « -10 % sur votre première commande », pas de
+fréquence d'envoi, pas de « ventes privées » : ce sont des engagements que la
+boutique devrait tenir. Le texte dit ce que fait une inscription, rien de plus.
+
+**Reste à ajouter, et ce n'est pas un détail :** une mention de consentement et
+un lien vers la politique de confidentialité sous le champ. C'est une obligation
+RGPD pour une collecte d'e-mails, et c'est une formulation juridique — donc pas
+un choix de développeur. Le bloc est prêt à la recevoir : un `text` de plus dans
+la section.
 
 ## Page Collections — `/collections`
 
