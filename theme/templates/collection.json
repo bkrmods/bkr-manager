@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "colorways": {
+      "type": "lg-colorways",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "eyebrow": "Famille",
+        "show_description": true
+      }
+    },
+    "cta": {
+      "type": "lg-cta",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "contact",
+        "accent": "#4a6076",
+        "eyebrow": "Sur mesure",
+        "heading": "Un coloris qui n'est pas dans la liste ?",
+        "text": "Dites-nous quel cadran, quelle lunette et quel bracelet vous voulez sur cette base. Réponse sous 48 heures.",
+        "button_label": "Demander un devis",
+        "button_link": "/pages/contact",
+        "button_label_2": "Voir les autres familles",
+        "button_link_2": "shopify://collections"
+      }
+    }
+  },
+  "order": ["colorways", "cta"]
+}

@@ -1,0 +1,124 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="{{ section.settings.anchor | default: 'specifications' | handle }}">
+    <div class="lg-wrap lg-content">
+      <header class="lg-head">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="lg-eyebrow" data-lg-reveal>{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          <h2 class="lg-h2" data-lg-split>{{ section.settings.heading | escape }}</h2>
+        </div>
+      </header>
+
+      <div class="lg-specs" data-lg-stagger="90">
+        {%- for block in section.blocks -%}
+          <div class="lg-spec" data-lg-reveal data-lg-glass {{ block.shopify_attributes }}>
+            <span class="lg-spec__value">
+              {%- if block.settings.animate_number and block.settings.value != blank -%}
+                <span data-lg-count="{{ block.settings.value }}">{{ block.settings.value }}</span>
+              {%- else -%}
+                {{ block.settings.value }}
+              {%- endif -%}
+              {%- if block.settings.unit != blank -%}
+                <span class="lg-spec__unit">{{ block.settings.unit | escape }}</span>
+              {%- endif -%}
+            </span>
+            <span class="lg-spec__label">{{ block.settings.label | escape }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Spécifications",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre (pour les liens #)",
+      "default": "specifications"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Sous le cadran"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Les chiffres qui comptent."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Chiffre",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "200"
+        },
+        {
+          "type": "text",
+          "id": "unit",
+          "label": "Unité",
+          "default": "m"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Intitulé",
+          "default": "Étanchéité testée"
+        },
+        {
+          "type": "checkbox",
+          "id": "animate_number",
+          "label": "Animer le comptage",
+          "info": "À n'activer que si la valeur est un nombre.",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Verre — Spécifications",
+      "blocks": [
+        {
+          "type": "spec",
+          "settings": { "value": "200", "unit": "m", "label": "Étanchéité testée", "animate_number": true }
+        },
+        {
+          "type": "spec",
+          "settings": { "value": "41", "unit": "h", "label": "Réserve de marche", "animate_number": true }
+        },
+        {
+          "type": "spec",
+          "settings": { "value": "24", "unit": "rubis", "label": "Mouvement NH35A", "animate_number": true }
+        },
+        {
+          "type": "spec",
+          "settings": { "value": "8", "unit": "s/jour", "label": "Écart après réglage", "animate_number": true }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

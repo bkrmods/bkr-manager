@@ -1,0 +1,31 @@
+/* ---------------------------------------------------------------------------
+   BKR — retouches du thème Horizon.
+
+   Seule feuille de style ajoutée au projet. Tout le reste passe par les
+   réglages natifs et la palette. Chaque règle ici doit porter la raison qui
+   l'a rendue nécessaire : sans cette raison écrite, elle n'a rien à y faire.
+   --------------------------------------------------------------------------- */
+
+/* Le chevron des entrées de menu qui ouvrent un panneau.
+
+   Horizon dessine bien ce bouton, mais le laisse à `opacity: 0` et
+   `pointer-events: none` : il n'apparaît qu'à la navigation au clavier. Au
+   survol, le panneau s'ouvre — et rien, jamais, n'annonce qu'il existe.
+
+   Le client lui-même a regardé son en-tête et conclu que le menu déroulant
+   manquait. Si la personne qui a commandé le site ne devine pas l'affordance,
+   un visiteur ne la devinera pas non plus.
+
+   On le rend donc visible, et cliquable : le bouton porte déjà le basculement
+   du panneau (`on:click`), il ne lui manquait que le droit de recevoir le
+   clic. Cela ajoute au passage un chemin d'ouverture au doigt, sur les
+   portables tactiles où le survol n'existe pas.
+
+   Sélecteur volontairement à deux niveaux : les styles de bloc d'Horizon sont
+   servis dans un bundle distinct, dont l'ordre de chargement vis-à-vis de ce
+   fichier n'est pas garanti. La spécificité supérieure rend la règle
+   indépendante de cet ordre. */
+.menu-list .menu-list__disclosure {
+  opacity: 1;
+  pointer-events: auto;
+}

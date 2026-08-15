@@ -1,0 +1,197 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+<div class="lg-scope lg-hero-section color-{{ section.settings.color_scheme }}">
+  <section class="lg-hero" id="lg-hero">
+    <div class="lg-wrap lg-content">
+      <div class="lg-hero__grid">
+        <div class="lg-hero__text">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="lg-eyebrow" data-lg-reveal>{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+
+          <h1 class="lg-display">
+            <span data-lg-split>{{ section.settings.heading | escape }}</span>
+            {%- if section.settings.heading_accent != blank -%}
+              <br><span class="lg-steel">{{ section.settings.heading_accent | escape }}</span>
+            {%- endif -%}
+          </h1>
+
+          {%- if section.settings.subheading != blank -%}
+            <p class="lg-lede" data-lg-reveal>{{ section.settings.subheading | escape }}</p>
+          {%- endif -%}
+
+          <div class="lg-hero__actions" data-lg-stagger="90">
+            {%- if section.settings.button_label != blank -%}
+              <a
+                class="lg-btn lg-btn--solid"
+                href="{{ section.settings.button_link | default: '#' }}"
+                data-lg-reveal
+                data-lg-magnetic="0.2"
+              >
+                {{ section.settings.button_label | escape }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.button_label_2 != blank -%}
+              <a
+                class="lg-btn"
+                href="{{ section.settings.button_link_2 | default: '#' }}"
+                data-lg-reveal
+                data-lg-magnetic="0.2"
+              >
+                {{ section.settings.button_label_2 | escape }}
+              </a>
+            {%- endif -%}
+          </div>
+
+          {%- if section.blocks.size > 0 -%}
+            <dl class="lg-hero__meta" data-lg-stagger="80">
+              {%- for block in section.blocks -%}
+                <div data-lg-reveal {{ block.shopify_attributes }}>
+                  <dt>{{ block.settings.label | escape }}</dt>
+                  <dd>{{ block.settings.value | escape }}</dd>
+                </div>
+              {%- endfor -%}
+            </dl>
+          {%- endif -%}
+        </div>
+
+        <div class="lg-hero__stage" data-lg-parallax="0.08">
+          <div class="lg-hero__halo"></div>
+          {%- if section.settings.image != blank -%}
+            <img
+              class="lg-hero__watch"
+              src="{{ section.settings.image | image_url: width: 1000 }}"
+              alt="{{ section.settings.image.alt | escape }}"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <div class="lg-hero__watch">
+              {{ 'hero-apparel-1' | placeholder_svg_tag: 'lg-placeholder' }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    {%- if section.settings.show_scroll_cue -%}
+      <div class="lg-scrollcue" aria-hidden="true">
+        <i></i>
+        {{ section.settings.scroll_cue_label | escape }}
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Hero",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "Seiko mod — série limitée"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Chaque montre est"
+    },
+    {
+      "type": "text",
+      "id": "heading_accent",
+      "label": "Titre — fragment métal",
+      "default": "montée à la main."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Accroche",
+      "default": "Boîtiers, cadrans et aiguilles assemblés sur mouvement Seiko NH35. Une famille, tous ses coloris, et rien de superflu."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Visuel principal"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Bouton principal",
+      "default": "Voir les familles"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Lien du bouton principal"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Bouton secondaire",
+      "default": "Comment on monte"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Lien du bouton secondaire"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_cue",
+      "label": "Afficher l'indicateur de défilement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "scroll_cue_label",
+      "label": "Texte de l'indicateur",
+      "default": "Faire défiler"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Chiffre clé",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Intitulé",
+          "default": "Mouvement"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valeur",
+          "default": "NH35A"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Verre — Hero",
+      "blocks": [
+        { "type": "stat", "settings": { "label": "Mouvement", "value": "NH35A" } },
+        { "type": "stat", "settings": { "label": "Verre", "value": "Saphir" } },
+        { "type": "stat", "settings": { "label": "Étanchéité", "value": "200 m" } },
+        { "type": "stat", "settings": { "label": "Garantie", "value": "2 ans" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

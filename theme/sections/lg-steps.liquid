@@ -1,0 +1,122 @@
+{{ 'liquid-glass.css' | asset_url | stylesheet_tag }}
+
+<div class="lg-scope color-{{ section.settings.color_scheme }}">
+  <section class="lg-section" id="{{ section.settings.anchor | default: 'atelier' | handle }}">
+    <div class="lg-wrap lg-content">
+      <header class="lg-head">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="lg-eyebrow" data-lg-reveal>{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          <h2 class="lg-h2" data-lg-split>{{ section.settings.heading | escape }}</h2>
+          {%- if section.settings.description != blank -%}
+            <p class="lg-lede" data-lg-reveal>{{ section.settings.description | escape }}</p>
+          {%- endif -%}
+        </div>
+      </header>
+
+      <div class="lg-steps" data-lg-stagger="120">
+        {%- for block in section.blocks -%}
+          <article class="lg-step lg-glass lg-glass--sm" data-lg-reveal data-lg-tilt="4" {{ block.shopify_attributes }}>
+            <h3 class="lg-h3">{{ block.settings.title | escape }}</h3>
+            <p>{{ block.settings.text | escape }}</p>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Verre — Étapes",
+  "tag": "section",
+  "class": "lg-section-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Jeu de couleurs",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Ancre (pour les liens #)",
+      "default": "atelier"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Surtitre",
+      "default": "L'atelier"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titre",
+      "default": "Du boîtier nu à la montre réglée."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Sélection"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte",
+          "default": "Boîtier, lunette, cadran et aiguilles choisis pièce par pièce."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Verre — Étapes",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Sélection",
+            "text": "Boîtier, lunette, cadran et aiguilles choisis pièce par pièce, puis contrôlés à la loupe."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Montage",
+            "text": "Pose du mouvement NH35, alignement des aiguilles et du guichet de date sous binoculaire."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Réglage",
+            "text": "Passage au chronocomparateur dans cinq positions, jusqu'à moins de 8 secondes d'écart par jour."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Contrôle",
+            "text": "Test d'étanchéité, nettoyage aux ultrasons, photo de la pièce exacte qui part chez vous."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

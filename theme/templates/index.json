@@ -1,0 +1,238 @@
+{
+  "sections": {
+    "lg_hero": {
+      "type": "lg-hero",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "label": "Mouvement", "value": "Seiko NH35A" } },
+        "s2": { "type": "stat", "settings": { "label": "Verre", "value": "Saphir bombé" } },
+        "s3": { "type": "stat", "settings": { "label": "Étanchéité", "value": "200 m" } },
+        "s4": { "type": "stat", "settings": { "label": "Garantie", "value": "2 ans" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "eyebrow": "Seiko mod — atelier indépendant",
+        "heading": "Chaque montre est",
+        "heading_accent": "montée à la main.",
+        "subheading": "Boîtiers, cadrans et aiguilles assemblés sur mouvement Seiko NH35, puis réglés au chronocomparateur. Une famille, tous ses coloris, et rien de superflu.",
+        "button_label": "Voir les familles",
+        "button_link": "#familles",
+        "button_label_2": "L'atelier",
+        "button_link_2": "#atelier",
+        "show_scroll_cue": true,
+        "scroll_cue_label": "Faire défiler"
+      }
+    },
+    "lg_marquee": {
+      "type": "lg-marquee",
+      "blocks": {
+        "m1": { "type": "item", "settings": { "text": "Mouvement Seiko NH35A" } },
+        "m2": { "type": "item", "settings": { "text": "Verre saphir bombé" } },
+        "m3": { "type": "item", "settings": { "text": "Étanche 200 m" } },
+        "m4": { "type": "item", "settings": { "text": "Montage à la main" } },
+        "m5": { "type": "item", "settings": { "text": "Réglage ± 8 s / jour" } },
+        "m6": { "type": "item", "settings": { "text": "Garantie 2 ans" } },
+        "m7": { "type": "item", "settings": { "text": "Expédition sous 48 h" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4", "m5", "m6", "m7"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "speed": 45
+      }
+    },
+    "lg_families": {
+      "type": "lg-families",
+      "blocks": {
+        "f1": {
+          "type": "family",
+          "settings": {
+            "collection": "",
+            "title": "Datejust",
+            "caption": "36 & 41 mm · index appliqués · bracelet jubilé",
+            "accent": "#9fb4c7",
+            "colorways_limit": 8
+          }
+        },
+        "f2": {
+          "type": "family",
+          "settings": {
+            "collection": "",
+            "title": "Diver",
+            "caption": "40 mm · lunette céramique · bracelet oyster",
+            "accent": "#1f4d8f",
+            "colorways_limit": 8
+          }
+        },
+        "f3": {
+          "type": "family",
+          "settings": {
+            "collection": "",
+            "title": "Explorer",
+            "caption": "36 mm · cadran mat · index 3-6-9",
+            "accent": "#1d6b4f",
+            "colorways_limit": 8
+          }
+        },
+        "f4": {
+          "type": "family",
+          "settings": {
+            "collection": "",
+            "title": "GMT",
+            "caption": "40 mm · lunette bicolore · 24 h",
+            "accent": "#7a1f2b",
+            "colorways_limit": 8
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "familles",
+        "eyebrow": "Le catalogue",
+        "heading": "Une famille, tous ses coloris.",
+        "description": "Choisissez d'abord la famille, puis le cadran. Survolez les pastilles pour voir chaque coloris changer sur la montre.",
+        "link_label": "Tout voir",
+        "link_url": "shopify://collections"
+      }
+    },
+    "lg_specs": {
+      "type": "lg-specs",
+      "blocks": {
+        "p1": {
+          "type": "spec",
+          "settings": { "value": "200", "unit": "m", "label": "Étanchéité testée", "animate_number": true }
+        },
+        "p2": {
+          "type": "spec",
+          "settings": { "value": "41", "unit": "h", "label": "Réserve de marche", "animate_number": true }
+        },
+        "p3": {
+          "type": "spec",
+          "settings": { "value": "24", "unit": "rubis", "label": "Mouvement NH35A", "animate_number": true }
+        },
+        "p4": {
+          "type": "spec",
+          "settings": { "value": "8", "unit": "s/jour", "label": "Écart après réglage", "animate_number": true }
+        }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "specifications",
+        "eyebrow": "Sous le cadran",
+        "heading": "Les chiffres qui comptent."
+      }
+    },
+    "lg_steps": {
+      "type": "lg-steps",
+      "blocks": {
+        "e1": {
+          "type": "step",
+          "settings": {
+            "title": "Sélection",
+            "text": "Boîtier, lunette, cadran et aiguilles choisis pièce par pièce, puis contrôlés à la loupe."
+          }
+        },
+        "e2": {
+          "type": "step",
+          "settings": {
+            "title": "Montage",
+            "text": "Pose du mouvement NH35, alignement des aiguilles et du guichet de date sous binoculaire."
+          }
+        },
+        "e3": {
+          "type": "step",
+          "settings": {
+            "title": "Réglage",
+            "text": "Passage au chronocomparateur dans cinq positions, jusqu'à moins de 8 secondes d'écart par jour."
+          }
+        },
+        "e4": {
+          "type": "step",
+          "settings": {
+            "title": "Contrôle",
+            "text": "Test d'étanchéité, nettoyage aux ultrasons, photo de la pièce exacte qui part chez vous."
+          }
+        }
+      },
+      "block_order": ["e1", "e2", "e3", "e4"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "atelier",
+        "eyebrow": "L'atelier",
+        "heading": "Du boîtier nu à la montre réglée.",
+        "description": "Quatre étapes, aucune sous-traitance. La montre que vous recevez a été montée, réglée et photographiée sur l'établi."
+      }
+    },
+    "lg_faq": {
+      "type": "lg-faq",
+      "blocks": {
+        "q1": {
+          "type": "qa",
+          "settings": {
+            "question": "Un Seiko mod, c'est quoi exactement ?",
+            "answer": "<p>Une montre assemblée pièce par pièce autour d'un mouvement automatique Seiko NH35. Boîtier, lunette, cadran, aiguilles et bracelet sont choisis séparément, puis montés et réglés à la main dans notre atelier.</p>"
+          }
+        },
+        "q2": {
+          "type": "qa",
+          "settings": {
+            "question": "Quel est le délai de fabrication ?",
+            "answer": "<p>Comptez 5 à 10 jours ouvrés pour un coloris en stock, et 2 à 3 semaines pour une configuration sur mesure. Vous recevez une photo de votre montre avant l'expédition.</p>"
+          }
+        },
+        "q3": {
+          "type": "qa",
+          "settings": {
+            "question": "La montre est-elle réglée avant l'envoi ?",
+            "answer": "<p>Oui. Chaque mouvement passe au chronocomparateur dans cinq positions. Nous n'expédions pas une montre au-delà de 8 secondes d'écart par jour.</p>"
+          }
+        },
+        "q4": {
+          "type": "qa",
+          "settings": {
+            "question": "Puis-je nager avec ?",
+            "answer": "<p>Les boîtiers plongeur sont testés à 200 m et conviennent à la nage. Nous déconseillons la douche chaude, qui fatigue les joints. Un contrôle d'étanchéité tous les deux ans est recommandé.</p>"
+          }
+        },
+        "q5": {
+          "type": "qa",
+          "settings": {
+            "question": "Que couvre la garantie ?",
+            "answer": "<p>Deux ans sur le mouvement et le montage. L'usure normale du bracelet et les rayures du verre ne sont pas couvertes. Le service après-vente se fait directement à l'atelier.</p>"
+          }
+        },
+        "q6": {
+          "type": "qa",
+          "settings": {
+            "question": "Puis-je commander une combinaison qui n'est pas au catalogue ?",
+            "answer": "<p>Oui. Écrivez-nous avec la famille de départ et les pièces souhaitées : nous confirmons la faisabilité, le prix et le délai sous 48 heures.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "faq",
+        "eyebrow": "Questions fréquentes",
+        "heading": "Ce qu'on nous demande le plus."
+      }
+    },
+    "lg_cta": {
+      "type": "lg-cta",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "anchor": "contact",
+        "accent": "#4a6076",
+        "eyebrow": "Sur mesure",
+        "heading": "Une idée précise en tête ?",
+        "text": "Décrivez la famille de départ et les pièces voulues. On vous répond sous 48 heures avec un prix et un délai.",
+        "button_label": "Demander un devis",
+        "button_link": "/pages/contact",
+        "button_label_2": "Voir le catalogue",
+        "button_link_2": "shopify://collections"
+      }
+    }
+  },
+  "order": ["lg_hero", "lg_marquee", "lg_families", "lg_specs", "lg_steps", "lg_faq", "lg_cta"]
+}

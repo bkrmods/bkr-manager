@@ -1,0 +1,66 @@
+{% comment %}
+  Renders the BKRmods logo.
+
+  Le logo chargé dans les réglages du thème (Réglages > Logo) est prioritaire.
+  À défaut, on sert le logo livré avec le thème (assets/bkr-logo.png) : la
+  marque est ainsi correcte dès l'import, sans avoir à passer par la
+  bibliothèque de fichiers. Le fichier fourni est le lettrage BKR sur fond
+  transparent, aux couleurs de la charte (blanc #F3F3F1, accent #1C5A4B).
+
+  Accepts:
+  - image_class: {String} classe appliquée à l'image
+  - sizes: {String} attribut sizes de l'image
+  - preload: {Boolean} précharge l'image (en-tête visible d'emblée)
+
+  Usage:
+  {% render 'bkr-logo', image_class: 'header__heading-logo', sizes: sizes %}
+{% endcomment %}
+
+{%- liquid
+  assign logo_class = image_class | default: 'header__heading-logo'
+  assign logo_alt = shop.name | escape
+  assign logo_width = settings.logo_width | default: 90
+-%}
+
+{%- if settings.logo != blank -%}
+  {%- liquid
+    assign merchant_alt = settings.logo.alt | default: shop.name | escape
+    assign logo_height = logo_width | divided_by: settings.logo.aspect_ratio
+    assign width_1_5x = logo_width | times: 1.5 | round
+    assign width_2x = logo_width | times: 2
+    capture widths
+      echo logo_width | append: ', ' | append: width_1_5x | append: ', ' | append: width_2x
+    endcapture
+  -%}
+  {{
+    settings.logo
+    | image_url: width: 600
+    | image_tag:
+      class: logo_class,
+      widths: widths,
+      height: logo_height,
+      width: logo_width,
+      alt: merchant_alt,
+      sizes: sizes,
+      preload: preload
+  }}
+{%- else -%}
+  {%- comment -%}
+    Le lettrage livré mesure 600 × 168 px : on conserve ce rapport pour que le
+    navigateur réserve la bonne hauteur et n'a donc pas à recalculer la mise en
+    page au chargement.
+  {%- endcomment -%}
+  {%- assign fallback_height = logo_width | times: 168 | divided_by: 600.0 | round -%}
+  <img
+    src="{{ 'bkr-logo.png' | asset_url }}"
+    alt="{{ logo_alt }}"
+    class="{{ logo_class }}"
+    width="{{ logo_width }}"
+    height="{{ fallback_height }}"
+    {% if preload %}
+      fetchpriority="high"
+    {% else %}
+      loading="lazy"
+    {% endif %}
+  >
+{%- endif -%}
