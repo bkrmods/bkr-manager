@@ -44,6 +44,7 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 | `bracelet-integre` | Seikolus | silhouette (Nautilus) |
 | `octogonale` | Seikoak | silhouette (Royal Oak) |
 | `lunette-tournante` | Masterteiko | silhouette (Yacht-Master) |
+| `boitier-carre` | Santeiko | silhouette (Santos) |
 
 `chronographe-vk63` porte le nom **Seikona** (Daytona) et sert donc à la fois
 d'axe mouvement et de famille de silhouette.

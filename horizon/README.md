@@ -338,7 +338,7 @@ donc été retiré, il ne servait à rien.
 
 ### Les familles
 
-Sept familles, nommées par le client :
+Huit familles, nommées par le client :
 
 | Silhouette | Nom | Handle |
 | --- | --- | --- |
@@ -349,6 +349,7 @@ Sept familles, nommées par le client :
 | Yacht-Master | Masterteiko | `lunette-tournante` |
 | Nautilus | Seikolus | `bracelet-integre` |
 | Royal Oak | Seikoak | `octogonale` |
+| Santos | Santeiko | `boitier-carre` |
 
 **Les handles restent descriptifs.** Le nom de gamme s'affiche, l'URL décrit la
 montre : `/collections/octogonale` porte « Seikoak ». C'est ce qui garde une
@@ -359,19 +360,21 @@ viennent du bloc `collection-title`, donc ils suivent automatiquement.
 **Décision du client, prise en connaissance de cause.** Ces noms combinent la
 marque Seiko et un nom de modèle protégé — Datejust, Daytona, Yacht-Master et
 GMT-Master sont des marques Rolex, Nautilus appartient à Patek Philippe, Royal
-Oak à Audemars Piguet. Le risque a été exposé en détail, ainsi qu'une série de
-noms de remplacement (Origine, Almanach, Méridien, Circuit, Rivage, Octave,
-Régate) ; le client a maintenu son choix. **C'est sa boutique et sa décision — ne
-pas revenir dessus de sa propre initiative.**
+Oak à Audemars Piguet, Santos à Cartier. Le risque a été exposé en détail, ainsi
+qu'une série de noms de remplacement (Origine, Almanach, Méridien, Circuit,
+Rivage, Octave, Régate) ; le client a maintenu son choix. **C'est sa boutique et
+sa décision — ne pas revenir dessus de sa propre initiative.**
 
-Si elle devait être révisée un jour, l'opération est légère : sept
-`collectionUpdate` sur le champ `title` et sur les balises SEO. Les handles, les
-menus, le gabarit d'accueil et la page `/collections` ne bougent pas.
+Si elle devait être révisée un jour, l'opération est légère : un
+`collectionUpdate` par famille sur le champ `title` et sur les balises SEO. Les
+handles, les menus, le gabarit d'accueil et la page `/collections` ne bougent
+pas.
 
-**Un huitième nom, `Seikos`, n'est attribué à rien** : il n'y a que sept
-familles, et la collection catalogue `seiko-mod` (« Toutes les Seiko Mods ») a
-été laissée telle quelle — c'est la cible du CTA du Hero et de l'entrée de menu
-« Montres ». À trancher avec le client.
+**Le nom `Seikos` n'est toujours attribué à rien.** La collection catalogue
+`seiko-mod` (« Toutes les Seiko Mods ») a été laissée telle quelle : c'est la
+cible du CTA du Hero et de l'entrée de menu « Montres », pas une famille. Et
+`arabic-dial`, devenue une famille, garde son nom descriptif. À trancher avec le
+client.
 
 ## Fichiers versionnés
 
