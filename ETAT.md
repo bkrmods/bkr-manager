@@ -49,20 +49,35 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 `chronographe-vk63` porte le nom **Seikona** (Daytona) et sert donc à la fois
 d'axe mouvement et de famille de silhouette.
 
-**Quatre premiers produits en ligne** (15 août), la famille Dayko : cadran noir,
-bleu roi, olive, et chocolat/or rose. Ils sont dans `jour-date` **et** dans
-`seiko-mod`, publiés sur « Boutique en ligne » et « Shop ». Les autres
-collections restent vides.
-
-Ces quatre fiches sont **incomplètes** : prix à 0,00 € et description vide. Ce
-sont les deux seuls champs que je ne peux pas remplir sans le client — voir
-« Bloqué » plus bas.
-
-Les douze sont maintenant **publiées** sur « Boutique en ligne » et « Shop ».
+Les douze collections sont **publiées** sur « Boutique en ligne » et « Shop ».
 Quatre ne l'étaient pas — `seiko-mod`, `arabic-dial`, `chronographe-vk63`,
 `best-sellers` — et c'est ce qui faisait afficher « Titre de la collection » sur
 deux cartes de l'accueil, disparaître les quatre de `/collections`, et pointer
 dans le vide le menu « Montres » et le second CTA du Hero. Réparé le 15 août.
+
+**Six produits en ligne** (15 août), tous à **190 €**, tous publiés sur
+« Boutique en ligne » et « Shop », tous dans `seiko-mod` :
+
+| Produit | Famille |
+| --- | --- |
+| Dayko — cadran noir | `jour-date` |
+| Dayko — cadran bleu roi | `jour-date` |
+| Dayko — cadran olive | `jour-date` |
+| Dayko — cadran chocolat, or rose | `jour-date` |
+| Seikona — cadran météorite | `chronographe-vk63` |
+| Masterteiko — or rose, lunette noire | `lunette-tournante` |
+
+Les **descriptions restent vides** : rien ne s'écrit sans les caractéristiques
+du fournisseur.
+
+Le Drive est organisé en huit dossiers, un par famille. Les photos livrées en
+second (≈1120 × 1400 px) sont exploitables ; les quatre premières (311 à 400 px)
+ne le sont pas vraiment et mériteraient d'être remplacées quand le client aura
+les mêmes vues en grand pour les trois Dayko restantes.
+
+`Dayko — cadran noir` s'était retrouvée d'office dans la collection `frontpage`
+de Shopify ; elle en a été retirée, sinon « Page d'accueil » affichait une vraie
+montre sur `/collections` et passait pour une famille.
 
 **Les noms de famille ont été choisis par le client.** Ils combinent la marque
 Seiko et des noms de modèles protégés (Rolex, Patek Philippe, Audemars Piguet).
@@ -180,9 +195,8 @@ Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
 
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
-| **Prix des quatre Dayko** | à 0,00 €, donc affichés « €0,00 » en boutique. Un prix ne s'invente pas : le client doit les donner. Bloquant avant toute mise en ligne publique. |
-| **Descriptions des quatre Dayko** | vides. Rien ne sera écrit sans les caractéristiques du fournisseur — pas de mouvement, d'étanchéité ni de matériau inventés. |
-| **Qualité des photos produit** | les quatre PNG du Drive font 311 à 400 px de large, pour ~2000 px attendus : elles sont agrandies 2 à 3 fois sur mobile. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
+| **Descriptions des six fiches** | vides. Rien ne sera écrit sans les caractéristiques du fournisseur — pas de mouvement, d'étanchéité ni de matériau inventés. Le cadran du Masterteiko affiche « 300m » : ce n'est pas une source, ça ne se recopie pas en étanchéité. |
+| **Qualité des premières photos** | les quatre PNG livrés en premier font 311 à 400 px de large, pour ~2000 px attendus. Trois sont encore en ligne (Dayko noir, bleu roi, olive). Le second envoi est à ≈1120 × 1400 px, exploitable. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
 | **Photos** | Hero et cartes de collection affichent toujours les placeholders Shopify. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
 | **Produits** | la boutique est vide. Maintenant que `best-sellers` est publiée, la section « Les plus recherchées. » affiche les **produits bouche-trou de Shopify** (« Titre de produit », 19,99 €) au lieu de ne rien rendre. C'est le comportement d'Horizon sur une collection vide, pas un faux contenu qu'on aurait écrit — ça disparaîtra au premier produit. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |

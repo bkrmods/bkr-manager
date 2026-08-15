@@ -199,36 +199,51 @@ async function ouvrir(page, url, options = {}) {
 }
 
 /**
+ * Marqueur de la vraie vitrine. La page de garde de Shopify n'a ni en-tête ni
+ * pied de page du thème : si ce groupe de sections est là, on est passé.
+ */
+const MARQUEUR_VITRINE = '.shopify-section-group-header-group';
+
+/**
  * La vitrine est protégée par mot de passe. Shopify pose un cookie de session
  * après le formulaire ; on le fait une fois, le contexte le garde ensuite.
+ *
+ * La vérification cherche l'en-tête du thème, et non l'absence du champ de mot
+ * de passe. Chercher une absence a déjà menti : sur la page de garde le champ
+ * vit dans une <dialog> peuplée par un script, donc un test lancé trop tôt le
+ * compte à zéro et conclut que tout va bien. Un contexte est reparti verrouillé
+ * sans que rien ne le signale, et ses captures montraient « Opening soon ».
  */
 async function deverrouiller(page, motDePasse) {
-  await ouvrir(page, `${BOUTIQUE}/password`);
+  for (let essai = 1; ; essai++) {
+    await ouvrir(page, `${BOUTIQUE}/password`);
 
-  const champ = page.locator('input[type="password"]').first();
-  if ((await champ.count()) === 0) return; // déjà déverrouillée
+    const champ = page.locator('input[type="password"]').first();
+    if ((await champ.count()) > 0) {
+      // Horizon range le formulaire dans une <dialog> : tant qu'on n'a pas
+      // cliqué « Accéder avec le mot de passe », le champ reste invisible.
+      if (!(await champ.isVisible())) {
+        await page.getByRole('button', { name: /mot de passe/i }).first().click();
+        await champ.waitFor({ state: 'visible', timeout: 10000 });
+      }
 
-  // Horizon range le formulaire dans une <dialog> : tant qu'on n'a pas cliqué
-  // « Accéder avec le mot de passe », le champ existe mais reste invisible.
-  if (!(await champ.isVisible())) {
-    await page.getByRole('button', { name: /mot de passe/i }).first().click();
-    await champ.waitFor({ state: 'visible', timeout: 10000 });
-  }
+      await champ.fill(motDePasse);
+      // Attendre la navigation de l'envoi, sinon la vérification part pendant
+      // que le formulaire est encore en vol et se fait interrompre.
+      await Promise.all([
+        page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 30000 }),
+        champ.press('Enter'),
+      ]);
+    }
 
-  await champ.fill(motDePasse);
-  // Attendre la navigation de l'envoi, sinon la vérification ci-dessous part
-  // pendant que le formulaire est encore en vol et se fait interrompre.
-  await Promise.all([
-    page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 30000 }),
-    champ.press('Enter'),
-  ]);
-
-  // L'URL ne dit rien quand le relais suit les redirections : on rouvre la
-  // vitrine et on regarde s'il reste un formulaire de mot de passe.
-  await ouvrir(page, `${BOUTIQUE}/`);
-
-  if ((await page.locator('input[type="password"]').count()) > 0) {
-    throw new Error('mot de passe refusé par la vitrine');
+    await ouvrir(page, `${BOUTIQUE}/`);
+    try {
+      await page.locator(MARQUEUR_VITRINE).first().waitFor({ state: 'attached', timeout: 15000 });
+      return;
+    } catch {
+      if (essai === 2) throw new Error('la vitrine est restée verrouillée après deux tentatives');
+      await page.waitForTimeout(2000);
+    }
   }
 }
 

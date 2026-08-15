@@ -623,7 +623,11 @@ Cinq obstacles ont dû être levés, tous documentés dans le script — les ret
    son URL.
 3. **Le formulaire de mot de passe est dans une `<dialog>`.** Le champ existe
    dès le chargement mais reste invisible tant qu'on n'a pas cliqué « Accéder
-   avec le mot de passe ».
+   avec le mot de passe ». Et le déverrouillage se vérifie en **cherchant
+   l'en-tête du thème**, jamais en constatant l'absence du champ : cette
+   `<dialog>` est peuplée par un script, donc un test lancé trop tôt compte zéro
+   champ et conclut que tout va bien. Un contexte est reparti verrouillé sans
+   que rien ne le signale, et ses quatre captures montraient « Opening soon ».
 4. **Au-delà de 990 px, ce n'est pas le document qui défile** mais
    `.page-wrapper` : `html` et `body` sont en `overflow: hidden`. Une capture
    pleine page s'arrête alors au premier écran — c'est ce qui rendait les vues
