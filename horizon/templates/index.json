@@ -326,7 +326,7 @@
                   "settings": {
                     "image_ratio": "square",
                     "toggle_overlay": true,
-                    "overlay_color": "#0E0E0EA6",
+                    "overlay_color": "#0E0E0ECC",
                     "overlay_style": "gradient",
                     "border_radius": 4
                   }
@@ -376,7 +376,7 @@
                   "settings": {
                     "image_ratio": "square",
                     "toggle_overlay": true,
-                    "overlay_color": "#0E0E0EA6",
+                    "overlay_color": "#0E0E0ECC",
                     "overlay_style": "gradient",
                     "border_radius": 4
                   }
@@ -426,7 +426,7 @@
                   "settings": {
                     "image_ratio": "square",
                     "toggle_overlay": true,
-                    "overlay_color": "#0E0E0EA6",
+                    "overlay_color": "#0E0E0ECC",
                     "overlay_style": "gradient",
                     "border_radius": 4
                   }

@@ -46,3 +46,6 @@ next-env.d.ts
 horizon/**/*.min.json
 
 captures/
+
+# caches Python des scripts de skill
+__pycache__/

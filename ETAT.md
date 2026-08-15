@@ -3,8 +3,8 @@
 Note de reprise. Ce fichier est chargé automatiquement par `CLAUDE.md` : une
 nouvelle session sait donc où on en est sans qu'on ait à le lui raconter.
 
-**À tenir à jour à chaque fin de séance.** Dernière mise à jour : 14 août 2026,
-après la section Collections de la page d'accueil.
+**À tenir à jour à chaque fin de séance.** Dernière mise à jour : 15 août 2026,
+après la première QA visuelle réelle (le réseau vers la vitrine a été ouvert).
 
 ## Le projet en cinq lignes
 
@@ -23,7 +23,7 @@ gabarit JSON → section sur mesure.**
 | --- | --- |
 | Thème de dev (écrire ici) | `gid://shopify/OnlineStoreTheme/186469122384` — « BKR — dev (Horizon) », `UNPUBLISHED` |
 | Thème live (ne pas toucher) | `gid://shopify/OnlineStoreTheme/186380222800` — « Horizon », `MAIN` |
-| Branche git | `claude/bkrmods-color-legal-pages-jwtyai` |
+| Branche git | `claude/bkrmods-responsive-preview-le1sgn` (part de `claude/bkrmods-color-legal-pages-jwtyai`) |
 | Miroir des fichiers modifiés | `horizon/` (voir `horizon/README.md`) |
 
 Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
@@ -50,6 +50,12 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 d'axe mouvement et de famille de silhouette.
 
 Toutes vides : **il n'y a encore aucun produit dans la boutique.**
+
+Les douze sont maintenant **publiées** sur « Boutique en ligne » et « Shop ».
+Quatre ne l'étaient pas — `seiko-mod`, `arabic-dial`, `chronographe-vk63`,
+`best-sellers` — et c'est ce qui faisait afficher « Titre de la collection » sur
+deux cartes de l'accueil, disparaître les quatre de `/collections`, et pointer
+dans le vide le menu « Montres » et le second CTA du Hero. Réparé le 15 août.
 
 **Les noms de famille ont été choisis par le client.** Ils combinent la marque
 Seiko et des noms de modèles protégés (Rolex, Patek Philippe, Audemars Piguet).
@@ -103,6 +109,12 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   autres auraient été des promesses non confirmées.
 - **Accueil / Newsletter** — bloc natif `email-signup`, bouton intégré au champ,
   centrée. Aucune promesse de remise ni de fréquence.
+- **Aperçu visuel** — `horizon/apercu.mjs` tourne enfin : le réseau vers la
+  vitrine est ouvert. Captures aux quatre largeurs dans `captures/`.
+- **Contraste des cartes de collection** — le voile est passé de `#0E0E0EA6` à
+  `#0E0E0ECC`. Mesuré sur la capture : 4,21:1 avant, 6,6:1 après. En dessous de
+  4,5:1 l'accroche et le lien « Voir la collection » n'étaient pas conformes.
+  Le Hero garde `A6`, il est déjà entre 5,6 et 7,1:1.
 - **Metafields** `bkr.*` créés, avec la consigne « ne pas inventer » dans leur
   description.
 - **Trois skills** dans `.claude/skills/` : `bkr-charte`, `horizon-section`,
@@ -145,13 +157,12 @@ la deuxième lecture est la plus défendable.
 
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
-| **Accès réseau à la vitrine** | le client a fourni le mot de passe de la boutique (le demander, il n'est pas versionné). Mais la politique réseau de l'environnement bloque `*.myshopify.com`, `bkrmods.fr` et `cdn.shopify.com` : seuls GitHub et les dépôts de paquets sont joignables. **Aucune vérification visuelle possible**, la QA reste structurelle. Chromium est déjà installé et `horizon/apercu.mjs` est écrit et prêt : il ne manque que l'autorisation réseau, à donner dans les réglages de l'environnement Claude Code. À défaut, le client envoie des captures — c'est comme ça qu'a été trouvé le chevron invisible du menu. |
-| **Photos** | Hero, cartes de collection et fiches produit affichent les placeholders Shopify. Le Drive est vide. C'est le principal frein du projet. |
-| **Produits** | la boutique est vide : les sections branchées sur une collection ne rendent rien, ce qui est le comportement attendu. |
+| **Photos** | Hero, cartes de collection et fiches produit affichent les placeholders Shopify. Le Drive est vide. C'est le principal frein du projet. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
+| **Produits** | la boutique est vide. Maintenant que `best-sellers` est publiée, la section « Les plus recherchées. » affiche les **produits bouche-trou de Shopify** (« Titre de produit », 19,99 €) au lieu de ne rien rendre. C'est le comportement d'Horizon sur une collection vide, pas un faux contenu qu'on aurait écrit — ça disparaîtra au premier produit. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
 | **URL des réseaux sociaux** | champs volontairement vides. |
 | **Semrush** | à ré-authentifier. |
-| **Collection `frontpage` à dépublier** | Shopify crée d'office une collection « Page d'accueil », vide, qui s'affiche donc comme une carte sur `/collections`. La dépublier demande une case à décocher dans l'admin : le connecteur bloque `publishableUnpublish`. Collections → Page d'accueil → Publication → décocher « Boutique en ligne ». |
+| **Collection `frontpage` à dépublier** | Shopify crée d'office une collection « Page d'accueil », vide, qui s'affiche donc comme une carte sur `/collections` — vérifié sur capture le 15 août. `publishableUnpublish` a été retenté deux fois : le connecteur le refuse par politique (« Unpublishing is blocked »), ce n'est pas un incident réseau. **Seul geste possible, côté client** : Collections → Page d'accueil → Publication → décocher « Boutique en ligne ». |
 
 ## Règles absolues
 

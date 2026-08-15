@@ -543,19 +543,53 @@ parfaitement correcte, et une fonctionnalité que personne ne trouve.
     BKR_MDP=<mot de passe boutique> node horizon/apercu.mjs / /collections
 
 Chromium est **déjà** dans l'environnement (`PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers`) :
-ne jamais lancer `playwright install`. Seul le pilote npm manque.
+ne jamais lancer `playwright install`. Seul le pilote npm manque — et **sa
+version doit correspondre au Chromium installé**, sinon il en réclame un autre
+et refuse de démarrer. Le build 1194 présent va avec `playwright@1.56.0` ; en
+cas de doute, comparer avec le `browsers.json` de la version visée.
 
 Le script déverrouille la vitrine protégée, charge chaque page en aperçu du
 thème de dev, la parcourt de haut en bas pour forcer l'hydratation des sections
 d'Horizon — sans ce défilement tout ce qui est sous la ligne de flottaison est
 capturé vide — puis écrit les PNG dans `captures/`, ignoré par git.
 
-**Il n'a jamais pu être exécuté.** La politique réseau de l'environnement bloque
-`*.myshopify.com`, `bkrmods.fr` et `cdn.shopify.com` : seuls GitHub et les
-dépôts de paquets sont joignables. Sa syntaxe est vérifiée, son comportement
-non. Pour l'ouvrir, il faut autoriser ces domaines dans les réglages de
-l'environnement Claude Code — **`cdn.shopify.com` compris**, sinon la page se
-charge sans styles ni images et la capture ne vaut rien.
+**Il tourne depuis le 15 août 2026** : le réseau vers la vitrine a été ouvert.
+Cinq obstacles ont dû être levés, tous documentés dans le script — les retenir
+évite de les rediagnostiquer.
+
+1. **Chromium ne passe pas le proxy de la session.** Son ClientHello embarque
+   une clé post-quantique (~1,8 ko) qu'aucun `--disable-features` ne retire
+   depuis Chromium 141, et le tunnel se fait couper : `ERR_CONNECTION_RESET` sur
+   tout, y compris `example.com`. La pile réseau de Node, elle, passe. Chaque
+   requête est donc détournée vers `context.request` : Chromium ne fait plus de
+   TLS, il ne reçoit que des réponses déchiffrées.
+2. **Le relais doit suivre les redirections lui-même.** Une fois qu'on a servi
+   une 3xx à Chromium, la requête suivante de la chaîne ne repasse plus par le
+   détournement et part en direct — donc elle casse. Conséquence : `page.url()`
+   reste sur l'URL demandée. C'est le contenu de la page qui fait foi, jamais
+   son URL.
+3. **Le formulaire de mot de passe est dans une `<dialog>`.** Le champ existe
+   dès le chargement mais reste invisible tant qu'on n'a pas cliqué « Accéder
+   avec le mot de passe ».
+4. **Au-delà de 990 px, ce n'est pas le document qui défile** mais
+   `.page-wrapper` : `html` et `body` sont en `overflow: hidden`. Une capture
+   pleine page s'arrête alors au premier écran — c'est ce qui rendait les vues
+   1440 inutilisables, on ne voyait que le Hero.
+5. **Horizon pose `content-visibility: auto`** sur quelques conteneurs, dont
+   celui des menus du pied de page : le navigateur saute le rendu de ce qui est
+   loin de la fenêtre, la capture les sort vides et le conteneur s'écrase à
+   quelques pixels, la section suivante passant par-dessus. L'en-tête est exclu
+   du correctif : ses panneaux de méga-menu portent le même réglage, et les
+   forcer revient à déplier le menu.
+
+Deux habillages sont retirés avant de déclencher : la barre d'aperçu Shopify
+(`#PBarNextFrameWrapper`), qui recouvre le haut de la page — c'est elle qui
+rognait les accents du premier titre et faisait croire à une faute — et le
+bandeau de consentement aux cookies, qui masque le Hero entier sur mobile.
+
+Le retour en haut doit être **sec** (`scroll-behavior: auto`) : le thème défile
+en douceur, et une capture déclenchée pendant l'animation fige l'en-tête collant
+au milieu de l'image.
 
 Le mot de passe passe par l'environnement, jamais par le disque : il n'a rien à
 faire dans le dépôt.
