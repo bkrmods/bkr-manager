@@ -328,29 +328,40 @@ donc été retiré, il ne servait à rien.
 
 ### Les familles
 
-Sept familles demandées par le client, nommées par leur silhouette :
+Sept familles, nommées par le client :
 
-| Demandé | Collection BKR | Handle |
+| Silhouette | Nom | Handle |
 | --- | --- | --- |
-| Datejust | Classique Date | `classique-date` |
-| Day-Date | Jour & Date | `jour-date` |
-| GMT-Master II | Double Fuseau | `double-fuseau` |
-| Daytona | Chronographes VK63 | `chronographe-vk63` *(existait déjà)* |
-| Nautilus | Bracelet Intégré | `bracelet-integre` |
-| Royal Oak | Octogonale | `octogonale` |
-| Yacht-Master | Lunette Tournante | `lunette-tournante` |
+| Datejust | Seikojust | `classique-date` |
+| Day-Date | Dayko | `jour-date` |
+| Daytona | Seikona | `chronographe-vk63` |
+| GMT-Master II | Gmteiko | `double-fuseau` |
+| Yacht-Master | Masterteiko | `lunette-tournante` |
+| Nautilus | Seikolus | `bracelet-integre` |
+| Royal Oak | Seikoak | `octogonale` |
 
-**Pourquoi pas les noms d'origine.** Datejust, Day-Date, GMT-Master II, Daytona
-et Yacht-Master sont des marques déposées Rolex ; Nautilus appartient à Patek
-Philippe, Royal Oak à Audemars Piguet. Les employer comme noms de gamme sur une
-boutique de montres modifiées est le point le plus exposé juridiquement de tout
-le projet — c'est aussi la règle que le client avait posée lui-même en
-abandonnant la taxonomie Datejust / Diver / Explorer / GMT.
+**Les handles restent descriptifs.** Le nom de gamme s'affiche, l'URL décrit la
+montre : `/collections/octogonale` porte « Seikoak ». C'est ce qui garde une
+valeur de recherche à l'adresse, et ça évite de casser les liens du menu, du pied
+de page et de la carte d'accueil le jour où un nom change. Les titres de cartes
+viennent du bloc `collection-title`, donc ils suivent automatiquement.
 
-**Ce que ça coûte.** Les requêtes réelles sont « seiko mod royal oak », « seiko
-mod daytona ». Les noms descriptifs n'ont presque aucun volume de recherche : le
-trafic viendra des pages produit et des guides, pas des titres de collection.
-Le compromis est assumé, il n'est pas gratuit.
+**Décision du client, prise en connaissance de cause.** Ces noms combinent la
+marque Seiko et un nom de modèle protégé — Datejust, Daytona, Yacht-Master et
+GMT-Master sont des marques Rolex, Nautilus appartient à Patek Philippe, Royal
+Oak à Audemars Piguet. Le risque a été exposé en détail, ainsi qu'une série de
+noms de remplacement (Origine, Almanach, Méridien, Circuit, Rivage, Octave,
+Régate) ; le client a maintenu son choix. **C'est sa boutique et sa décision — ne
+pas revenir dessus de sa propre initiative.**
+
+Si elle devait être révisée un jour, l'opération est légère : sept
+`collectionUpdate` sur le champ `title` et sur les balises SEO. Les handles, les
+menus, le gabarit d'accueil et la page `/collections` ne bougent pas.
+
+**Un huitième nom, `Seikos`, n'est attribué à rien** : il n'y a que sept
+familles, et la collection catalogue `seiko-mod` (« Toutes les Seiko Mods ») a
+été laissée telle quelle — c'est la cible du CTA du Hero et de l'entrée de menu
+« Montres ». À trancher avec le client.
 
 ## Fichiers versionnés
 

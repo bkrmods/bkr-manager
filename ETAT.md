@@ -38,21 +38,27 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 | `chronographe-vk63` | Chronographes VK63 | mouvement / silhouette |
 | `automatique-nh35` | Automatiques NH35 | mouvement |
 | `best-sellers` | Best-sellers | sélection manuelle |
-| `classique-date` | Classique Date | silhouette |
-| `jour-date` | Jour & Date | silhouette |
-| `double-fuseau` | Double Fuseau | silhouette |
-| `bracelet-integre` | Bracelet Intégré | silhouette |
-| `octogonale` | Octogonale | silhouette |
-| `lunette-tournante` | Lunette Tournante | silhouette |
+| `classique-date` | Seikojust | silhouette (Datejust) |
+| `jour-date` | Dayko | silhouette (Day-Date) |
+| `double-fuseau` | Gmteiko | silhouette (GMT-Master II) |
+| `bracelet-integre` | Seikolus | silhouette (Nautilus) |
+| `octogonale` | Seikoak | silhouette (Royal Oak) |
+| `lunette-tournante` | Masterteiko | silhouette (Yacht-Master) |
+
+`chronographe-vk63` porte le nom **Seikona** (Daytona) et sert donc à la fois
+d'axe mouvement et de famille de silhouette.
 
 Toutes vides : **il n'y a encore aucun produit dans la boutique.**
 
-Les six familles de silhouette ont été demandées sous les noms Datejust,
-Day-Date, GMT-Master II, Daytona, Nautilus, Royal Oak et Yacht-Master. Ce sont
-des marques déposées de Rolex, Patek Philippe et Audemars Piguet : elles ont été
-traduites en noms descriptifs. Le détail et le coût SEO du choix sont dans
-`horizon/README.md`. **Si le client tranche pour les noms d'origine, c'est sa
-décision : renommer les collections suffit, la structure ne bouge pas.**
+**Les noms de famille ont été choisis par le client.** Ils combinent la marque
+Seiko et des noms de modèles protégés (Rolex, Patek Philippe, Audemars Piguet).
+Le risque juridique lui a été exposé en détail, avec une série de noms de
+remplacement ; il a maintenu son choix. **Ne pas revenir dessus de sa propre
+initiative** — le raisonnement complet est dans `horizon/README.md`.
+
+Les handles restent descriptifs : le nom s'affiche, l'URL décrit la montre.
+
+Un huitième nom, `Seikos`, n'est attribué à aucune famille — à trancher.
 
 ### Menus
 
