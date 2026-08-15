@@ -109,6 +109,10 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   autres auraient été des promesses non confirmées.
 - **Accueil / Newsletter** — bloc natif `email-signup`, bouton intégré au champ,
   centrée. Aucune promesse de remise ni de fréquence.
+- **Gabarit de collection** — `templates/collection.json`, un seul gabarit pour
+  les douze : en-tête `_blocks` branché sur `closest.collection` (titre en
+  `<h1>` + description), puis `main-collection` avec filtres et tri natifs.
+  Vérifié en capture aux quatre largeurs sur `/collections/arabic-dial`.
 - **Aperçu visuel** — `horizon/apercu.mjs` tourne enfin : le réseau vers la
   vitrine est ouvert. Captures aux quatre largeurs dans `captures/`.
 - **Contraste des cartes de collection** — le voile est passé de `#0E0E0EA6` à
@@ -151,7 +155,19 @@ ambigu. Deux lectures possibles, qui ne donnent pas la même section :
 Demander au client de recoller le paragraphe §15 avant d'écrire. En attendant,
 la deuxième lecture est la plus défendable.
 
-**Ensuite** : gabarits de collection, gabarit produit réutilisable, QA.
+**Ensuite** : gabarit produit réutilisable, puis QA.
+
+Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
+
+- **Les descriptions de collection sont vides** (les douze). Le bloc description
+  du gabarit est en place et ne rend rien tant qu'elles le restent. Les
+  métadonnées SEO, elles, sont déjà écrites. Reprendre celles-ci en description
+  visible est une piste — c'est du texte déjà validé, pas de l'invention — mais
+  ça reste une décision du client.
+- **« Aucun produit trouvé. Essayez d'utiliser moins de filtres »** s'affiche sur
+  les douze collections vides, alors qu'aucun filtre n'est actif. Chaîne native
+  d'Horizon, correcte quand un filtre ne renvoie rien. Elle disparaît au premier
+  produit — ne pas la surcharger.
 
 ## Bloqué, en attente du client
 

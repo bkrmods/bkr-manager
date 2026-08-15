@@ -506,6 +506,49 @@ qui ne pose aucune question de marque.
 La collection catalogue `seiko-mod` (« Toutes les Seiko Mods ») n'est pas une
 famille : c'est la cible du CTA du Hero et de l'entrée de menu « Montres ».
 
+## Page d'une collection — `/collections/<handle>`
+
+Gabarit `templates/collection.json`, qui remplace celui d'usine. Deux sections
+seulement : un en-tête `_blocks` et le conteneur natif `main-collection`.
+
+L'en-tête tient en deux blocs `text` branchés sur la collection courante :
+
+    <h1>{{ closest.collection.title }}</h1>
+    {{ closest.collection.description }}
+
+`closest.collection` résout bien depuis une section `_blocks` — vérifié en
+capture, le titre affiche « Arabic Dial » et non un gabarit vide. C'est ce qui
+permet de n'écrire qu'un seul gabarit pour les douze collections : le titre est
+toujours celui de la page, donc un seul `<h1>`, jamais dupliqué.
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `columns_gap_horizontal` | 12 | même gouttière que la grille de l'accueil |
+| `columns_gap_vertical` | 24 | de l'air entre les rangées, comme sur l'accueil |
+| `enable_filtering` | `true` | repris du gabarit d'usine |
+| `enable_sorting` | `true` | repris du gabarit d'usine |
+| `product_card_size` | défaut (`medium`) | non écrit : le défaut convient |
+| `mobile_product_card_size` | défaut (`small`) | deux colonnes à 375 px, comme les best-sellers |
+
+Les blocs statiques `filters` et `product-card` gardent **exactement** les
+réglages du gabarit d'usine. Leurs schémas font 43 Ko et n'ont pas été lus : on
+ne retire pas un réglage dont on n'a pas lu le défaut. Les identifiants
+`filters` et `product-card` ne sont pas libres — `main-collection` les appelle
+en dur par `content_for 'block', id: '...'`.
+
+**Ce que la page montre aujourd'hui, et qui n'est pas un défaut du gabarit** :
+les douze collections étant vides, Horizon affiche « Aucun produit trouvé.
+Essayez d'utiliser moins de filtres, ou effacez tous les filtres. » alors
+qu'aucun filtre n'est actif. La phrase est une chaîne native d'Horizon, juste
+quand un filtre ne renvoie rien, trompeuse quand la collection est vide. La
+corriger demanderait de surcharger la traduction, ce qui rendrait le message
+faux dans le cas où il est aujourd'hui correct. Elle disparaît au premier
+produit ajouté : on la laisse.
+
+Les descriptions de collection sont **vides** côté Shopify — le bloc
+description ne rend donc rien pour l'instant. Les métadonnées SEO, elles, sont
+renseignées pour les douze.
+
 ## La seule feuille de style du projet
 
 `assets/bkr.css`, chargée par `snippets/stylesheets.liquid` juste après
@@ -603,6 +646,7 @@ faire dans le dépôt.
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
 - `templates/index.json` — page d'accueil : Hero BKR + Best-sellers + Collections + Qu'est-ce qu'une Mod ?
 - `templates/list-collections.json` — page `/collections` : toutes les familles
+- `templates/collection.json` — page d'une collection : titre, description, grille filtrable
 
 ## Collections Shopify
 
