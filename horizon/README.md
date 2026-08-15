@@ -153,15 +153,26 @@ Deux niveaux. Quatre entrées visibles, deux qui s'ouvrent :
 
 | Entrée | Cible | Sous-menu |
 | --- | --- | --- |
-| **Montres** | `seiko-mod` | Toutes les montres · Best-sellers · Arabic Dial · Automatiques NH35 |
+| **Montres** | `seiko-mod` | Toutes les montres · Best-sellers |
 | **Familles** | `/collections` | Seikojust · Dayko · Seikona · Gmteiko · Masterteiko · Seikolus · Seikoak · Santeiko |
 | Guides | `/blogs/guides` | — |
 | À propos | `/pages/a-propos` | — |
 
-La séparation suit les axes du catalogue : « Montres » regroupe le catalogue, la
-sélection, le cadran et le mouvement ; « Familles » regroupe les silhouettes.
+« Montres » regroupe le catalogue et la sélection, « Familles » les silhouettes.
 Chaque collection n'apparaît **qu'une fois** — deux libellés différents pour une
 même URL, c'est ce qui rend un menu illisible.
+
+Arabic Dial et Automatiques NH35 figuraient sous « Montres » comme axes cadran
+et mouvement ; le client les a retirées. Elles restent accessibles depuis
+`/collections`, qui liste toutes les collections publiées — rien n'est devenu
+introuvable.
+
+Il reste une redite : « Toutes les montres » pointe sur la même collection que
+son parent « Montres ». C'était un lien « voir tout » utile quand le sous-menu
+en comptait quatre ; avec deux, il fait doublon. Le retirer laisserait un
+sous-menu d'une seule entrée, ce qui ne vaut pas mieux — la sortie propre serait
+de remonter « Best-sellers » au premier niveau et de laisser « Montres » en lien
+simple. Non fait : le client n'a demandé que le retrait des deux entrées.
 
 Horizon transforme automatiquement un menu à deux niveaux en méga-menu : rien à
 coder, il suffit que le menu Shopify ait des enfants. C'est ce qui manquait —
