@@ -305,6 +305,39 @@ commerciale honnête, **pas la mention légale de transparence** : celle-là res
 bloc `media` attend la vraie photo — idéalement un plan serré d'atelier plutôt
 qu'un packshot, pour rester dans le registre pédagogique.
 
+## Caractéristiques — page d'accueil
+
+« Sur chaque montre. » Trois points, chacun une icône, un titre et une ligne.
+Section `_blocks`, un `group` en ligne qui contient trois `group` en colonne —
+donc trois colonnes au-delà de 750 px, empilées en dessous.
+
+| Icône | Titre | Ligne |
+| --- | --- | --- |
+| `ruler` | Assemblée à la main | Chaque pièce est choisie, puis la montre est montée à l'unité. |
+| `stopwatch` | Mouvements NH35 et VK63 | Automatique ou méca-quartz : les deux mouvements sur lesquels repose le catalogue. |
+| `lock` | Paiement sécurisé | Le paiement est traité par Shopify. |
+
+**Trois points et pas six, parce que les trois autres auraient été des
+promesses.** Livraison, délais, retours, garantie, étanchéité, matériaux : rien
+de tout ça n'est confirmé. Une bande de réassurance qui annonce « Garantie 2
+ans » sans garantie écrite est un engagement contractuel pris par le site.
+Ces points s'ajouteront quand les informations existeront — la section est un
+`group`, on y dépose une colonne de plus sans rien réécrire.
+
+Les trois retenus sont vérifiables : l'assemblage à l'unité est la définition
+même d'une mod, NH35 et VK63 sont les deux collections de mouvement du
+catalogue, et le paiement passe réellement par Shopify.
+
+**Icônes en ivoire, pas en vert.** Le Vert Racing sur le noir de charte donne
+2,4:1 : sous le seuil de 3:1 exigé pour un élément graphique porteur de sens.
+Une icône verte serait décorative, pas lisible. Elles héritent donc de la
+palette, comme le texte.
+
+Le jeu d'icônes d'Horizon est orienté alimentaire et textile — `apple`,
+`carrot`, `gluten_free`, `shirt`. Trois seulement conviennent à une boutique
+d'horlogerie, ce qui a fixé le nombre de colonnes autant que la prudence
+éditoriale.
+
 ## Page Collections — `/collections`
 
 Entrée « Collections » dans `bkr-main`, en deuxième position, juste après
@@ -370,11 +403,12 @@ Si elle devait être révisée un jour, l'opération est légère : un
 handles, les menus, le gabarit d'accueil et la page `/collections` ne bougent
 pas.
 
-**Le nom `Seikos` n'est toujours attribué à rien.** La collection catalogue
-`seiko-mod` (« Toutes les Seiko Mods ») a été laissée telle quelle : c'est la
-cible du CTA du Hero et de l'entrée de menu « Montres », pas une famille. Et
-`arabic-dial`, devenue une famille, garde son nom descriptif. À trancher avec le
-client.
+`arabic-dial` est aussi une famille, et garde son nom descriptif — c'est le seul
+axe qui décrive un cadran plutôt qu'une silhouette, et le seul nom de famille
+qui ne pose aucune question de marque.
+
+La collection catalogue `seiko-mod` (« Toutes les Seiko Mods ») n'est pas une
+famille : c'est la cible du CTA du Hero et de l'entrée de menu « Montres ».
 
 ## Fichiers versionnés
 

@@ -59,8 +59,6 @@ initiative** — le raisonnement complet est dans `horizon/README.md`.
 
 Les handles restent descriptifs : le nom s'affiche, l'URL décrit la montre.
 
-Un huitième nom, `Seikos`, n'est attribué à aucune famille — à trancher.
-
 ### Menus
 
 `bkr-main` (en-tête) · `bkr-footer-bkr` · `bkr-footer-boutique` ·
@@ -99,6 +97,9 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 - **Accueil / Qu'est-ce qu'une Seiko Mod ?** — section native
   `media-with-content`, preset éditorial : image débordante à gauche, texte
   pédagogique et CTA à droite. Aucune caractéristique technique avancée.
+- **Accueil / Caractéristiques** — « Sur chaque montre. », trois points
+  (assemblage, mouvements, paiement). Volontairement trois et pas six : les
+  autres auraient été des promesses non confirmées.
 - **Metafields** `bkr.*` créés, avec la consigne « ne pas inventer » dans leur
   description.
 - **Trois skills** dans `.claude/skills/` : `bkr-charte`, `horizon-section`,
@@ -109,12 +110,11 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 **Page d'accueil**, dans l'ordre du cahier des charges §15 :
 
 1. La Sélection BKR — **spec à récupérer**, voir ci-dessous
-2. Every detail matters (vidéo)
-3. Caractéristiques
-4. Guides SEO
-5. Avis clients — **section à laisser masquée** tant qu'il n'y a pas de vrais avis
-6. Réseaux sociaux
-7. Newsletter
+2. Every detail matters (vidéo) — **bloquée**, aucune vidéo dans la bibliothèque
+3. Guides SEO — **bloquée**, le blog `guides` n'a pas encore d'articles
+4. Avis clients — **section à laisser masquée** tant qu'il n'y a pas de vrais avis
+5. Réseaux sociaux — **bloquée**, aucune URL de compte
+6. Newsletter — constructible tout de suite
 
 L'ordre des sections se règle à la souris dans l'éditeur : construire dans le
 désordre ne coûte rien.

@@ -549,12 +549,158 @@
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}"
       }
+    },
+    "caracteristiques": {
+      "type": "_blocks",
+      "blocks": {
+        "titre": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Sur chaque montre.</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "type_preset": "h3"
+          }
+        },
+        "points": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_alignment": "flex-start",
+            "gap": 24
+          },
+          "blocks": {
+            "point_assemblage": {
+              "type": "group",
+              "settings": {
+                "gap": 8
+              },
+              "blocks": {
+                "icone": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "ruler"
+                  }
+                },
+                "titre": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Assemblée à la main</h3>",
+                    "width": "100%",
+                    "type_preset": "h6"
+                  }
+                },
+                "texte": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Chaque pièce est choisie, puis la montre est montée à l'unité.</p>",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": [
+                "icone",
+                "titre",
+                "texte"
+              ]
+            },
+            "point_mouvement": {
+              "type": "group",
+              "settings": {
+                "gap": 8
+              },
+              "blocks": {
+                "icone": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "stopwatch"
+                  }
+                },
+                "titre": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Mouvements NH35 et VK63</h3>",
+                    "width": "100%",
+                    "type_preset": "h6"
+                  }
+                },
+                "texte": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Automatique ou méca-quartz : les deux mouvements sur lesquels repose le catalogue.</p>",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": [
+                "icone",
+                "titre",
+                "texte"
+              ]
+            },
+            "point_paiement": {
+              "type": "group",
+              "settings": {
+                "gap": 8
+              },
+              "blocks": {
+                "icone": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "lock"
+                  }
+                },
+                "titre": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Paiement sécurisé</h3>",
+                    "width": "100%",
+                    "type_preset": "h6"
+                  }
+                },
+                "texte": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Le paiement est traité par Shopify. La boutique ne voit jamais vos données bancaires.</p>",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "width": "100%"
+                  }
+                }
+              },
+              "block_order": [
+                "icone",
+                "titre",
+                "texte"
+              ]
+            }
+          },
+          "block_order": [
+            "point_assemblage",
+            "point_mouvement",
+            "point_paiement"
+          ]
+        }
+      },
+      "block_order": [
+        "titre",
+        "points"
+      ],
+      "name": "t:names.section",
+      "settings": {
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 72,
+        "padding-block-end": 80
+      }
     }
   },
   "order": [
     "hero_bkr",
     "best_sellers",
     "collections_bkr",
-    "quest_ce_quune_mod"
+    "quest_ce_quune_mod",
+    "caracteristiques"
   ]
 }
