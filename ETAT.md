@@ -34,7 +34,7 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 | Handle | Titre | Axe |
 | --- | --- | --- |
 | `seiko-mod` | Toutes les Seiko Mods | catalogue |
-| `arabic-dial` | Arabic Dial | cadran |
+| `arabic-dial` | Arabic Dial | cadran — **famille** |
 | `chronographe-vk63` | Chronographes VK63 | mouvement / silhouette |
 | `automatique-nh35` | Automatiques NH35 | mouvement |
 | `best-sellers` | Best-sellers | sélection manuelle |
@@ -64,6 +64,9 @@ Un huitième nom, `Seikos`, n'est attribué à aucune famille — à trancher.
 
 `bkr-main` (en-tête) · `bkr-footer-bkr` · `bkr-footer-boutique` ·
 `bkr-footer-assistance` · `bkr-footer-informations`
+
+En-tête : Montres · Collections · Best-sellers · Guides · À propos. Les familles
+ne sont pas dans la navigation principale, elles vivent derrière « Collections ».
 
 ## Charte
 

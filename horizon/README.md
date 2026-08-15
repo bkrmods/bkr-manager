@@ -311,6 +311,16 @@ Entrée « Collections » dans `bkr-main`, en deuxième position, juste après
 « Montres ». Type de lien natif `COLLECTIONS` : Shopify résout l'URL lui-même,
 rien n'est écrit en dur.
 
+**Les familles ne sont plus dans la navigation principale.** « Arabic Dial » et
+« Chronographes » en ont été retirées quand elles sont devenues des familles :
+elles vivent derrière « Collections », avec les autres. L'en-tête tient
+maintenant en cinq entrées — Montres, Collections, Best-sellers, Guides, À
+propos — ce qui compte sur un tiroir mobile où chaque ligne pousse les suivantes
+sous la ligne de flottaison. Le menu `bkr-footer-boutique` a suivi la même
+logique, pour que le pied de page ne contredise pas l'en-tête.
+
+Aucune collection n'a été supprimée au passage : seuls des liens ont disparu.
+
 La page utilise `main-collection-list`, gabarit `templates/list-collections.json` :
 titre `<h1>Toutes nos familles.</h1>`, sous-titre, puis la grille de cartes.
 
