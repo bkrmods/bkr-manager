@@ -118,6 +118,10 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   bloc natif des politiques Shopify, Instagram et TikTok renseignés (URL
   nettoyées de leurs paramètres de suivi), les autres réseaux vides.
 - **Accueil / Hero** — plein écran, un seul `<h1>`, deux CTA, overlay dégradé.
+  Image en place depuis le 15 août : `bkr-hero-ecrins.png` en desktop, et un
+  **cadrage portrait de la même image** en mobile (`image_1_mobile`, avec
+  `custom_mobile_media: true`). Sans ce second cadrage, le `cover` d'Horizon ne
+  gardait que du bois : ni dégradé vert, ni écrin BKR.
 - **Accueil / Best-sellers** — `product-list` sur la collection manuelle
   `best-sellers`, carrousel sous 750 px.
 - **Accueil / Collections** — « Choisissez votre style. », trois cartes
@@ -131,6 +135,11 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   autres auraient été des promesses non confirmées.
 - **Accueil / Newsletter** — bloc natif `email-signup`, bouton intégré au champ,
   centrée. Aucune promesse de remise ni de fréquence.
+- **Gabarit produit** — `templates/product.json`. Galerie en **carrousel** avec
+  vignettes sous l'image (desktop) et points (mobile), format portrait fixe
+  `1/1.25`, et **zoom plein écran coupé** (`zoom: false`) — les trois à la
+  demande du client. Le bloc `disclosures` vide et son titre anglais ont été
+  retirés, et « You may also like » est devenu « Dans le même esprit. ».
 - **Gabarit de collection** — `templates/collection.json`, un seul gabarit pour
   les douze : en-tête `_blocks` branché sur `closest.collection` (titre en
   `<h1>` + description), puis `main-collection` avec filtres et tri natifs.
@@ -196,6 +205,7 @@ Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
 | **Descriptions des six fiches** | vides. Rien ne sera écrit sans les caractéristiques du fournisseur — pas de mouvement, d'étanchéité ni de matériau inventés. Le cadran du Masterteiko affiche « 300m » : ce n'est pas une source, ça ne se recopie pas en étanchéité. |
+| **Origine de l'image du Hero** | le fichier déposé s'appelle « ChatGPT Image 16 août 2026 » : c'est un **rendu génératif**, pas une photo. Il montre un écrin siglé BKR et des montres qui ne sont pas celles du catalogue. Le client l'a fourni pour cet usage ; le point lui a été signalé une fois. Les garde-fous interdisent « les rendus générés présentés comme des photos » — à re-trancher avec lui avant l'ouverture publique. |
 | **Qualité des premières photos** | les quatre PNG livrés en premier font 311 à 400 px de large, pour ~2000 px attendus. Trois sont encore en ligne (Dayko noir, bleu roi, olive). Le second envoi est à ≈1120 × 1400 px, exploitable. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
 | **Photos** | Hero et cartes de collection affichent toujours les placeholders Shopify. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
 | **Produits** | la boutique est vide. Maintenant que `best-sellers` est publiée, la section « Les plus recherchées. » affiche les **produits bouche-trou de Shopify** (« Titre de produit », 19,99 €) au lieu de ne rien rendre. C'est le comportement d'Horizon sur une collection vide, pas un faux contenu qu'on aurait écrit — ça disparaîtra au premier produit. |
