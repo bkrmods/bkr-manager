@@ -529,6 +529,16 @@ toujours celui de la page, donc un seul `<h1>`, jamais dupliqué.
 | `enable_sorting` | `true` | repris du gabarit d'usine |
 | `product_card_size` | défaut (`medium`) | non écrit : le défaut convient |
 | `mobile_product_card_size` | défaut (`small`) | deux colonnes à 375 px, comme les best-sellers |
+| `image_ratio` de la galerie | défaut (`portrait`) | voir ci-dessous |
+
+**`image_ratio: "adapt"` a été retiré des deux gabarits.** Le gabarit d'usine
+l'écrivait par-dessus le défaut `portrait` du schéma. Tant que toutes les images
+avaient le même format — les placeholders Shopify — ça ne se voyait pas. Les
+quatre premières vraies photos font 311×486, 337×486, 375×473 et 400×476 : avec
+`adapt`, chaque carte prenait la hauteur de sa propre image, et les quatre
+titres se retrouvaient à quatre hauteurs différentes. Le défaut du schéma suffit,
+donc la ligne ne se réécrit pas — retirée aussi dans `templates/index.json`, où
+le même piège attendait les best-sellers.
 
 Les blocs statiques `filters` et `product-card` gardent **exactement** les
 réglages du gabarit d'usine. Leurs schémas font 43 Ko et n'ont pas été lus : on

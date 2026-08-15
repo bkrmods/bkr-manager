@@ -49,7 +49,14 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 `chronographe-vk63` porte le nom **Seikona** (Daytona) et sert donc à la fois
 d'axe mouvement et de famille de silhouette.
 
-Toutes vides : **il n'y a encore aucun produit dans la boutique.**
+**Quatre premiers produits en ligne** (15 août), la famille Dayko : cadran noir,
+bleu roi, olive, et chocolat/or rose. Ils sont dans `jour-date` **et** dans
+`seiko-mod`, publiés sur « Boutique en ligne » et « Shop ». Les autres
+collections restent vides.
+
+Ces quatre fiches sont **incomplètes** : prix à 0,00 € et description vide. Ce
+sont les deux seuls champs que je ne peux pas remplir sans le client — voir
+« Bloqué » plus bas.
 
 Les douze sont maintenant **publiées** sur « Boutique en ligne » et « Shop ».
 Quatre ne l'étaient pas — `seiko-mod`, `arabic-dial`, `chronographe-vk63`,
@@ -173,7 +180,10 @@ Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
 
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
-| **Photos** | Hero, cartes de collection et fiches produit affichent les placeholders Shopify. Le Drive est vide. C'est le principal frein du projet. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
+| **Prix des quatre Dayko** | à 0,00 €, donc affichés « €0,00 » en boutique. Un prix ne s'invente pas : le client doit les donner. Bloquant avant toute mise en ligne publique. |
+| **Descriptions des quatre Dayko** | vides. Rien ne sera écrit sans les caractéristiques du fournisseur — pas de mouvement, d'étanchéité ni de matériau inventés. |
+| **Qualité des photos produit** | les quatre PNG du Drive font 311 à 400 px de large, pour ~2000 px attendus : elles sont agrandies 2 à 3 fois sur mobile. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
+| **Photos** | Hero et cartes de collection affichent toujours les placeholders Shopify. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
 | **Produits** | la boutique est vide. Maintenant que `best-sellers` est publiée, la section « Les plus recherchées. » affiche les **produits bouche-trou de Shopify** (« Titre de produit », 19,99 €) au lieu de ne rien rendre. C'est le comportement d'Horizon sur une collection vide, pas un faux contenu qu'on aurait écrit — ça disparaîtra au premier produit. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
 | **URL des réseaux sociaux** | champs volontairement vides. |
