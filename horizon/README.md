@@ -147,6 +147,41 @@ Tout est natif, aucun CSS ajouté :
   sur l'accueil, puis reprend son fond noir au défilement. Réglage natif,
   aucun CSS ni JS ajouté.
 
+### Le menu
+
+Deux niveaux. Quatre entrées visibles, deux qui s'ouvrent :
+
+| Entrée | Cible | Sous-menu |
+| --- | --- | --- |
+| **Montres** | `seiko-mod` | Toutes les montres · Best-sellers · Arabic Dial · Automatiques NH35 |
+| **Familles** | `/collections` | Seikojust · Dayko · Seikona · Gmteiko · Masterteiko · Seikolus · Seikoak · Santeiko |
+| Guides | `/blogs/guides` | — |
+| À propos | `/pages/a-propos` | — |
+
+La séparation suit les axes du catalogue : « Montres » regroupe le catalogue, la
+sélection, le cadran et le mouvement ; « Familles » regroupe les silhouettes.
+Chaque collection n'apparaît **qu'une fois** — deux libellés différents pour une
+même URL, c'est ce qui rend un menu illisible.
+
+Horizon transforme automatiquement un menu à deux niveaux en méga-menu : rien à
+coder, il suffit que le menu Shopify ait des enfants. C'est ce qui manquait —
+le menu était plat, donc aucun panneau ne pouvait s'ouvrir, et il paraissait
+pauvre alors que le mécanisme était déjà là.
+
+| Réglage | Valeur | Pourquoi |
+| --- | --- | --- |
+| `menu_style` | `text` | **provisoire.** Les autres valeurs affichent des images de collection ou des cartes produit dans le panneau. Sans photo ni produit, elles rendent des rectangles gris. À passer sur `collection_images` le jour où les collections ont une image : un seul réglage. |
+| `drawer_accordion` | `true` | sur mobile, les deux sous-menus se replient au lieu de dérouler douze lignes |
+| `drawer_dividers` | `true` | mêmes séparateurs que les accordéons du pied de page |
+| `type_font_primary_link` | `heading` | la police de titre donne au menu la présence qu'il n'avait pas en police de texte. C'est aussi la valeur par défaut d'Horizon |
+
+Le réglage `menu_style` était sur `featured_products` — hérité, jamais choisi.
+Avec une boutique vide, le panneau aurait affiché des cartes produit fantômes.
+
+**Piste non prise :** `type_case_primary_link: "uppercase"` donnerait un menu
+plus éditorial. C'est un choix esthétique qui se teste à l'œil, pas à l'aveugle —
+une case à cocher dans l'éditeur.
+
 ## Pied de page
 
 Quatre colonnes, une par menu Shopify, en blocs `menu` natifs :

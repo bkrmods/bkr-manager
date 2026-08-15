@@ -64,8 +64,9 @@ Les handles restent descriptifs : le nom s'affiche, l'URL décrit la montre.
 `bkr-main` (en-tête) · `bkr-footer-bkr` · `bkr-footer-boutique` ·
 `bkr-footer-assistance` · `bkr-footer-informations`
 
-En-tête : Montres · Collections · Best-sellers · Guides · À propos. Les familles
-ne sont pas dans la navigation principale, elles vivent derrière « Collections ».
+En-tête, menu à deux niveaux : **Montres** (toutes les montres, best-sellers,
+Arabic Dial, automatiques NH35) · **Familles** (les huit) · Guides · À propos.
+Horizon en fait un méga-menu tout seul, et un accordéon dans le tiroir mobile.
 
 ## Charte
 
