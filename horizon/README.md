@@ -559,6 +559,29 @@ Les descriptions de collection sont **vides** côté Shopify — le bloc
 description ne rend donc rien pour l'instant. Les métadonnées SEO, elles, sont
 renseignées pour les douze.
 
+## Images arrondies
+
+Le client voulait que **toutes les images flottent sur le noir**. Le rayon est
+donc à **12 px** partout, posé sur les blocs image et non sur du CSS :
+
+| Bloc | Réglage | Où |
+| --- | --- | --- |
+| `_product-card-gallery` | `border_radius: 12` | accueil, grille de collection, recommandations |
+| `_collection-card-image` + `collection-card` | `border_radius: 12` | cartes de l'accueil et `/collections` |
+| `_product-media-gallery` | `media_radius: 12` | image principale de la fiche |
+| `_product-media-gallery` | `thumbnail_radius: 8` | vignettes, plus petites donc rayon plus faible |
+
+**Le piège de `media_radius`.** Il n'arrondit pas l'image : il arrondit le
+conteneur du carrousel. Tant que `constrain_to_viewport` était à `true`,
+l'image était plus étroite que ce conteneur, et les coins arrondis tombaient
+dans le noir, à côté de l'image, invisibles — le réglage semblait sans effet.
+En le passant à `false`, l'image remplit la colonne et épouse les coins.
+Diagnostiqué en lisant le `border-radius` calculé le long des parents de
+l'image : seul `SLIDESHOW-CONTAINER` portait les 12 px.
+
+Le Hero n'est pas arrondi : il est plein écran et bord à bord, un rayon y
+créerait des coins noirs dans un fond noir.
+
 ## La seule feuille de style du projet
 
 `assets/bkr.css`, chargée par `snippets/stylesheets.liquid` juste après

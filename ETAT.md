@@ -144,6 +144,10 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   les douze : en-tête `_blocks` branché sur `closest.collection` (titre en
   `<h1>` + description), puis `main-collection` avec filtres et tri natifs.
   Vérifié en capture aux quatre largeurs sur `/collections/arabic-dial`.
+- **Images arrondies** — rayon 12 px sur toutes les images (cartes produit,
+  cartes de collection, image principale de la fiche), 8 px sur les vignettes.
+  Le Hero reste bord à bord. Détail et piège de `media_radius` dans
+  `horizon/README.md`.
 - **Aperçu visuel** — `horizon/apercu.mjs` tourne enfin : le réseau vers la
   vitrine est ouvert. Captures aux quatre largeurs dans `captures/`.
 - **Contraste des cartes de collection** — le voile est passé de `#0E0E0EA6` à

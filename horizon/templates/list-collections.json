@@ -49,7 +49,7 @@
           "static": true,
           "settings": {
             "placement": "below_image",
-            "border_radius": 4
+            "border_radius": 12
           },
           "blocks": {
             "collection-card-image": {
@@ -58,7 +58,7 @@
               "static": true,
               "settings": {
                 "image_ratio": "square",
-                "border_radius": 4
+                "border_radius": 12
               }
             },
             "titre_carte": {

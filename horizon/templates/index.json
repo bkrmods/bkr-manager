@@ -202,7 +202,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
-                "border_radius": 0,
+                "border_radius": 12,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -317,7 +317,7 @@
                 "collection": "arabic-dial",
                 "placement": "on_image",
                 "vertical_alignment": "flex-end",
-                "border_radius": 4
+                "border_radius": 12
               },
               "blocks": {
                 "collection-card-image": {
@@ -329,7 +329,7 @@
                     "toggle_overlay": true,
                     "overlay_color": "#0E0E0ECC",
                     "overlay_style": "gradient",
-                    "border_radius": 4
+                    "border_radius": 12
                   }
                 },
                 "titre_carte": {
@@ -367,7 +367,7 @@
                 "collection": "chronographe-vk63",
                 "placement": "on_image",
                 "vertical_alignment": "flex-end",
-                "border_radius": 4
+                "border_radius": 12
               },
               "blocks": {
                 "collection-card-image": {
@@ -379,7 +379,7 @@
                     "toggle_overlay": true,
                     "overlay_color": "#0E0E0ECC",
                     "overlay_style": "gradient",
-                    "border_radius": 4
+                    "border_radius": 12
                   }
                 },
                 "titre_carte": {
@@ -417,7 +417,7 @@
                 "collection": "automatique-nh35",
                 "placement": "on_image",
                 "vertical_alignment": "flex-end",
-                "border_radius": 4
+                "border_radius": 12
               },
               "blocks": {
                 "collection-card-image": {
@@ -429,7 +429,7 @@
                     "toggle_overlay": true,
                     "overlay_color": "#0E0E0ECC",
                     "overlay_style": "gradient",
-                    "border_radius": 4
+                    "border_radius": 12
                   }
                 },
                 "titre_carte": {
