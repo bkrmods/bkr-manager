@@ -640,9 +640,50 @@ corriger demanderait de surcharger la traduction, ce qui rendrait le message
 faux dans le cas où il est aujourd'hui correct. Elle disparaît au premier
 produit ajouté : on la laisse.
 
-Les descriptions de collection sont **vides** côté Shopify — le bloc
-description ne rend donc rien pour l'instant. Les métadonnées SEO, elles, sont
-renseignées pour les douze.
+### Les descriptions
+
+Écrites le 16 août, à la demande du client, pour les onze collections utiles —
+`frontpage` est laissée telle quelle, elle doit disparaître. Elles vivent côté
+Shopify (`collectionUpdate`, champ `descriptionHtml`), pas dans le thème : le
+bloc `description` du gabarit les rend telles quelles, et le client peut les
+réécrire depuis l'admin sans toucher au code.
+
+| Handle | Description |
+| --- | --- |
+| `seiko-mod` | Le catalogue complet. Chaque montre part d'une base Seiko, change de cadran, d'aiguilles, de lunette ou de bracelet, et repart montée à la main. |
+| `arabic-dial` | Le cadran change tout. Des chiffres arabes orientaux à la place des index. |
+| `chronographe-vk63` | Compteurs sur le cadran, poussoirs de part et d'autre de la couronne. Le mouvement est un méca-quartz VK63. |
+| `best-sellers` | Une sélection courte, choisie à la main dans le catalogue. Elle change au fil des arrivages. |
+| `automatique-nh35` | Un mouvement automatique NH35 : la montre se remonte au rythme du poignet, sans pile. |
+| `classique-date` | Guichet de date, lunette cannelée, bracelet à trois maillons. |
+| `jour-date` | Le jour en toutes lettres et la date, sur le même cadran. |
+| `double-fuseau` | Une aiguille de plus, une lunette graduée sur 24 heures. |
+| `bracelet-integre` | Le bracelet prolonge le boîtier d'un seul tenant, sans cornes apparentes. |
+| `octogonale` | Lunette octogonale, vis apparentes, bracelet intégré. |
+| `lunette-tournante` | Lunette tournante graduée et cadran net. |
+| `boitier-carre` | Boîtier carré aux angles adoucis, vis apparentes sur la lunette. |
+
+**Ce qu'elles ne disent pas, et pourquoi.** Aucune ne cite une étanchéité, un
+matériau de boîtier, un type de verre, un diamètre ni une réserve de marche :
+ces valeurs ne sont pas confirmées, et une collection est le pire endroit pour
+les avancer puisqu'elle couvre plusieurs montres à la fois. Tout ce qui est
+écrit se lit sur la photo — un guichet, une lunette, un bracelet, un compteur.
+
+Les deux seules mentions de mouvement, NH35 et VK63, sont sur les deux
+collections qui portent déjà ces noms, et figuraient dans les métadonnées SEO
+validées avant d'être reprises ici.
+
+Aucun nom de modèle d'une autre marque n'apparaît. Les silhouettes sont
+**décrites** — « lunette octogonale », « bracelet d'un seul tenant », « boîtier
+carré aux angles adoucis » — jamais nommées. Les noms de collection choisis par
+le client font déjà l'allusion ; la description n'a pas besoin de la souligner,
+et c'est autant de risque en moins.
+
+`best-sellers` est le cas délicat : son nom affirme une popularité que rien ne
+mesure encore, puisque la boutique n'a pas ouvert. La description ne l'aggrave
+pas — elle parle d'une sélection faite à la main, pas de ventes.
+
+Les métadonnées SEO, elles, étaient déjà renseignées pour les douze.
 
 ## Fiche produit — `templates/product.json`
 

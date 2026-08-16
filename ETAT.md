@@ -191,6 +191,19 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   **Effet de bord bienvenu** : la collection `frontpage`, que le connecteur
   refuse de dépublier, ne s'affiche plus ici. Elle reste publiée côté Shopify —
   le geste à faire côté client tient toujours.
+- **Descriptions de collection** — les onze collections utiles en ont une depuis
+  le 16 août (`frontpage` a été laissée de côté, elle doit disparaître). Deux ou
+  trois phrases chacune, dans le bloc `description` du gabarit de collection.
+  Elles décrivent **une silhouette et un usage**, jamais une caractéristique :
+  ni étanchéité, ni matériau de boîtier, ni type de verre, ni diamètre — rien
+  qui viendrait d'ailleurs que de ce qu'on voit sur la photo. Les seuls
+  mouvements cités sont NH35 et VK63, sur les deux collections qui portent leur
+  nom, et ils l'étaient déjà dans les métadonnées SEO validées.
+  Aucun nom de modèle d'une autre marque : les silhouettes sont décrites
+  (« lunette octogonale », « bracelet d'un seul tenant »), jamais nommées.
+  Sur `best-sellers`, la description **ne dit rien du nombre de ventes** — le nom
+  de la collection est une décision du client, ce n'est pas une raison pour
+  ajouter un chiffre qu'on n'a pas.
 - **Images arrondies** — rayon 12 px sur toutes les images (cartes produit,
   cartes de collection, image principale de la fiche), 8 px sur les vignettes.
   Le Hero reste bord à bord. Détail et piège de `media_radius` dans
@@ -210,7 +223,7 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 
 **Page d'accueil**, dans l'ordre du cahier des charges §15 :
 
-1. La Sélection BKR — **spec à récupérer**, voir ci-dessous
+1. ~~La Sélection BKR~~ — **abandonnée** : le client n'en veut pas (16 août)
 2. Every detail matters (vidéo) — **bloquée**, aucune vidéo dans la bibliothèque
 3. Guides SEO — **bloquée**, le blog `guides` n'a pas encore d'articles
 4. Avis clients — **section à laisser masquée** tant qu'il n'y a pas de vrais avis
@@ -224,30 +237,19 @@ juridique — à faire rédiger, pas à inventer.
 L'ordre des sections se règle à la souris dans l'éditeur : construire dans le
 désordre ne coûte rien.
 
-### La Sélection BKR — à clarifier avant de construire
+### La Sélection BKR — abandonnée
 
-Le texte du cahier des charges §15 n'est plus dans le dépôt et le nom seul est
-ambigu. Deux lectures possibles, qui ne donnent pas la même section :
-
-- une **sélection maison** de produits — mais la section Best-sellers en est
-  déjà une, on ferait deux grilles quasi identiques ;
-- une **mise en avant d'une seule montre**, avec son histoire et un CTA — plus
-  cohérent visuellement, et ça évite la redite.
-
-Demander au client de recoller le paragraphe §15 avant d'écrire. En attendant,
-la deuxième lecture est la plus défendable.
+Le paragraphe §15 du cahier des charges n'est plus dans le dépôt, et le nom
+seul était ambigu : une deuxième grille de produits, ou la mise en avant d'une
+seule montre ? La question a été posée au client le 16 août, **il n'en veut
+pas**. Ne pas la reproposer.
 
 **Ensuite** : gabarit produit réutilisable, puis QA.
 
-Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
+Le gabarit de collection est fait. Une chose l'attend encore, côté contenu :
 
-- **Les descriptions de collection sont vides** (les douze). Le bloc description
-  du gabarit est en place et ne rend rien tant qu'elles le restent. Les
-  métadonnées SEO, elles, sont déjà écrites. Reprendre celles-ci en description
-  visible est une piste — c'est du texte déjà validé, pas de l'invention — mais
-  ça reste une décision du client.
 - **« Aucun produit trouvé. Essayez d'utiliser moins de filtres »** s'affiche sur
-  les douze collections vides, alors qu'aucun filtre n'est actif. Chaîne native
+  les collections vides, alors qu'aucun filtre n'est actif. Chaîne native
   d'Horizon, correcte quand un filtre ne renvoie rien. Elle disparaît au premier
   produit — ne pas la surcharger.
 
