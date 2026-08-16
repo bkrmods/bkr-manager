@@ -6,7 +6,7 @@ nouvelle session sait donc où on en est sans qu'on ait à le lui raconter.
 **À tenir à jour à chaque fin de séance.** Dernière mise à jour : 16 août 2026,
 après la série de retouches demandée par le client (vocabulaire « collection »,
 tri de `/collections`, cartes de l'accueil, dernière image arrondie, lien de
-retour sur la fiche produit).
+retour sur la fiche produit, collection Best-sellers renommée).
 
 ## Le projet en cinq lignes
 
@@ -39,7 +39,7 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 | `arabic-dial` | Arabic Dial | cadran — **famille** |
 | `chronographe-vk63` | Chronographes VK63 | mouvement / silhouette |
 | `automatique-nh35` | Automatiques NH35 | mouvement |
-| `best-sellers` | Best-sellers | sélection manuelle |
+| `best-sellers` | Les plus recherchées | sélection manuelle |
 | `classique-date` | Seikojust | silhouette (Datejust) |
 | `jour-date` | Dayko | silhouette (Day-Date) |
 | `double-fuseau` | Gmteiko | silhouette (GMT-Master II) |
@@ -94,9 +94,9 @@ Les handles restent descriptifs : le nom s'affiche, l'URL décrit la montre.
 `bkr-main` (en-tête) · `bkr-footer-bkr` · `bkr-footer-boutique` ·
 `bkr-footer-assistance` · `bkr-footer-informations`
 
-En-tête, menu à deux niveaux : **Montres** (toutes les montres, best-sellers) ·
-**Collections** (les huit silhouettes) · Guides · À propos. Horizon en fait un
-méga-menu tout seul, et un accordéon dans le tiroir mobile.
+En-tête, menu à deux niveaux : **Montres** (toutes les montres, les plus
+recherchées) · **Collections** (les huit silhouettes) · Guides · À propos.
+Horizon en fait un méga-menu tout seul, et un accordéon dans le tiroir mobile.
 
 **On ne dit plus « famille », on dit « collection »** (demande du client, 16
 août). Le mot a été changé dans l'entrée de menu `bkr-main`, dans le titre de
@@ -131,7 +131,9 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   `custom_mobile_media: true`). Sans ce second cadrage, le `cover` d'Horizon ne
   gardait que du bois : ni dégradé vert, ni écrin BKR.
 - **Accueil / Best-sellers** — `product-list` sur la collection manuelle
-  `best-sellers`, carrousel sous 750 px.
+  `best-sellers`, carrousel sous 750 px. La collection s'appelle **« Les plus
+  recherchées »** depuis le 16 août (le handle, lui, ne bouge pas) : le client
+  voulait que le nom affiché dans les menus soit celui du titre de la section.
 - **Accueil / Collections** — « Choisissez votre style. », trois cartes
   éditoriales natives (`collection-card` accepte `text`, `button`, `group`,
   `collection-title` comme enfants) dans une section `_blocks`. Depuis le 16
@@ -257,7 +259,7 @@ Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
 | **Origine de l'image du Hero** | le fichier déposé s'appelle « ChatGPT Image 16 août 2026 » : c'est un **rendu génératif**, pas une photo. Il montre un écrin siglé BKR et des montres qui ne sont pas celles du catalogue. Le client l'a fourni pour cet usage ; le point lui a été signalé une fois. Les garde-fous interdisent « les rendus générés présentés comme des photos » — à re-trancher avec lui avant l'ouverture publique. |
 | **Qualité des premières photos** | les quatre PNG livrés en premier font 311 à 400 px de large, pour ~2000 px attendus. Trois sont encore en ligne (Dayko noir, bleu roi, olive). Le second envoi est à ≈1120 × 1400 px, exploitable. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
 | **Photos** | Hero et cartes de collection affichent toujours les placeholders Shopify. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
-| **`best-sellers` est vide** | la collection n'a **aucun produit**, et la section « Les plus recherchées. » de l'accueil affiche donc son titre puis un grand trou noir — vérifié en capture le 16 août aux quatre largeurs. Ce n'est pas un bug du gabarit : Horizon ne rend rien quand la collection choisie est vide. **C'est au client de choisir sa sélection** : y mettre d'office les six montres reviendrait à appeler « les plus recherchées » des produits qui n'ont pas encore été vendus une seule fois. Deux montres suffisent à combler le trou. |
+| **`best-sellers` est vide** | la collection n'a **aucun produit**, et la section « Les plus recherchées. » de l'accueil affiche donc son titre puis un grand trou noir — vérifié en capture le 16 août aux quatre largeurs. Ce n'est pas un bug du gabarit : Horizon ne rend rien quand la collection choisie est vide. Le client a tranché le 16 août : **on garde la collection**, renommée « Les plus recherchées » (handle inchangé). Reste à **choisir les montres qui y entrent** — c'est sa décision, pas la nôtre : y verser d'office les six reviendrait à appeler « les plus recherchées » des produits qui n'ont pas encore été vendus une seule fois. Deux suffisent à combler le trou. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
 | **URL des réseaux sociaux** | champs volontairement vides. |
 | **Semrush** | à ré-authentifier. |

@@ -153,7 +153,7 @@ Deux niveaux. Quatre entrées visibles, deux qui s'ouvrent :
 
 | Entrée | Cible | Sous-menu |
 | --- | --- | --- |
-| **Montres** | `seiko-mod` | Toutes les montres · Best-sellers |
+| **Montres** | `seiko-mod` | Toutes les montres · Les plus recherchées |
 | **Collections** | `/collections` | Seikojust · Dayko · Seikona · Gmteiko · Masterteiko · Seikolus · Seikoak · Santeiko |
 | Guides | `/blogs/guides` | — |
 | À propos | `/pages/a-propos` | — |
@@ -502,8 +502,7 @@ rien n'est écrit en dur.
 **Les familles ne sont plus dans la navigation principale.** « Arabic Dial » et
 « Chronographes » en ont été retirées quand elles sont devenues des familles :
 elles vivent derrière « Collections », avec les autres. L'en-tête tient
-maintenant en cinq entrées — Montres, Collections, Best-sellers, Guides, À
-propos — ce qui compte sur un tiroir mobile où chaque ligne pousse les suivantes
+maintenant en quatre entrées — Montres, Collections, Guides, À propos — ce qui compte sur un tiroir mobile où chaque ligne pousse les suivantes
 sous la ligne de flottaison. Le menu `bkr-footer-boutique` a suivi la même
 logique, pour que le pied de page ne contredise pas l'en-tête.
 
@@ -821,7 +820,7 @@ faire dans le dépôt.
 | `arabic-dial` | Arabic Dial | axe cadran |
 | `chronographe-vk63` | Chronographes VK63 | axe mouvement |
 | `automatique-nh35` | Automatiques NH35 | axe mouvement |
-| `best-sellers` | Best-sellers | sélection manuelle, ordre réglé à la souris |
+| `best-sellers` | Les plus recherchées | sélection manuelle, ordre réglé à la souris |
 
 `automatique-nh35` a été créée pour la section Collections : elle complète l'axe
 mouvement ouvert par `chronographe-vk63` (méca-quartz d'un côté, automatique de
