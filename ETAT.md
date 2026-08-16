@@ -6,7 +6,8 @@ nouvelle session sait donc où on en est sans qu'on ait à le lui raconter.
 **À tenir à jour à chaque fin de séance.** Dernière mise à jour : 16 août 2026,
 après la série de retouches demandée par le client (vocabulaire « collection »,
 tri de `/collections`, cartes de l'accueil, dernière image arrondie, lien de
-retour sur la fiche produit, collection Best-sellers renommée).
+retour sur la fiche produit, Best-sellers renommée, descriptions de collection,
+suppression d'`arabic-dial` et `automatique-nh35`).
 
 ## Le projet en cinq lignes
 
@@ -36,9 +37,7 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 | Handle | Titre | Axe |
 | --- | --- | --- |
 | `seiko-mod` | Toutes les Seiko Mods | catalogue |
-| `arabic-dial` | Arabic Dial | cadran — **famille** |
-| `chronographe-vk63` | Chronographes VK63 | mouvement / silhouette |
-| `automatique-nh35` | Automatiques NH35 | mouvement |
+| `chronographe-vk63` | Seikona | silhouette (Daytona) |
 | `best-sellers` | Les plus recherchées | sélection manuelle |
 | `classique-date` | Seikojust | silhouette (Datejust) |
 | `jour-date` | Dayko | silhouette (Day-Date) |
@@ -48,14 +47,22 @@ Le thème live n'a pas bougé depuis le **2026-08-09T19:00:02Z**. Vérifier son
 | `lunette-tournante` | Masterteiko | silhouette (Yacht-Master) |
 | `boitier-carre` | Santeiko | silhouette (Santos) |
 
-`chronographe-vk63` porte le nom **Seikona** (Daytona) et sert donc à la fois
-d'axe mouvement et de famille de silhouette.
+**`arabic-dial` et `automatique-nh35` ont été supprimées** le 16 août, à la
+demande du client — deuxième demande, la première avait été comprise comme un
+simple retrait de la page `/collections`. Les deux étaient vides, aucun produit
+n'a donc changé de rattachement. Le seul lien qui pointait encore dessus était
+le **second CTA du Hero**, rebranché sur `/collections` (« Voir les
+collections ») avant la suppression.
 
-Les douze collections sont **publiées** sur « Boutique en ligne » et « Shop ».
-Quatre ne l'étaient pas — `seiko-mod`, `arabic-dial`, `chronographe-vk63`,
-`best-sellers` — et c'est ce qui faisait afficher « Titre de la collection » sur
-deux cartes de l'accueil, disparaître les quatre de `/collections`, et pointer
-dans le vide le menu « Montres » et le second CTA du Hero. Réparé le 15 août.
+Ce que ça coûte, et il faut le savoir : `seiko arabic dial` et `mouvement nh35`
+figurent parmi les mots-clés prioritaires du projet, et ces deux collections
+étaient leurs pages d'atterrissage. Le sujet peut revenir plus tard sous forme
+d'article de blog ou de filtre, sans recréer de collection.
+
+Les dix collections restantes sont **publiées** sur « Boutique en ligne » et
+« Shop ». Quatre ne l'étaient pas au départ, et c'est ce qui faisait afficher
+« Titre de la collection » sur deux cartes de l'accueil et pointer dans le vide
+le menu « Montres ». Réparé le 15 août.
 
 **Six produits en ligne** (15 août), tous à **190 €**, tous publiés sur
 « Boutique en ligne » et « Shop », tous dans `seiko-mod` :
@@ -126,6 +133,8 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   bloc natif des politiques Shopify, Instagram et TikTok renseignés (URL
   nettoyées de leurs paramètres de suivi), les autres réseaux vides.
 - **Accueil / Hero** — plein écran, un seul `<h1>`, deux CTA, overlay dégradé.
+  Second CTA rebranché sur `/collections` le 16 août, la collection qu'il
+  visait ayant été supprimée.
   Image en place depuis le 15 août : `bkr-hero-ecrins.png` en desktop, et un
   **cadrage portrait de la même image** en mobile (`image_1_mobile`, avec
   `custom_mobile_media: true`). Sans ce second cadrage, le `cover` d'Horizon ne
@@ -177,11 +186,13 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 - **Gabarit de collection** — `templates/collection.json`, un seul gabarit pour
   les douze : en-tête `_blocks` branché sur `closest.collection` (titre en
   `<h1>` + description), puis `main-collection` avec filtres et tri natifs.
-  Vérifié en capture aux quatre largeurs sur `/collections/arabic-dial`.
+  Vérifié en capture aux quatre largeurs sur `/collections/jour-date` et
+  `/collections/boitier-carre`.
 - **Page `/collections`** — `templates/list-collections.json` ne rend plus que
   les **huit silhouettes**. Elle affichait les douze collections plus la
   « Page d'accueil » de Shopify ; le client voulait retirer Page d'accueil,
-  Best-sellers, Arabic Dial, Automatiques NH35 et Toutes les Seiko Mods.
+  Best-sellers, Arabic Dial, Automatiques NH35 et Toutes les Seiko Mods (les
+  deux du milieu ont depuis été supprimées tout court).
   La section a dû **changer de type** : `main-collection-list` fait
   `assign section_collections = collections` avec `max_items = 20` en dur — elle
   rend toutes les collections publiées, sans le moindre réglage pour en choisir.
@@ -191,8 +202,9 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   **Effet de bord bienvenu** : la collection `frontpage`, que le connecteur
   refuse de dépublier, ne s'affiche plus ici. Elle reste publiée côté Shopify —
   le geste à faire côté client tient toujours.
-- **Descriptions de collection** — les onze collections utiles en ont une depuis
-  le 16 août (`frontpage` a été laissée de côté, elle doit disparaître). Deux ou
+- **Descriptions de collection** — les dix collections utiles en ont une depuis
+  le 16 août (`frontpage` a été laissée de côté, elle doit disparaître ; deux
+  autres ont été écrites puis supprimées avec leur collection le jour même). Deux ou
   trois phrases chacune, dans le bloc `description` du gabarit de collection.
   Elles décrivent **une silhouette et un usage**, jamais une caractéristique :
   ni étanchéité, ni matériau de boîtier, ni type de verre, ni diamètre — rien

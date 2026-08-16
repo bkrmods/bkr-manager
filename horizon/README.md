@@ -167,9 +167,9 @@ Chaque collection n'apparaît **qu'une fois** — deux libellés différents pou
 même URL, c'est ce qui rend un menu illisible.
 
 Arabic Dial et Automatiques NH35 figuraient sous « Montres » comme axes cadran
-et mouvement ; le client les a retirées. Elles restent accessibles depuis
-`/collections`, qui liste toutes les collections publiées — rien n'est devenu
-introuvable.
+et mouvement. Le client les a d'abord retirées du menu, puis **fait supprimer
+les deux collections** le 16 août. Elles étaient vides, aucun produit n'a changé
+de rattachement.
 
 Il reste une redite : « Toutes les montres » pointe sur la même collection que
 son parent « Montres ». C'était un lien « voir tout » utile quand le sous-menu
@@ -250,7 +250,7 @@ aligné en bas à gauche. Quatre blocs, tous éditables depuis l'éditeur :
 | Sur-titre | `BKR MODS` |
 | Titre | `<h1>Seiko Mods sélectionnées pour se démarquer.</h1>` |
 | Sous-titre | Mouvements éprouvés. Matériaux sélectionnés. Design sans compromis. |
-| CTA | « Découvrir les montres » (vert) + « Arabic Dial » (contour ivoire) |
+| CTA | « Découvrir les montres » (vert) + « Voir les collections » (contour ivoire) |
 
 Points de vigilance tenus :
 
@@ -499,9 +499,8 @@ Entrée « Collections » dans `bkr-main`, en deuxième position, juste après
 « Montres ». Type de lien natif `COLLECTIONS` : Shopify résout l'URL lui-même,
 rien n'est écrit en dur.
 
-**Les familles ne sont plus dans la navigation principale.** « Arabic Dial » et
-« Chronographes » en ont été retirées quand elles sont devenues des familles :
-elles vivent derrière « Collections », avec les autres. L'en-tête tient
+**Les silhouettes ne sont pas dans la navigation de premier niveau.** Elles
+vivent derrière « Collections ». L'en-tête tient
 maintenant en quatre entrées — Montres, Collections, Guides, À propos — ce qui compte sur un tiroir mobile où chaque ligne pousse les suivantes
 sous la ligne de flottaison. Le menu `bkr-footer-boutique` a suivi la même
 logique, pour que le pied de page ne contredise pas l'en-tête.
@@ -584,10 +583,6 @@ Si elle devait être révisée un jour, l'opération est légère : un
 handles, les menus, le gabarit d'accueil et la page `/collections` ne bougent
 pas.
 
-`arabic-dial` est aussi une famille, et garde son nom descriptif — c'est le seul
-axe qui décrive un cadran plutôt qu'une silhouette, et le seul nom de famille
-qui ne pose aucune question de marque.
-
 La collection catalogue `seiko-mod` (« Toutes les Seiko Mods ») n'est pas une
 famille : c'est la cible du CTA du Hero et de l'entrée de menu « Montres ».
 
@@ -602,9 +597,9 @@ L'en-tête tient en deux blocs `text` branchés sur la collection courante :
     {{ closest.collection.description }}
 
 `closest.collection` résout bien depuis une section `_blocks` — vérifié en
-capture, le titre affiche « Arabic Dial » et non un gabarit vide. C'est ce qui
-permet de n'écrire qu'un seul gabarit pour les douze collections : le titre est
-toujours celui de la page, donc un seul `<h1>`, jamais dupliqué.
+capture, le titre affiche celui de la collection ouverte et non un gabarit vide.
+C'est ce qui permet de n'écrire qu'un seul gabarit pour toutes les collections :
+le titre est toujours celui de la page, donc un seul `<h1>`, jamais dupliqué.
 
 | Réglage | Valeur | Pourquoi |
 | --- | --- | --- |
@@ -642,7 +637,7 @@ produit ajouté : on la laisse.
 
 ### Les descriptions
 
-Écrites le 16 août, à la demande du client, pour les onze collections utiles —
+Écrites le 16 août, à la demande du client, pour les dix collections utiles —
 `frontpage` est laissée telle quelle, elle doit disparaître. Elles vivent côté
 Shopify (`collectionUpdate`, champ `descriptionHtml`), pas dans le thème : le
 bloc `description` du gabarit les rend telles quelles, et le client peut les
@@ -651,10 +646,8 @@ réécrire depuis l'admin sans toucher au code.
 | Handle | Description |
 | --- | --- |
 | `seiko-mod` | Le catalogue complet. Chaque montre part d'une base Seiko, change de cadran, d'aiguilles, de lunette ou de bracelet, et repart montée à la main. |
-| `arabic-dial` | Le cadran change tout. Des chiffres arabes orientaux à la place des index. |
 | `chronographe-vk63` | Compteurs sur le cadran, poussoirs de part et d'autre de la couronne. Le mouvement est un méca-quartz VK63. |
 | `best-sellers` | Une sélection courte, choisie à la main dans le catalogue. Elle change au fil des arrivages. |
-| `automatique-nh35` | Un mouvement automatique NH35 : la montre se remonte au rythme du poignet, sans pile. |
 | `classique-date` | Guichet de date, lunette cannelée, bracelet à trois maillons. |
 | `jour-date` | Le jour en toutes lettres et la date, sur le même cadran. |
 | `double-fuseau` | Une aiguille de plus, une lunette graduée sur 24 heures. |
@@ -669,9 +662,10 @@ ces valeurs ne sont pas confirmées, et une collection est le pire endroit pour
 les avancer puisqu'elle couvre plusieurs montres à la fois. Tout ce qui est
 écrit se lit sur la photo — un guichet, une lunette, un bracelet, un compteur.
 
-Les deux seules mentions de mouvement, NH35 et VK63, sont sur les deux
-collections qui portent déjà ces noms, et figuraient dans les métadonnées SEO
-validées avant d'être reprises ici.
+La seule mention de mouvement, le VK63, est sur la collection qui porte déjà ce
+nom, et figurait dans les métadonnées SEO validées avant d'être reprise ici.
+Il y en avait une deuxième, sur `automatique-nh35`, supprimée avec sa collection
+le même jour.
 
 Aucun nom de modèle d'une autre marque n'apparaît. Les silhouettes sont
 **décrites** — « lunette octogonale », « bracelet d'un seul tenant », « boîtier
@@ -683,7 +677,7 @@ et c'est autant de risque en moins.
 mesure encore, puisque la boutique n'a pas ouvert. La description ne l'aggrave
 pas — elle parle d'une sélection faite à la main, pas de ventes.
 
-Les métadonnées SEO, elles, étaient déjà renseignées pour les douze.
+Les métadonnées SEO, elles, étaient déjà renseignées pour toutes.
 
 ## Fiche produit — `templates/product.json`
 
@@ -858,12 +852,18 @@ faire dans le dépôt.
 | Handle | Titre | Rôle |
 | --- | --- | --- |
 | `seiko-mod` | Toutes les Seiko Mods | catalogue complet |
-| `arabic-dial` | Arabic Dial | axe cadran |
-| `chronographe-vk63` | Chronographes VK63 | axe mouvement |
-| `automatique-nh35` | Automatiques NH35 | axe mouvement |
 | `best-sellers` | Les plus recherchées | sélection manuelle, ordre réglé à la souris |
 
-`automatique-nh35` a été créée pour la section Collections : elle complète l'axe
-mouvement ouvert par `chronographe-vk63` (méca-quartz d'un côté, automatique de
-l'autre). Toutes sont manuelles et publiées sur la boutique en ligne. Toutes sont
-vides pour l'instant — les produits n'existent pas encore.
+Toutes sont manuelles et publiées sur la boutique en ligne.
+
+**Deux collections ont été supprimées le 16 août**, à la demande du client :
+`arabic-dial` (axe cadran) et `automatique-nh35` (axe mouvement). Toutes deux
+étaient vides, donc aucun produit n'a changé de rattachement, et une seule chose
+pointait encore dessus — le second CTA du Hero, rebranché sur `/collections`
+avant la suppression.
+
+Le coût est ailleurs : `seiko arabic dial` et `mouvement nh35` sont deux
+mots-clés prioritaires du projet, et ces collections étaient leurs pages
+d'atterrissage. Il n'en reste aucune. Le sujet peut revenir sous forme d'article
+dans le blog `guides` ou de filtre sur `seiko-mod` — mais **ne pas recréer les
+collections de sa propre initiative**, la demande était explicite et répétée.
