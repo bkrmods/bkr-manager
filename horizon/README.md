@@ -154,11 +154,15 @@ Deux niveaux. Quatre entrées visibles, deux qui s'ouvrent :
 | Entrée | Cible | Sous-menu |
 | --- | --- | --- |
 | **Montres** | `seiko-mod` | Toutes les montres · Best-sellers |
-| **Familles** | `/collections` | Seikojust · Dayko · Seikona · Gmteiko · Masterteiko · Seikolus · Seikoak · Santeiko |
+| **Collections** | `/collections` | Seikojust · Dayko · Seikona · Gmteiko · Masterteiko · Seikolus · Seikoak · Santeiko |
 | Guides | `/blogs/guides` | — |
 | À propos | `/pages/a-propos` | — |
 
-« Montres » regroupe le catalogue et la sélection, « Familles » les silhouettes.
+« Montres » regroupe le catalogue et la sélection, « Collections » les
+silhouettes. L'entrée s'appelait « Familles » jusqu'au 16 août : **le client ne
+veut plus qu'on emploie le mot « famille » côté vitrine**, seulement
+« collection ». Renommée via `menuUpdate` — la mutation exige l'arbre complet,
+`resourceId` compris, sinon les sous-entrées disparaissent.
 Chaque collection n'apparaît **qu'une fois** — deux libellés différents pour une
 même URL, c'est ce qui rend un menu illisible.
 
@@ -293,13 +297,24 @@ attendu, pas une erreur.
 
 ## Collections — page d'accueil
 
-« Choisissez votre style. » : trois cartes éditoriales, une par famille.
+« Choisissez votre style. » : trois cartes éditoriales, une par silhouette.
 
 | Carte | Collection | Accroche |
 | --- | --- | --- |
-| Arabic Dial | `arabic-dial` | Cadran arabe, chiffres orientaux. |
-| Chronographes VK63 | `chronographe-vk63` | Compteurs, poussoirs, méca-quartz VK63. |
-| Automatiques NH35 | `automatique-nh35` | Mécanique automatique NH35. |
+| Dayko | `jour-date` | Guichet du jour et de la date, bracelet à maillons. |
+| Seikona | `chronographe-vk63` | Compteurs sur le cadran, poussoirs de part et d'autre de la couronne. |
+| Masterteiko | `lunette-tournante` | Lunette tournante graduée, cadran net. |
+
+**Ces trois-là et pas les autres.** La section proposait Arabic Dial,
+Chronographes VK63 et Automatiques NH35 ; le client a demandé le 16 août qu'elle
+propose des **collections** plutôt qu'un axe cadran ou un axe mouvement. Les
+trois retenues sont aussi les seules collections qui ont des produits — donc les
+seules dont la carte affiche une vraie photo au lieu d'un placeholder.
+
+Les accroches ont été réécrites en conséquence : elles décrivent ce qu'on voit
+sur la montre, pas son calibre. « Compteurs, poussoirs, méca-quartz VK63 » est
+devenu « Compteurs sur le cadran, poussoirs de part et d'autre de la couronne » ;
+le mouvement se dit ailleurs, dans la section Caractéristiques.
 
 **Cette section est 100 % native**, contrairement à ce que l'audit annonçait. Le
 bloc `collection-card` d'Horizon accepte des blocs enfants (`text`, `button`,
@@ -319,9 +334,9 @@ Choix retenus :
 
 | Réglage | Valeur | Pourquoi |
 | --- | --- | --- |
-| `placement` | `on_image` | le texte se pose sur la photo : plus éditorial, moins de hauteur qu'une légende sous l'image |
+| `placement` | `below_image` | voir ci-dessous : `on_image` ne tient pas avec de vraies photos |
 | `image_ratio` | `square` | trois portraits côte à côte donnaient des cartes très hautes ; empilées sur 375 px, la page devenait interminable |
-| `toggle_overlay` | `true`, dégradé `#0E0E0EA6` vers le haut | même recette que le Hero : le texte reste lisible quelle que soit la photo |
+| `toggle_overlay` | `false` | le texte n'est plus sur l'image, il n'y a plus rien à voiler |
 | `border_radius` | `4` | le rayon de la charte |
 | CTA | `style_class: "button-unstyled"` | la carte entière est déjà cliquable ; un gros bouton vert ferait doublon et sortirait le vert de son rôle d'accent |
 
@@ -329,14 +344,29 @@ Le titre de chaque carte vient du bloc natif `collection-title` : il suit le tit
 de la collection dans l'admin Shopify. Renommer la collection renomme la carte —
 rien à toucher dans le thème.
 
-**Média** : aucune photo de collection n'est chargée, Horizon affiche son
-placeholder. Les images se déposent sur la collection elle-même, dans l'admin.
+**`on_image` ne survit pas aux vraies photos.** Tant que les cartes affichaient
+le placeholder gris d'Horizon, le texte en surimpression passait : le voile
+`#0E0E0ECC` donnait 6,6:1, mesuré sur capture. Dès que les trois collections ont
+eu des produits, la carte s'est remplie du premier packshot — fond blanc,
+bracelet acier ou or rose — et l'accroche comme « Voir la collection » sont
+devenus illisibles. Un dégradé calibré pour un aplat clair uniforme ne rattrape
+pas un sujet contrasté.
+
+Le texte est donc passé **sous** l'image : le fond redevient le noir de la
+charte, le contraste est celui du reste de la page, et il ne dépend plus de la
+photo qui atterrit dans la collection. La page `/collections` était déjà montée
+comme ça — les deux grilles se ressemblent maintenant, ce qui n'est pas un
+défaut.
+
+**Média** : chaque carte affiche la photo de la collection si elle en a une,
+sinon le premier produit, sinon le placeholder Shopify. Aucune image n'est
+chargée sur les collections elles-mêmes ; ça se dépose dans l'admin.
 
 ## Qu'est-ce qu'une Seiko Mod ? — page d'accueil
 
-Section native `media-with-content`, preset éditorial : un visuel qui déborde
-jusqu'au bord de l'écran, le texte à côté. C'est la section pédagogique du
-cahier des charges, et elle porte une partie du SEO de la page d'accueil.
+Section `_blocks` : un `group` en ligne, bloc `image` à gauche, colonne de texte
+à droite, empilés sous 750 px. C'est la section pédagogique du cahier des
+charges, et elle porte une partie du SEO de la page d'accueil.
 
 | Bloc | Contenu |
 | --- | --- |
@@ -345,17 +375,44 @@ cahier des charges, et elle porte une partie du SEO de la page d'accueil.
 | Texte | deux paragraphes : ce qui change sur la montre, puis ce que ça produit |
 | CTA | « Découvrir les Seiko Mods » → `seiko-mod`, bouton vert |
 
-La section a deux blocs statiques imposés par Horizon, `media` et `content` —
-leurs identifiants ne sont pas libres, ils sont appelés en dur dans le Liquid
-(`content_for 'block', id: 'media'`). Le bloc `content` accepte `@theme`, donc
-les quatre blocs ci-dessus sont des blocs normaux, éditables et réordonnables.
+**C'était une section `media-with-content` ; elle a dû changer de type.** Le
+client voulait que toutes les images du site aient des coins arrondis, et
+c'était la dernière image carrée de l'accueil. Or `media-with-content` confie
+son visuel au bloc statique `_media-without-appearance`, dont le nom est un
+avertissement : son schéma n'expose **ni bordure, ni rayon** — type, image,
+lien, vidéo, cadrage, rien d'autre. La section, elle, passe bien
+`{% render 'border-override', settings: section.settings %}`, mais sur son
+propre conteneur : arrondir là aurait rogné les coins de la section entière,
+c'est-à-dire deux coins sur quatre du média et rien du tout du côté du texte.
+
+Le bloc `image` d'Horizon, lui, a un `border_radius` — et il applique le style
+au `<img>` lui-même, ou au placeholder. D'où le montage en `_blocks` + `group`
+en ligne, qui a l'avantage d'être éditable comme n'importe quelle autre section
+de la page.
 
 | Réglage | Valeur | Pourquoi |
 | --- | --- | --- |
-| `media_width` | `medium` | moitié-moitié : le texte a la place de respirer sans que l'image devienne un timbre-poste |
-| `media_height` | `60svh` | Horizon rabat automatiquement à 50svh sous 750 px |
-| `extend_media` | `true` | l'image touche le bord de l'écran, le texte reste dans la grille : c'est ce qui fait l'effet éditorial |
-| `media_position` | `left` | alterne avec le reste de la page |
+| `content_direction` du `group` | `row`, `vertical_on_mobile: true` | deux colonnes au-delà de 750 px, empilées en dessous |
+| `custom_width` image et texte | `46` chacun | voir le piège ci-dessous |
+| `gap` | `48` | la gouttière entre les deux colonnes |
+| `border_radius` de l'image | `12` | le rayon retenu pour toutes les images |
+| `image_ratio` | `adapt` | l'image garde ses proportions, pas de recadrage |
+
+**Deux pièges du bloc `image`.**
+
+`width: fill` ne veut pas dire « prends la moitié ». Le snippet `size-style`
+traduit `fill` en `--size-style-width: 100%` ; dans un `group` en ligne, les
+deux enfants demandent alors 100 % chacun et l'image écrase le texte — la
+première capture montrait un titre coupé caractère par caractère sur une colonne
+de 170 px. Il faut `width: custom` et un pourcentage.
+
+Le **placeholder** ne remplit pas sa colonne. `.image-block` est un conteneur
+flex, et `placeholder-image` n'a pas de largeur intrinsèque : il rétrécit à la
+taille de son SVG, quelle que soit la largeur du bloc. Une vraie image, elle, a
+des attributs `width`/`height` et se laisse ramener à 100 % du conteneur par le
+reset. Autrement dit : cette section a l'air cassée tant qu'aucune image n'est
+posée, et se répare toute seule dès qu'il y en a une. Ne pas chercher la panne
+ailleurs.
 
 **Sur le texte.** Il décrit ce qu'est une mod — cadran, aiguilles, verre,
 lunette, bracelet, réassemblage — sans avancer une seule caractéristique
@@ -366,9 +423,11 @@ Il dit aussi qu'une mod « n'est pas une Seiko de série ». C'est une phrase
 commerciale honnête, **pas la mention légale de transparence** : celle-là reste
 à rédiger et à valider par le client, ce n'est pas un choix de développeur.
 
-**Média** : aucune image chargée, placeholder Shopify. Le réglage `image` du
-bloc `media` attend la vraie photo — idéalement un plan serré d'atelier plutôt
-qu'un packshot, pour rester dans le registre pédagogique.
+**Média** : `dayko-chocolat-or-rose-3.png`, une photo du client — la Dayko
+chocolat dans son écrin. Choisie faute de mieux, pour la raison technique
+ci-dessus : le placeholder laissait un timbre-poste au milieu du noir. Elle se
+remplace en un clic dans l'éditeur, et l'idéal reste un plan serré d'atelier
+plutôt qu'un packshot, pour rester dans le registre pédagogique.
 
 ## Caractéristiques — page d'accueil
 
@@ -450,8 +509,35 @@ logique, pour que le pied de page ne contredise pas l'en-tête.
 
 Aucune collection n'a été supprimée au passage : seuls des liens ont disparu.
 
-La page utilise `main-collection-list`, gabarit `templates/list-collections.json` :
-titre `<h1>Toutes nos familles.</h1>`, sous-titre, puis la grille de cartes.
+La page utilise `collection-list`, gabarit `templates/list-collections.json` :
+titre `<h1>Toutes nos collections.</h1>`, sous-titre « Une silhouette par
+collection. », puis la grille de cartes.
+
+**Elle utilisait `main-collection-list`, il a fallu en changer.** Le client
+voulait retirer de cette page la « Page d'accueil » de Shopify, Best-sellers,
+Arabic Dial, Automatiques NH35 et Toutes les Seiko Mods, pour ne garder que les
+huit silhouettes. Or `main-collection-list` fait, en dur :
+
+    assign section_collections = collections
+    assign max_items = 20
+
+— aucun réglage, aucun filtre : elle rend **toutes** les collections publiées.
+Dépublier les cinq indésirables n'était pas une option (le menu « Montres », le
+second CTA du Hero et la section Best-sellers en dépendent, et le connecteur
+refuse de toute façon `publishableUnpublish`).
+
+`collection-list` a le réglage qui manquait :
+
+    {"type": "collection_list", "id": "collection_list"}
+
+et quand il est renseigné, `max_items = section.settings.collection_list.count`.
+Dans le gabarit, la valeur est simplement la liste ordonnée des huit handles.
+Le reste est identique : même bloc statique `static-collection-card` de type
+`_collection-card`, même `disabled_on` (header et footer seulement), donc la
+section est bien autorisée sur ce gabarit.
+
+**Effet de bord** : `frontpage` ne s'affiche plus ici. Elle reste publiée — ce
+n'est pas une dépublication, c'est une liste explicite.
 
 | Réglage | Valeur | Pourquoi |
 | --- | --- | --- |
@@ -462,8 +548,8 @@ titre `<h1>Toutes nos familles.</h1>`, sous-titre, puis la grille de cartes.
 
 **Le plafond de 4 collections du gabarit d'usine n'en était pas un.** Le réglage
 `max_collections` n'est lu que par la disposition `editorial` ; en `grid`, la
-section boucle sur un `max_items = 20` écrit en dur dans le Liquid. Le réglage a
-donc été retiré, il ne servait à rien.
+section boucle sur un `max_items` fixé ailleurs. Le réglage a donc été retiré,
+il ne servait à rien.
 
 ### Les familles
 
@@ -558,6 +644,47 @@ produit ajouté : on la laisse.
 Les descriptions de collection sont **vides** côté Shopify — le bloc
 description ne rend donc rien pour l'instant. Les métadonnées SEO, elles, sont
 renseignées pour les douze.
+
+## Fiche produit — `templates/product.json`
+
+Trois sections, dans cet ordre : **retour**, `product-information`,
+`product-recommendations`.
+
+### Le lien de retour
+
+Le client voulait « une petite flèche pour revenir en arrière », en pensant au
+mobile. C'est une section `_blocks` posée **avant** la galerie, avec un seul
+bloc `button` :
+
+| Réglage | Valeur |
+| --- | --- |
+| `label` | `← Toutes les montres` |
+| `link` | `shopify://collections/seiko-mod` |
+| `style_class` | `button-unstyled` |
+
+**Horizon n'a rien de natif pour ça.** Ni `blocks/breadcrumbs.liquid`, ni
+`blocks/back-link.liquid`, ni `snippets/breadcrumbs.liquid` : aucun de ces
+fichiers n'existe dans le thème. Le bloc `button` est ce qui s'en approche le
+plus, et la flèche est simplement le premier caractère du libellé — un réglage
+de texte, donc modifiable dans l'éditeur sans toucher au code.
+
+**Pourquoi une section à part et pas un bloc dans `_product-details`.** Sur
+mobile, `product-information` empile la galerie *au-dessus* des détails : un
+lien placé dans `_product-details` serait apparu après une image de 470 px de
+haut, c'est-à-dire hors écran — exactement l'inverse de ce qui était demandé.
+Une section propre le met au-dessus de tout, sur toutes les largeurs.
+
+**Ce n'est pas un vrai « retour ».** Le lien pointe toujours sur « Toutes les
+montres », il ne rejoue pas l'historique du navigateur. C'est volontaire : un
+`history.back()` demanderait du JavaScript, et il renverrait n'importe où quand
+la fiche est ouverte depuis Instagram ou un résultat Google — c'est-à-dire dans
+la majorité des visites attendues.
+
+### Le reste du gabarit
+
+Galerie en carrousel, vignettes sous l'image en desktop et points en mobile,
+format portrait `1/1.25`, **zoom plein écran coupé** (`zoom: false`) — les trois
+à la demande du client. Recommandations sous le titre « Dans le même esprit. ».
 
 ## Images arrondies
 
@@ -682,7 +809,8 @@ faire dans le dépôt.
 - `sections/header-group.json` — en-tête : menu `bkr-main`, annonce en français, sélecteurs coupés
 - `sections/footer-group.json` — 4 colonnes de menu, politiques, réseaux sociaux vidés
 - `templates/index.json` — page d'accueil : Hero BKR + Best-sellers + Collections + Qu'est-ce qu'une Mod ?
-- `templates/list-collections.json` — page `/collections` : toutes les familles
+- `templates/list-collections.json` — page `/collections` : les huit silhouettes
+- `templates/product.json` — fiche produit : lien de retour, galerie, détails, recommandations
 - `templates/collection.json` — page d'une collection : titre, description, grille filtrable
 
 ## Collections Shopify

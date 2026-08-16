@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "hero_bkr": {
       "type": "hero",
@@ -297,7 +298,7 @@
         "sous_titre": {
           "type": "text",
           "settings": {
-            "text": "<p>Trois familles, trois façons de porter une Seiko modifiée.</p>",
+            "text": "<p>Trois silhouettes, trois façons de porter une Seiko modifiée.</p>",
             "text_color": "{{ settings.color_palette.color1 }}",
             "width": "100%",
             "max_width": "narrow",
@@ -311,13 +312,15 @@
             "vertical_alignment": "flex-start"
           },
           "blocks": {
-            "carte_arabic_dial": {
+            "carte_dayko": {
               "type": "collection-card",
               "settings": {
-                "collection": "arabic-dial",
-                "placement": "on_image",
-                "vertical_alignment": "flex-end",
-                "border_radius": 12
+                "collection": "jour-date",
+                "placement": "below_image",
+                "border_radius": 12,
+                "horizontal_alignment": "flex-start",
+                "collection_card_gap": 8,
+                "vertical_alignment": "center"
               },
               "blocks": {
                 "collection-card-image": {
@@ -326,9 +329,7 @@
                   "static": true,
                   "settings": {
                     "image_ratio": "square",
-                    "toggle_overlay": true,
-                    "overlay_color": "#0E0E0ECC",
-                    "overlay_style": "gradient",
+                    "toggle_overlay": false,
                     "border_radius": 12
                   }
                 },
@@ -341,7 +342,7 @@
                 "accroche": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Cadran arabe, chiffres orientaux. La montre qu'on remarque sans qu'elle en fasse trop.</p>",
+                    "text": "<p>Guichet du jour et de la date, bracelet à maillons. La montre de tous les jours, en plus affirmée.</p>",
                     "width": "100%",
                     "max_width": "narrow"
                   }
@@ -350,7 +351,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Voir la collection",
-                    "link": "shopify://collections/arabic-dial",
+                    "link": "shopify://collections/jour-date",
                     "style_class": "button-unstyled"
                   }
                 }
@@ -361,13 +362,15 @@
                 "cta"
               ]
             },
-            "carte_chronographe": {
+            "carte_seikona": {
               "type": "collection-card",
               "settings": {
                 "collection": "chronographe-vk63",
-                "placement": "on_image",
-                "vertical_alignment": "flex-end",
-                "border_radius": 12
+                "placement": "below_image",
+                "border_radius": 12,
+                "horizontal_alignment": "flex-start",
+                "collection_card_gap": 8,
+                "vertical_alignment": "center"
               },
               "blocks": {
                 "collection-card-image": {
@@ -376,9 +379,7 @@
                   "static": true,
                   "settings": {
                     "image_ratio": "square",
-                    "toggle_overlay": true,
-                    "overlay_color": "#0E0E0ECC",
-                    "overlay_style": "gradient",
+                    "toggle_overlay": false,
                     "border_radius": 12
                   }
                 },
@@ -391,7 +392,7 @@
                 "accroche": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Compteurs, poussoirs, mouvement méca-quartz VK63. Le geste du chronographe.</p>",
+                    "text": "<p>Compteurs sur le cadran, poussoirs de part et d'autre de la couronne. La silhouette du chronographe.</p>",
                     "width": "100%",
                     "max_width": "narrow"
                   }
@@ -411,13 +412,15 @@
                 "cta"
               ]
             },
-            "carte_automatique": {
+            "carte_masterteiko": {
               "type": "collection-card",
               "settings": {
-                "collection": "automatique-nh35",
-                "placement": "on_image",
-                "vertical_alignment": "flex-end",
-                "border_radius": 12
+                "collection": "lunette-tournante",
+                "placement": "below_image",
+                "border_radius": 12,
+                "horizontal_alignment": "flex-start",
+                "collection_card_gap": 8,
+                "vertical_alignment": "center"
               },
               "blocks": {
                 "collection-card-image": {
@@ -426,9 +429,7 @@
                   "static": true,
                   "settings": {
                     "image_ratio": "square",
-                    "toggle_overlay": true,
-                    "overlay_color": "#0E0E0ECC",
-                    "overlay_style": "gradient",
+                    "toggle_overlay": false,
                     "border_radius": 12
                   }
                 },
@@ -441,7 +442,7 @@
                 "accroche": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Mécanique automatique NH35. Elle se remonte au rythme du poignet.</p>",
+                    "text": "<p>Lunette tournante graduée, cadran net. La ligne sportive, sans surcharge.</p>",
                     "width": "100%",
                     "max_width": "narrow"
                   }
@@ -450,7 +451,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Voir la collection",
-                    "link": "shopify://collections/automatique-nh35",
+                    "link": "shopify://collections/lunette-tournante",
                     "style_class": "button-unstyled"
                   }
                 }
@@ -463,9 +464,9 @@
             }
           },
           "block_order": [
-            "carte_arabic_dial",
-            "carte_chronographe",
-            "carte_automatique"
+            "carte_dayko",
+            "carte_seikona",
+            "carte_masterteiko"
           ]
         }
       },
@@ -483,72 +484,100 @@
       }
     },
     "quest_ce_quune_mod": {
-      "type": "media-with-content",
+      "type": "_blocks",
       "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "name": "t:names.media",
-          "static": true,
-          "settings": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "name": "t:names.content",
-          "static": true,
+        "colonnes": {
+          "type": "group",
           "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "gap": 20
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "vertical_alignment": "center",
+            "gap": 48
           },
           "blocks": {
-            "surtitre": {
-              "type": "text",
+            "image": {
+              "type": "image",
               "settings": {
-                "text": "<p>LE MODDING</p>",
-                "text_color": "{{ settings.color_palette.color1 }}",
-                "max_width": "none",
-                "type_preset": "h6"
+                "image_ratio": "adapt",
+                "width": "custom",
+                "width_mobile": "fill",
+                "border": "none",
+                "border_radius": 12,
+                "custom_width": 46,
+                "image": "shopify://shop_images/dayko-chocolat-or-rose-3.png"
               }
             },
-            "titre": {
-              "type": "text",
+            "texte_colonne": {
+              "type": "group",
               "settings": {
-                "text": "<h2>Qu'est-ce qu'une Seiko Mod ?</h2>",
-                "width": "100%",
-                "max_width": "narrow",
-                "type_preset": "h3"
-              }
-            },
-            "texte": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Une Seiko Mod part d'une base Seiko, puis change de visage : cadran, aiguilles, verre, lunette, bracelet. Les pièces sont choisies une par une, et la montre est réassemblée à la main.</p><p>Le résultat n'est pas une Seiko de série et ne cherche pas à l'être. C'est une pièce montée à l'unité, dans une combinaison qu'on ne croise pas en vitrine.</p>",
-                "width": "100%",
-                "max_width": "narrow"
-              }
-            },
-            "cta": {
-              "type": "button",
-              "settings": {
-                "label": "Découvrir les Seiko Mods",
-                "link": "shopify://collections/seiko-mod",
-                "width_mobile": "custom"
-              }
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 20,
+                "width": "custom",
+                "width_mobile": "fill",
+                "height": "fit",
+                "custom_width": 46
+              },
+              "blocks": {
+                "surtitre": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>LE MODDING</p>",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "max_width": "none",
+                    "type_preset": "h6"
+                  }
+                },
+                "titre": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>Qu'est-ce qu'une Seiko Mod ?</h2>",
+                    "width": "100%",
+                    "max_width": "narrow",
+                    "type_preset": "h3"
+                  }
+                },
+                "texte": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Une Seiko Mod part d'une base Seiko, puis change de visage : cadran, aiguilles, verre, lunette, bracelet. Les pièces sont choisies une par une, et la montre est réassemblée à la main.</p><p>Le résultat n'est pas une Seiko de série et ne cherche pas à l'être. C'est une pièce montée à l'unité, dans une combinaison qu'on ne croise pas en vitrine.</p>",
+                    "width": "100%",
+                    "max_width": "narrow"
+                  }
+                },
+                "cta": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Découvrir les Seiko Mods",
+                    "link": "shopify://collections/seiko-mod",
+                    "width_mobile": "custom"
+                  }
+                }
+              },
+              "block_order": [
+                "surtitre",
+                "titre",
+                "texte",
+                "cta"
+              ]
             }
           },
           "block_order": [
-            "surtitre",
-            "titre",
-            "texte",
-            "cta"
+            "image",
+            "texte_colonne"
           ]
         }
       },
-      "name": "t:names.media_with_text",
+      "block_order": [
+        "colonnes"
+      ],
+      "name": "t:names.section",
       "settings": {
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.background }}"
+        "gap": 0,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 72,
+        "padding-block-end": 80
       }
     },
     "caracteristiques": {

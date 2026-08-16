@@ -3,8 +3,10 @@
 Note de reprise. Ce fichier est chargé automatiquement par `CLAUDE.md` : une
 nouvelle session sait donc où on en est sans qu'on ait à le lui raconter.
 
-**À tenir à jour à chaque fin de séance.** Dernière mise à jour : 15 août 2026,
-après la première QA visuelle réelle (le réseau vers la vitrine a été ouvert).
+**À tenir à jour à chaque fin de séance.** Dernière mise à jour : 16 août 2026,
+après la série de retouches demandée par le client (vocabulaire « collection »,
+tri de `/collections`, cartes de l'accueil, dernière image arrondie, lien de
+retour sur la fiche produit).
 
 ## Le projet en cinq lignes
 
@@ -93,8 +95,14 @@ Les handles restent descriptifs : le nom s'affiche, l'URL décrit la montre.
 `bkr-footer-assistance` · `bkr-footer-informations`
 
 En-tête, menu à deux niveaux : **Montres** (toutes les montres, best-sellers) ·
-**Familles** (les huit) · Guides · À propos. Horizon en fait un méga-menu tout
-seul, et un accordéon dans le tiroir mobile.
+**Collections** (les huit silhouettes) · Guides · À propos. Horizon en fait un
+méga-menu tout seul, et un accordéon dans le tiroir mobile.
+
+**On ne dit plus « famille », on dit « collection »** (demande du client, 16
+août). Le mot a été changé dans l'entrée de menu `bkr-main`, dans le titre de
+`/collections` et dans le sous-titre de l'accueil. Il reste employé dans les
+notes ci-dessous et dans `horizon/README.md` au sens de « groupe de
+silhouettes » ; c'est du vocabulaire interne, pas de l'affichage.
 
 ## Charte
 
@@ -126,10 +134,27 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   `best-sellers`, carrousel sous 750 px.
 - **Accueil / Collections** — « Choisissez votre style. », trois cartes
   éditoriales natives (`collection-card` accepte `text`, `button`, `group`,
-  `collection-title` comme enfants) dans une section `_blocks`.
-- **Accueil / Qu'est-ce qu'une Seiko Mod ?** — section native
-  `media-with-content`, preset éditorial : image débordante à gauche, texte
-  pédagogique et CTA à droite. Aucune caractéristique technique avancée.
+  `collection-title` comme enfants) dans une section `_blocks`. Depuis le 16
+  août elles pointent sur **trois silhouettes** — Dayko, Seikona, Masterteiko —
+  et non plus sur des axes de mouvement ou de cadran : le client ne voulait
+  « ni NH35, ni Arabic Dial, ni chronographe » à cet endroit. Ce sont aussi les
+  trois seules collections qui ont des produits, donc les seules dont la carte
+  affiche une vraie photo.
+  Le texte est passé **sous l'image** (`placement: below_image`, voile coupé) :
+  en `on_image`, l'accroche et « Voir la collection » tombaient sur un bracelet
+  clair et devenaient illisibles dès que les cartes ont eu de vraies photos.
+- **Accueil / Qu'est-ce qu'une Seiko Mod ?** — section `_blocks` : un `group` en
+  ligne, bloc `image` à gauche (46 %, rayon 12 px), colonne de texte à droite
+  (46 %), empilés sous 750 px. C'était une section `media-with-content` ; elle a
+  été remplacée parce que son bloc `_media-without-appearance` **n'a aucun
+  réglage de bordure** — c'était la dernière image carrée de l'accueil, et le
+  seul moyen natif de l'arrondir était de changer de section.
+  Deux pièges du bloc `image` : `width: fill` ne partage pas la ligne, il faut
+  un `custom_width` en pourcentage ; et le **placeholder** ne remplit pas sa
+  colonne (il n'a pas de largeur intrinsèque, il rétrécit à son SVG). Une vraie
+  image, elle, la remplit. D'où le choix de `dayko-chocolat-or-rose-3.png`,
+  photo du client montrant une mod finie dans son écrin — remplaçable en un clic
+  dans l'éditeur.
 - **Accueil / Caractéristiques** — « Sur chaque montre. », trois points
   (assemblage, mouvements, paiement). Volontairement trois et pas six : les
   autres auraient été des promesses non confirmées.
@@ -140,10 +165,30 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   `1/1.25`, et **zoom plein écran coupé** (`zoom: false`) — les trois à la
   demande du client. Le bloc `disclosures` vide et son titre anglais ont été
   retirés, et « You may also like » est devenu « Dans le même esprit. ».
+  Depuis le 16 août, une section `_blocks` **« retour »** est posée tout en haut
+  du gabarit, avant la galerie : un simple bouton `button-unstyled` intitulé
+  « ← Toutes les montres ». Horizon n'a **ni bloc fil d'Ariane ni bloc lien de
+  retour** (`blocks/breadcrumbs.liquid`, `blocks/back-link.liquid`,
+  `snippets/breadcrumbs.liquid` : aucun n'existe), et le mettre dans
+  `_product-details` l'aurait envoyé sous la galerie sur mobile — c'est-à-dire
+  hors d'atteinte, à l'inverse de ce qui était demandé.
 - **Gabarit de collection** — `templates/collection.json`, un seul gabarit pour
   les douze : en-tête `_blocks` branché sur `closest.collection` (titre en
   `<h1>` + description), puis `main-collection` avec filtres et tri natifs.
   Vérifié en capture aux quatre largeurs sur `/collections/arabic-dial`.
+- **Page `/collections`** — `templates/list-collections.json` ne rend plus que
+  les **huit silhouettes**. Elle affichait les douze collections plus la
+  « Page d'accueil » de Shopify ; le client voulait retirer Page d'accueil,
+  Best-sellers, Arabic Dial, Automatiques NH35 et Toutes les Seiko Mods.
+  La section a dû **changer de type** : `main-collection-list` fait
+  `assign section_collections = collections` avec `max_items = 20` en dur — elle
+  rend toutes les collections publiées, sans le moindre réglage pour en choisir.
+  `collection-list` a, lui, un `{"type": "collection_list"}` : c'est la liste
+  des huit handles, dans l'ordre, dans le gabarit. Titre passé à « Toutes nos
+  collections. », sous-titre à « Une silhouette par collection. »
+  **Effet de bord bienvenu** : la collection `frontpage`, que le connecteur
+  refuse de dépublier, ne s'affiche plus ici. Elle reste publiée côté Shopify —
+  le geste à faire côté client tient toujours.
 - **Images arrondies** — rayon 12 px sur toutes les images (cartes produit,
   cartes de collection, image principale de la fiche), 8 px sur les vignettes.
   Le Hero reste bord à bord. Détail et piège de `media_radius` dans
@@ -212,11 +257,11 @@ Le gabarit de collection est fait. Deux choses l'attendent, côté contenu :
 | **Origine de l'image du Hero** | le fichier déposé s'appelle « ChatGPT Image 16 août 2026 » : c'est un **rendu génératif**, pas une photo. Il montre un écrin siglé BKR et des montres qui ne sont pas celles du catalogue. Le client l'a fourni pour cet usage ; le point lui a été signalé une fois. Les garde-fous interdisent « les rendus générés présentés comme des photos » — à re-trancher avec lui avant l'ouverture publique. |
 | **Qualité des premières photos** | les quatre PNG livrés en premier font 311 à 400 px de large, pour ~2000 px attendus. Trois sont encore en ligne (Dayko noir, bleu roi, olive). Le second envoi est à ≈1120 × 1400 px, exploitable. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
 | **Photos** | Hero et cartes de collection affichent toujours les placeholders Shopify. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
-| **Produits** | la boutique est vide. Maintenant que `best-sellers` est publiée, la section « Les plus recherchées. » affiche les **produits bouche-trou de Shopify** (« Titre de produit », 19,99 €) au lieu de ne rien rendre. C'est le comportement d'Horizon sur une collection vide, pas un faux contenu qu'on aurait écrit — ça disparaîtra au premier produit. |
+| **`best-sellers` est vide** | la collection n'a **aucun produit**, et la section « Les plus recherchées. » de l'accueil affiche donc son titre puis un grand trou noir — vérifié en capture le 16 août aux quatre largeurs. Ce n'est pas un bug du gabarit : Horizon ne rend rien quand la collection choisie est vide. **C'est au client de choisir sa sélection** : y mettre d'office les six montres reviendrait à appeler « les plus recherchées » des produits qui n'ont pas encore été vendus une seule fois. Deux montres suffisent à combler le trou. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
 | **URL des réseaux sociaux** | champs volontairement vides. |
 | **Semrush** | à ré-authentifier. |
-| **Collection `frontpage` à dépublier** | Shopify crée d'office une collection « Page d'accueil », vide, qui s'affiche donc comme une carte sur `/collections` — vérifié sur capture le 15 août. `publishableUnpublish` a été retenté deux fois : le connecteur le refuse par politique (« Unpublishing is blocked »), ce n'est pas un incident réseau. **Seul geste possible, côté client** : Collections → Page d'accueil → Publication → décocher « Boutique en ligne ». |
+| **Collection `frontpage` à dépublier** | Shopify crée d'office une collection « Page d'accueil », vide. Elle **ne s'affiche plus sur `/collections`** depuis le 16 août (la page ne liste que les huit handles choisis), mais elle reste **publiée** : son URL répond, et elle ressortira partout où l'on branchera une liste automatique. `publishableUnpublish` a été retenté deux fois : le connecteur le refuse par politique (« Unpublishing is blocked »), ce n'est pas un incident réseau. **Seul geste possible, côté client** : Collections → Page d'accueil → Publication → décocher « Boutique en ligne ». |
 
 ## Règles absolues
 

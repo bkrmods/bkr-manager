@@ -6,23 +6,38 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
-      "type": "main-collection-list",
+      "type": "collection-list",
       "blocks": {
         "entete": {
           "type": "group",
           "name": "t:names.header",
           "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 8,
-            "padding-block-end": 16
+            "width": "fill",
+            "height": "fit",
+            "background_media": "none",
+            "border": "none",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 16,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
             "titre": {
               "type": "text",
               "settings": {
-                "text": "<h1>Toutes nos familles.</h1>",
+                "text": "<h1>Toutes nos collections.</h1>",
                 "width": "100%",
                 "max_width": "narrow",
                 "type_preset": "h2"
@@ -31,7 +46,7 @@
             "sous_titre": {
               "type": "text",
               "settings": {
-                "text": "<p>Par silhouette, par cadran ou par mouvement.</p>",
+                "text": "<p>Une silhouette par collection.</p>",
                 "text_color": "{{ settings.color_palette.color1 }}",
                 "width": "100%",
                 "max_width": "narrow"
@@ -49,6 +64,10 @@
           "static": true,
           "settings": {
             "placement": "below_image",
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "collection_card_gap": 8,
+            "border": "none",
             "border_radius": 12
           },
           "blocks": {
@@ -58,6 +77,7 @@
               "static": true,
               "settings": {
                 "image_ratio": "square",
+                "border": "none",
                 "border_radius": 12
               }
             },
@@ -78,9 +98,23 @@
       ],
       "name": "t:names.collection_list",
       "settings": {
+        "collection_list": [
+          "classique-date",
+          "jour-date",
+          "chronographe-vk63",
+          "double-fuseau",
+          "bracelet-integre",
+          "octogonale",
+          "lunette-tournante",
+          "boitier-carre"
+        ],
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
         "columns": 3,
+        "mobile_columns": "2",
         "columns_gap": 12,
         "rows_gap": 24,
+        "section_width": "page-width",
         "gap": 28,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
