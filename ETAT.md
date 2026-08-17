@@ -281,6 +281,44 @@ Le gabarit de collection est fait. Une chose l'attend encore, côté contenu :
   d'Horizon, correcte quand un filtre ne renvoie rien. Elle disparaît au premier
   produit — ne pas la surcharger.
 
+### Menu et panier — compacter, pas encore fait
+
+Le client a tranché le 16 août : **panneau de méga-menu compact** sur desktop,
+**écart de tailles réduit** dans le tiroir mobile, **tiroir de panier moins
+envahissant**. Rien de tout cela n'a abouti, et il faut savoir pourquoi avant
+d'y retourner.
+
+**Aucun des trois n'a de réglage natif.** Vérifié dans le schéma du bloc
+`_header-menu` et dans `settings_schema.json` :
+
+- La taille des entrées de premier niveau du tiroir est écrite en dur :
+  `--menu-top-level-font-size: var(--font-size--xlarge)`. Le réglage
+  `menu_font_style` **ne la touche pas** — malgré son nom, son libellé de schéma
+  est `t:settings.submenu_size`, il ne pilote que le sous-menu (essayé en
+  `regular`, seules les sous-entrées ont changé ; remis à `inverse`).
+- Le panneau de méga-menu en `menu_style: "text"` occupe toute la largeur par
+  construction. Les trois autres valeurs (`collection_images`,
+  `featured_products`, `featured_collections`) sont plus riches, pas plus
+  compactes.
+- Le groupe « Tiroirs » des réglages de thème ne propose que trois couleurs.
+
+**Une tentative en CSS a été faite puis annulée.** Deux erreurs à ne pas
+refaire :
+
+1. `--theme-drawer-width` ne fixe **pas** la largeur du tiroir : elle ne sert
+   qu'au décalage de la page (`.page-wrapper--drawer-open { margin-right }`).
+   La réduire fait recouvrir le contenu par le tiroir au lieu de le rétrécir —
+   vérifié en capture, le titre du produit et le bouton PayPal passaient sous
+   le panneau. La largeur réelle vient de `--sidebar-width`, qui sert **aussi**
+   à la colonne de filtres des collections : la changer globalement casserait
+   les pages de collection.
+2. Les entrées du tiroir mobile ne sont pas `.menu-list__link` mais
+   `.menu-drawer__menu-item` (relevé dans le DOM). Le sélecteur visé ne
+   correspondait à rien.
+
+`assets/bkr.css` est donc revenue à sa règle unique. La prochaine tentative
+part de ces deux corrections, et se vérifie avec `horizon/etats.mjs`.
+
 ## Bloqué, en attente du client
 
 | Quoi | Pourquoi ça bloque |

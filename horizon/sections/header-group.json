@@ -17,7 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "LIVRAISON SUIVIE \u2022 PAIEMENT S\u00c9CURIS\u00c9 \u2022 COMMANDES PR\u00c9PAR\u00c9ES AVEC SOIN",
+            "text": "LIVRAISON SUIVIE • PAIEMENT SÉCURISÉ • COMMANDES PRÉPARÉES AVEC SOIN",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "letter_spacing": "normal",
@@ -62,7 +62,8 @@
             "type_font_primary_link": "heading",
             "menu_style": "text",
             "drawer_accordion": true,
-            "drawer_dividers": true
+            "drawer_dividers": true,
+            "menu_font_style": "inverse"
           },
           "blocks": {}
         }
