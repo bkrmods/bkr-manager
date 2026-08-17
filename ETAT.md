@@ -7,7 +7,7 @@ nouvelle session sait donc où on en est sans qu'on ait à le lui raconter.
 après la série de retouches demandée par le client (vocabulaire « collection »,
 tri de `/collections`, cartes de l'accueil, dernière image arrondie, lien de
 retour sur la fiche produit, Best-sellers renommée, descriptions de collection,
-suppression d'`arabic-dial` et `automatique-nh35`).
+suppression d'`arabic-dial` et `automatique-nh35`, animations rallumées).
 
 ## Le projet en cinq lignes
 
@@ -226,6 +226,22 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   `#0E0E0ECC`. Mesuré sur la capture : 4,21:1 avant, 6,6:1 après. En dessous de
   4,5:1 l'accroche et le lien « Voir la collection » n'étaient pas conformes.
   Le Hero garde `A6`, il est déjà entre 5,6 et 7,1:1.
+- **Animations** — le groupe « Animations » d'Horizon était **entièrement
+  désactivé** sur ce thème, alors qu'il est actif par défaut à l'installation.
+  Rallumé le 16 août, à la demande du client (« fluidifie le site ») :
+  `page_transition_enabled` et `transition_to_main_product` à `true`,
+  `card_hover_effect` à `subtle-zoom`. Deux autres étaient déjà actifs par
+  défaut sans avoir été écrits : `add_to_cart_animation` et
+  `show_second_image_on_hover`.
+  Tout est conforme au skill `bkr-charte` : rien ne bouge sans geste de
+  l'utilisateur, aucun fond animé, aucune ombre portée, et les transitions de
+  page sont derrière `prefers-reduced-motion`.
+  Le preset `presets.Horizon` garde ses valeurs coupées : le retour arrière
+  reste en un clic.
+- **Panier** — `cart_type` était déjà `drawer`. Ajouté : `auto_open_cart_drawer`
+  (le tiroir s'ouvre à l'ajout, l'action a enfin un résultat visible) et
+  `cart_thumbnail_border_radius: 12`, les vignettes du panier étant les
+  dernières images carrées du site.
 - **Metafields** `bkr.*` créés, avec la consigne « ne pas inventer » dans leur
   description.
 - **Trois skills** dans `.claude/skills/` : `bkr-charte`, `horizon-section`,

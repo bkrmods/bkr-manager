@@ -45,9 +45,9 @@
     "type_line_height_h6": "display-loose",
     "page_background_color": "{{ settings.color_palette.background }}",
     "page_width": "narrow",
-    "page_transition_enabled": false,
-    "transition_to_main_product": false,
-    "card_hover_effect": "none",
+    "page_transition_enabled": true,
+    "transition_to_main_product": true,
+    "card_hover_effect": "subtle-zoom",
     "badge_position": "top-right",
     "badge_corner_radius": 100,
     "badge_sale_background_color": "#1C5A4B",
@@ -108,7 +108,9 @@
       "foreground": "#F3F3F1",
       "color1": "#C9CBC7",
       "color2": "#2A2C29"
-    }
+    },
+    "cart_thumbnail_border_radius": 12,
+    "auto_open_cart_drawer": true
   },
   "presets": {
     "Horizon": {

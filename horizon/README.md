@@ -743,6 +743,81 @@ l'image : seul `SLIDESHOW-CONTAINER` portait les 12 px.
 Le Hero n'est pas arrondi : il est plein écran et bord à bord, un rayon y
 créerait des coins noirs dans un fond noir.
 
+## Animations
+
+Horizon a un groupe de réglages « Animations », et il était **entièrement coupé**
+sur ce thème alors qu'il est actif à l'installation. C'est ce qui donnait
+l'impression d'un site figé : aucune carte ne réagissait, aucune page n'en
+remplaçait une autre, rien ne reliait une vignette à sa fiche.
+
+| Réglage | Défaut d'Horizon | Avant | Après |
+| --- | --- | --- | --- |
+| `page_transition_enabled` | `true` | `false` | `true` |
+| `transition_to_main_product` | `true` | `false` | `true` |
+| `card_hover_effect` | `lift` | `none` | `subtle-zoom` |
+| `add_to_cart_animation` | `true` | (non écrit → actif) | inchangé |
+| `show_second_image_on_hover` | `true` | (non écrit → actif) | inchangé |
+
+**`subtle-zoom` plutôt que `lift`.** `lift` soulève la carte et pose une ombre
+portée ; le skill `bkr-charte` interdit explicitement « les grosses ombres
+portées diffuses », et sur un fond noir profond une ombre ne se voit de toute
+façon pas — elle salit le bord de l'image sans rien signifier. `subtle-zoom`
+agrandit l'image **dans son cadre** : le mouvement reste contenu dans le rayon
+de 12 px, et il ne touche pas la mise en page, donc aucun reflow.
+
+**Ce qui bouge, et quand.** Rien ne s'anime sans geste de l'utilisateur, ce que
+le test de la charte exige (« y a-t-il un effet qui bouge sans que
+l'utilisateur l'ait déclenché ? »). Les transitions de page sont des
+`@view-transition` natives, déclarées dans `layout/theme.liquid` et entièrement
+derrière `@media (prefers-reduced-motion: no-preference)` : un visiteur qui a
+demandé moins d'animations n'en verra aucune, sans qu'on ait une ligne à écrire.
+
+Le preset `presets.Horizon` conserve les trois valeurs coupées. Ce n'est pas un
+oubli : ce preset est le retour arrière en un clic, il doit rester le thème tel
+qu'on l'a trouvé.
+
+### Le panier
+
+`cart_type` était déjà `drawer`. Deux réglages ont été ajoutés :
+
+- `auto_open_cart_drawer: true` — sans lui, cliquer « Ajouter au panier » ne
+  produisait qu'un compteur qui change dans un coin. L'ajout a maintenant un
+  résultat visible, et il se combine avec `add_to_cart_animation`, qui fait
+  voler la vignette vers l'icône.
+- `cart_thumbnail_border_radius: 12` — les vignettes du panier étaient les
+  **dernières images carrées du site**. Le réglage n'était pas écrit, donc il
+  valait le défaut `0`.
+
+**Attention en QA : le panier ne se remplit pas au travers du relais.**
+`POST /cart/add.js` répond `200` et renvoie bien la ligne, mais `GET /cart.js`
+juste après annonce `item_count: 0` — le cookie de panier ne survit pas à
+l'aller-retour par `context.request.fetch`. Un tiroir photographié depuis
+`horizon/etats.mjs` sortira donc toujours « Votre panier est vide ». Ce n'est
+pas un bug de la boutique, et il ne faut pas le corriger comme tel.
+
+## Voir le rendu déclenché — `horizon/etats.mjs`
+
+`apercu.mjs` photographie des pages au repos. Trois choses ne s'évaluent que
+déclenchées, et un second script s'en charge :
+
+    BKR_MDP=<mot de passe> node horizon/etats.mjs
+
+Il sort `captures/etat-<nom>-<largeur>.png` en 390 et 1440 px : carte au repos
+et survolée, tiroir de menu (déplié sur mobile), tiroir de panier.
+
+**Deux sélecteurs valent d'être notés**, parce que les deviner a coûté deux
+séries de captures fausses :
+
+| Cible | Sélecteur | Le piège |
+| --- | --- | --- |
+| Menu mobile | `summary.header__icon--menu` | « le premier bouton de l'en-tête » ouvre la **recherche** |
+| Ajout au panier | `button.add-to-cart-button:not(.sticky-add-to-cart__button)` | la version collante est hors écran : le clic échoue sur « element is outside of the viewport » |
+| Icône panier | — | `getByRole('button', { name: /panier/i })` ouvre le tiroir **sans rien y mettre** |
+
+Les captures sont volontairement limitées à la fenêtre, pas en pleine page : un
+tiroir est un élément fixe, une capture pleine page le poserait au milieu d'une
+image de 8 000 px de haut.
+
 ## La seule feuille de style du projet
 
 `assets/bkr.css`, chargée par `snippets/stylesheets.liquid` juste après
@@ -767,7 +842,7 @@ ce snippet, le conflit se résout en trois secondes.
 qu'on y ajoute doit d'abord avoir échoué à être un réglage natif, et porter en
 commentaire la raison qui l'a rendue nécessaire.
 
-## Voir le rendu
+## Voir le rendu au repos
 
 Toute la QA du projet est **structurelle** : les schémas sont lus, les valeurs
 vérifiées, les tailles comparées à l'octet — mais personne n'a regardé la page.
