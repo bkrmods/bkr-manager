@@ -281,43 +281,34 @@ Le gabarit de collection est fait. Une chose l'attend encore, côté contenu :
   d'Horizon, correcte quand un filtre ne renvoie rien. Elle disparaît au premier
   produit — ne pas la surcharger.
 
-### Menu et panier — compacter, pas encore fait
+### Menu et panier — deux points sur trois
 
-Le client a tranché le 16 août : **panneau de méga-menu compact** sur desktop,
-**écart de tailles réduit** dans le tiroir mobile, **tiroir de panier moins
-envahissant**. Rien de tout cela n'a abouti, et il faut savoir pourquoi avant
-d'y retourner.
+Fait le 16 août, dans `assets/bkr.css`. Les trois demandes venaient du client
+(« plus compact »), et **aucune n'avait de réglage natif** : vérifié dans le
+schéma du bloc `_header-menu` et dans `settings_schema.json`.
 
-**Aucun des trois n'a de réglage natif.** Vérifié dans le schéma du bloc
-`_header-menu` et dans `settings_schema.json` :
+- **Tiroir de panier : 480 → 384 px**, et la vitrine est toujours poussée, pas
+  recouverte. `--theme-drawer-width` valait `30rem` ; elle est posée sur
+  `theme-drawer` **et** sur `.page-wrapper`, parce que la seconde s'en sert pour
+  le décalage de la page. Une première tentative ne l'avait mise que sur
+  `:root` : le tiroir gardait sa largeur, la page se décalait moins, et le titre
+  du produit passait sous le panneau.
+- **Tiroir de menu mobile : 28 → 20 px** sur les entrées de premier niveau,
+  contre 14 px pour les sous-entrées. La taille n'a pas de réglage, et
+  `menu_font_style` est un faux ami — son libellé de schéma est
+  `t:settings.submenu_size`, il ne pilote que le sous-menu. Il a fallu une
+  classe doublée : le thème redéclare la variable **sur l'entrée elle-même**, et
+  l'héritage depuis `.menu-drawer` perd contre une déclaration directe.
+- **Panneau de méga-menu du bureau : pas fait.** Deux tentatives sans effet
+  mesurable, détaillées en commentaire dans `bkr.css`. Le panneau est posé par
+  une grille et le fond noir visible est celui de l'en-tête, pas le sien — il
+  est en `background-color: transparent`. Le rendre flottant demande de
+  reprendre la grille et de lui donner son propre fond. **C'est le seul point
+  de la demande qui reste ouvert.**
 
-- La taille des entrées de premier niveau du tiroir est écrite en dur :
-  `--menu-top-level-font-size: var(--font-size--xlarge)`. Le réglage
-  `menu_font_style` **ne la touche pas** — malgré son nom, son libellé de schéma
-  est `t:settings.submenu_size`, il ne pilote que le sous-menu (essayé en
-  `regular`, seules les sous-entrées ont changé ; remis à `inverse`).
-- Le panneau de méga-menu en `menu_style: "text"` occupe toute la largeur par
-  construction. Les trois autres valeurs (`collection_images`,
-  `featured_products`, `featured_collections`) sont plus riches, pas plus
-  compactes.
-- Le groupe « Tiroirs » des réglages de thème ne propose que trois couleurs.
-
-**Une tentative en CSS a été faite puis annulée.** Deux erreurs à ne pas
-refaire :
-
-1. `--theme-drawer-width` ne fixe **pas** la largeur du tiroir : elle ne sert
-   qu'au décalage de la page (`.page-wrapper--drawer-open { margin-right }`).
-   La réduire fait recouvrir le contenu par le tiroir au lieu de le rétrécir —
-   vérifié en capture, le titre du produit et le bouton PayPal passaient sous
-   le panneau. La largeur réelle vient de `--sidebar-width`, qui sert **aussi**
-   à la colonne de filtres des collections : la changer globalement casserait
-   les pages de collection.
-2. Les entrées du tiroir mobile ne sont pas `.menu-list__link` mais
-   `.menu-drawer__menu-item` (relevé dans le DOM). Le sélecteur visé ne
-   correspondait à rien.
-
-`assets/bkr.css` est donc revenue à sa règle unique. La prochaine tentative
-part de ces deux corrections, et se vérifie avec `horizon/etats.mjs`.
+Le tiroir de **menu** garde sa largeur : mesuré, il ne lit pas
+`--theme-drawer-width`, il vaut 95 % de la fenêtre avec un plafond à 500 px —
+la proportion habituelle d'un menu mobile, et le client n'a rien dit dessus.
 
 ## Bloqué, en attente du client
 

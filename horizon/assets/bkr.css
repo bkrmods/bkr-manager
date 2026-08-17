@@ -30,3 +30,82 @@
   pointer-events: auto;
 }
 
+
+/* Le tiroir de menu, sur mobile : l'écart entre les deux niveaux.
+
+   Mesuré sur la page, styles calculés à 390 px : une entrée de premier niveau
+   sort à **28 px**, ses sous-entrées à **14 px**. Le rapport du simple au double
+   ne fait plus une hiérarchie, il fait une affiche — et il repousse « Guides »
+   et « À propos » vers le bas de l'écran.
+
+   Aucun réglage n'expose cette taille. Le réglage `menu_font_style` est un faux
+   ami : son libellé de schéma est `t:settings.submenu_size`, il ne pilote que le
+   sous-menu (essayé, seules les sous-entrées ont bougé).
+
+   La variable existe et arrive bien sur l'entrée — `--menu-top-level-font-size`,
+   relevée à `1.75rem` en style calculé. On la pose sur le panneau, elle descend
+   aux entrées par héritage.
+
+   Trois pièges déjà payés :
+
+   - les entrées du tiroir sont `.menu-drawer__menu-item`, pas
+     `.menu-list__link` — ce dernier ne désigne que les sous-entrées ;
+   - les jetons `--font-size--large` / `--font-size--xlarge` ne résolvent pas
+     dans cette portée, d'où une valeur en rem écrite en clair ;
+   - poser la variable sur l'ancêtre `.menu-drawer` ne suffit pas : une règle du
+     thème la redéclare **sur l'entrée elle-même**, et l'héritage perd toujours
+     contre une déclaration directe. D'où la classe doublée, qui donne la
+     spécificité nécessaire sans recourir à `!important`. */
+@media screen and (max-width: 749px) {
+  .menu-drawer .menu-drawer__menu-item.menu-drawer__menu-item {
+    --menu-top-level-font-size: 1.25rem;
+  }
+}
+
+/* La largeur des tiroirs.
+
+   Aucun réglage ne l'expose : le groupe « Tiroirs » des réglages de thème ne
+   propose que trois couleurs. Relevé en style calculé à 1440 px :
+   `--theme-drawer-width` vaut **30rem**, soit 480 px, et c'est bien elle qui
+   dimensionne le panneau. Le client : « il remplit trop la page ».
+
+   Elle sert aussi au décalage de la vitrine —
+   `.page-wrapper--drawer-open { margin-right: var(--theme-drawer-width, …) }`.
+   Les deux doivent donc recevoir la même valeur, sinon le tiroir recouvre le
+   contenu au lieu de le pousser : c'est exactement ce qu'une première tentative
+   a produit, en ne la posant que sur `:root` — le titre du produit et le bouton
+   PayPal passaient sous le panneau.
+
+   On la pose donc sur l'élément de tiroir lui-même **et** sur `.page-wrapper`.
+   Le `min()` garde le tiroir utilisable sur petit écran.
+
+   Le tiroir de **menu** n'est pas concerné : mesuré, il ne lit pas cette
+   variable — il vaut 95 % de la fenêtre avec un plafond à 500 px, ce qui est la
+   proportion habituelle d'un menu mobile. On ne le touche pas.
+
+   `--sidebar-width` (25rem) n'est pas touchée non plus : elle dimensionne aussi
+   la colonne de filtres des collections, qui n'a rien demandé. */
+theme-drawer,
+.page-wrapper {
+  --theme-drawer-width: min(24rem, 88vw);
+}
+
+/* Pas de règle pour le panneau de méga-menu du bureau, et c'est délibéré.
+
+   Le client le veut compact ; le panneau s'ouvre sur toute la largeur de
+   l'écran. Deux tentatives ont échoué et sont notées ici pour ne pas être
+   refaites à l'identique :
+
+   - `--submenu-padding-block-start` / `-end` redéclarées sur
+     `.menu-list__submenu`, puis sur `.menu-list .menu-list__submenu` pour
+     passer devant l'ordre de chargement : la hauteur du panneau n'a pas bougé
+     (mesurée en capture, bord bas à 554 px dans les deux cas).
+   - la largeur ne se corrige pas par un réglage : `menu_style` n'a que `text`,
+     `collection_images`, `featured_products` et `featured_collections`, et les
+     trois derniers sont plus riches, pas plus compacts.
+
+   Le panneau est posé par une grille (`grid-area: right`, `grid-row-end: span
+   calc(var(--overflow-count) + 1)`), et le fond noir qu'on voit est celui de
+   l'en-tête, pas le sien — il est en `background-color: transparent`. Le
+   rendre flottant demande donc de reprendre la grille et de lui donner son
+   propre fond : c'est un vrai chantier, pas un correctif d'une ligne. */
