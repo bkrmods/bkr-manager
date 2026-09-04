@@ -14,20 +14,38 @@
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
-        "announcement_BxgCk9": {
+        "annonce_livraison": {
           "type": "_announcement",
           "settings": {
-            "text": "ASSEMBLÉES À LA COMMANDE • PAIEMENT SÉCURISÉ • 9 À 10 JOURS OUVRÉS EN GÉNÉRAL",
+            "text": "LIVRAISON GRATUITE EN FRANCE",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "letter_spacing": "normal",
-            "case": "none"
+            "font_size": "0.75rem"
+          },
+          "blocks": {}
+        },
+        "annonce_delai": {
+          "type": "_announcement",
+          "settings": {
+            "text": "LIVRAISON SOUS 8 À 9 JOURS OUVRÉS",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem"
+          },
+          "blocks": {}
+        },
+        "annonce_paiement": {
+          "type": "_announcement",
+          "settings": {
+            "text": "PAIEMENT SÉCURISÉ",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "announcement_BxgCk9"
+        "annonce_livraison",
+        "annonce_delai",
+        "annonce_paiement"
       ],
       "name": "t:names.announcement_bar",
       "settings": {

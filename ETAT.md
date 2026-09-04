@@ -135,7 +135,7 @@ l'unité », ce qui laissait croire à un atelier BKR.
 
 | Où | Avant (à moi, faux ou trop large) | Après (corrigé) |
 | --- | --- | --- |
-| Barre d'annonce | LIVRAISON SUIVIE • PAIEMENT SÉCURISÉ • COMMANDES PRÉPARÉES AVEC SOIN | ASSEMBLÉES À LA COMMANDE • PAIEMENT SÉCURISÉ • 9 À 10 JOURS OUVRÉS EN GÉNÉRAL |
+| Barre d'annonce | LIVRAISON SUIVIE • PAIEMENT SÉCURISÉ • COMMANDES PRÉPARÉES AVEC SOIN | ASSEMBLÉES À LA COMMANDE • PAIEMENT SÉCURISÉ • 9 À 10 JOURS OUVRÉS EN GÉNÉRAL — **remplacée depuis** par trois messages tournants, voir « Fait / Barre d'annonce » |
 | Accueil / Caractéristiques | « Assemblée à la main » — « Chaque pièce est choisie, puis la montre est montée à l'unité. » | « Assemblées à la commande » — « BKR Mods vérifie chaque commande, puis notre atelier fournisseur assemble et expédie la montre. » |
 | Accueil / Caractéristiques | « Mouvements NH35 et VK63 » — « les deux mouvements sur lesquels repose le catalogue » | « Mouvements éprouvés » — « Automatique ou méca-quartz selon le modèle, avec la référence précisée sur chaque fiche. » |
 | Accueil / Qu'est-ce qu'une Seiko Mod ? | texte sur une base Seiko remontée pièce par pièce | texte sur l'assemblage à la commande par l'atelier fournisseur, à partir de composants sélectionnés |
@@ -199,9 +199,36 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
 - **Design system** — palette, boutons, rayons (4), badges, logo. Le preset
   d'usine `presets.Horizon` est conservé intact dans `settings_data.json` :
   c'est le retour arrière en un clic.
-- **En-tête** — logo, menu `bkr-main`, annonce en français, sticky, transparent
-  au-dessus du Hero. Sélecteurs pays et langue coupés (un seul marché, une seule
-  langue).
+- **En-tête** — logo, menu `bkr-main`, sticky, transparent au-dessus du Hero.
+  Sélecteurs pays et langue coupés (un seul marché, une seule langue).
+- **Barre d'annonce** — trois messages qui tournent en boucle, 5 s chacun
+  (4 septembre) : « LIVRAISON GRATUITE EN FRANCE », « LIVRAISON SOUS 8 À 9 JOURS
+  OUVRÉS », « PAIEMENT SÉCURISÉ ».
+  La rotation est **native et gratuite** : `sections/header-announcements.liquid`
+  charge `announcement-bar.js` et passe en `autoplay` **dès qu'il y a plus d'un
+  bloc `_announcement`**. Rien à coder, il suffit d'ajouter des blocs. Deux
+  chevrons apparaissent alors de part et d'autre — c'est automatique aussi, et
+  ils donnent la main au visiteur.
+  C'est un **fondu enchaîné**, pas un défilement horizontal continu : les slides
+  sont empilés en grille et l'un remplace l'autre en 0,5 s. Un vrai bandeau
+  déroulant serait un autre travail — la section n'accepte que `_announcement`,
+  jamais le bloc `_marquee` du thème.
+  Le bloc `_announcement` est une exception utile : il appelle
+  `typography-style` avec `preset: 'custom'` en dur, donc `font`, `font_size`,
+  `weight`, `letter_spacing` et `case` **s'appliquent vraiment** ici, à la
+  différence d'un bloc `text` ordinaire.
+  Vérifié : rotation mesurée sur 18 s (les trois messages puis retour au
+  premier), et une seule ligne à 375, 390 et 430 px pour les trois textes.
+
+  **« GRATUITE EN FRANCE » et pas « GRATUITE » tout court.** Les tarifs de
+  livraison ont été relevés avant d'écrire : France, Standard **offert dès 65 €**
+  et 7,99 € en dessous, Express 10,99 € ; **UE 22 €** ; **International 29 €**.
+  Comme toutes les montres sont à 190 €, la livraison est effectivement gratuite
+  sur toute commande française — mais elle ne l'est jamais ailleurs, et les deux
+  zones sont actives. « Livraison gratuite » sans mention de pays serait une
+  promesse fausse pour un client belge ou suisse. Les deux mots de plus la
+  rendent vraie. **Le jour où l'international passe à 0 €, le « EN FRANCE »
+  saute.**
 - **Pied de page** — quatre colonnes de menu repliables en accordéon sur mobile,
   bloc natif des politiques Shopify, Instagram et TikTok renseignés (URL
   nettoyées de leurs paramètres de suivi), les autres réseaux vides.
