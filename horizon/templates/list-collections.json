@@ -99,14 +99,9 @@
       "name": "t:names.collection_list",
       "settings": {
         "collection_list": [
-          "classique-date",
           "jour-date",
           "chronographe-vk63",
-          "double-fuseau",
-          "bracelet-integre",
-          "octogonale",
-          "lunette-tournante",
-          "boitier-carre"
+          "lunette-tournante"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,

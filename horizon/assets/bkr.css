@@ -30,7 +30,6 @@
   pointer-events: auto;
 }
 
-
 /* Le tiroir de menu, sur mobile : l'écart entre les deux niveaux.
 
    Mesuré sur la page, styles calculés à 390 px : une entrée de premier niveau
@@ -43,8 +42,7 @@
    sous-menu (essayé, seules les sous-entrées ont bougé).
 
    La variable existe et arrive bien sur l'entrée — `--menu-top-level-font-size`,
-   relevée à `1.75rem` en style calculé. On la pose sur le panneau, elle descend
-   aux entrées par héritage.
+   relevée à `1.75rem` en style calculé.
 
    Trois pièges déjà payés :
 

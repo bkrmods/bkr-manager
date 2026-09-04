@@ -17,7 +17,7 @@ import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
 const BOUTIQUE = 'https://e5e896-dn.myshopify.com';
-const THEME_DEV = '186469122384';
+const THEME_DEV = '186548322640';
 const SORTIE = 'captures';
 
 const LARGEURS = [

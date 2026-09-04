@@ -1,0 +1,98 @@
+{%- liquid
+  assign product = closest.product
+  assign bracelet = product.metafields.bkr.bracelet.value
+  assign couleur_cadran = product.metafields.bkr.couleur_cadran.value
+  assign diametre = product.metafields.bkr.diametre.value
+  assign epaisseur = product.metafields.bkr.epaisseur.value
+  assign etancheite = product.metafields.bkr.etancheite.value
+  assign materiau_boitier = product.metafields.bkr.materiau_boitier.value
+  assign mouvement = product.metafields.bkr.mouvement.value
+  assign reference_mouvement = product.metafields.bkr.reference_mouvement.value
+  assign reserve_de_marche = product.metafields.bkr.reserve_de_marche.value
+  assign style_cadran = product.metafields.bkr.style_cadran.value
+  assign type_mouvement = product.metafields.bkr.type_mouvement.value
+  assign verre = product.metafields.bkr.verre.value
+-%}
+
+<div class="bkr-product-specs" {{ block.shopify_attributes }}>
+  <h2>Caractéristiques</h2>
+  <dl>
+    {%- if mouvement != blank -%}<div><dt>Mouvement</dt><dd>{{ mouvement | escape }}</dd></div>{%- endif -%}
+    {%- if reference_mouvement != blank -%}<div><dt>Référence</dt><dd>{{ reference_mouvement | escape }}</dd></div>{%- endif -%}
+    {%- if type_mouvement != blank -%}<div><dt>Type</dt><dd>{{ type_mouvement | escape }}</dd></div>{%- endif -%}
+    {%- if reserve_de_marche != blank -%}<div><dt>Réserve de marche</dt><dd>{{ reserve_de_marche | escape }}</dd></div>{%- endif -%}
+    {%- if diametre != blank -%}<div><dt>Diamètre</dt><dd>{{ diametre | escape }}</dd></div>{%- endif -%}
+    {%- if epaisseur != blank -%}<div><dt>Épaisseur</dt><dd>{{ epaisseur | escape }}</dd></div>{%- endif -%}
+    {%- if materiau_boitier != blank -%}<div><dt>Boîtier</dt><dd>{{ materiau_boitier | escape }}</dd></div>{%- endif -%}
+    {%- if verre != blank -%}<div><dt>Verre</dt><dd>{{ verre | escape }}</dd></div>{%- endif -%}
+    {%- if bracelet != blank -%}<div><dt>Bracelet</dt><dd>{{ bracelet | escape }}</dd></div>{%- endif -%}
+    {%- if couleur_cadran != blank -%}<div><dt>Couleur du cadran</dt><dd>{{ couleur_cadran | escape }}</dd></div>{%- endif -%}
+    {%- if style_cadran != blank -%}<div><dt>Style du cadran</dt><dd>{{ style_cadran | escape }}</dd></div>{%- endif -%}
+    {%- if etancheite != blank -%}<div><dt>Résistance à l'eau</dt><dd>{{ etancheite | escape }}</dd></div>{%- endif -%}
+  </dl>
+  <p class="bkr-product-specs__trust">Paiement sécurisé · Retour sous 14 jours selon conditions · Garantie légale de 2 ans</p>
+</div>
+
+{% stylesheet %}
+  .bkr-product-specs {
+    padding-top: 4px;
+  }
+
+  .bkr-product-specs h2 {
+    margin: 0 0 14px;
+    font-size: 1.25rem;
+  }
+
+  .bkr-product-specs dl {
+    margin: 0;
+    border-top: 1px solid rgb(var(--color-border-rgb, 42 44 41));
+  }
+
+  .bkr-product-specs dl > div {
+    display: grid;
+    grid-template-columns: minmax(120px, 40%) 1fr;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgb(var(--color-border-rgb, 42 44 41));
+  }
+
+  .bkr-product-specs dt {
+    color: rgb(var(--color-foreground-rgb, 243 243 241) / 0.68);
+  }
+
+  .bkr-product-specs dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .bkr-product-specs__trust {
+    margin: 16px 0 0;
+    color: rgb(var(--color-foreground-rgb, 243 243 241) / 0.75);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 449px) {
+    .bkr-product-specs dl > div {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .bkr-product-specs dd {
+      text-align: left;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Caractéristiques BKR",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Caractéristiques BKR"
+    }
+  ]
+}
+{% endschema %}

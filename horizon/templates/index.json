@@ -148,7 +148,7 @@
             "titre": {
               "type": "_product-list-text",
               "settings": {
-                "text": "<h2>Les plus recherchées.</h2>",
+                "text": "<h2>Nos modèles disponibles.</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -264,7 +264,7 @@
       },
       "name": "t:names.product_list",
       "settings": {
-        "collection": "best-sellers",
+        "collection": "seiko-mod",
         "layout_type": "grid",
         "carousel_on_mobile": true,
         "max_products": 4,
@@ -541,7 +541,7 @@
                 "texte": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Une Seiko Mod part d'une base Seiko, puis change de visage : cadran, aiguilles, verre, lunette, bracelet. Les pièces sont choisies une par une, et la montre est réassemblée à la main.</p><p>Le résultat n'est pas une Seiko de série et ne cherche pas à l'être. C'est une pièce montée à l'unité, dans une combinaison qu'on ne croise pas en vitrine.</p>",
+                    "text": "<p>Chaque modèle BKR Mods est assemblé à la commande par notre atelier fournisseur à partir de composants sélectionnés : boîtier, cadran, aiguilles, verre, bracelet et mouvement.</p><p>Il ne s'agit pas d'une montre Seiko de série. BKR Mods est une marque indépendante, non affiliée à Seiko Watch Corporation.</p>",
                     "width": "100%",
                     "max_width": "narrow"
                   }
@@ -615,7 +615,7 @@
                 "titre": {
                   "type": "text",
                   "settings": {
-                    "text": "<h3>Assemblée à la main</h3>",
+                    "text": "<h3>Assemblées à la commande</h3>",
                     "width": "100%",
                     "type_preset": "h6"
                   }
@@ -623,7 +623,7 @@
                 "texte": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Chaque pièce est choisie, puis la montre est montée à l'unité.</p>",
+                    "text": "<p>BKR Mods vérifie chaque commande, puis notre atelier fournisseur assemble et expédie la montre.</p>",
                     "text_color": "{{ settings.color_palette.color1 }}",
                     "width": "100%"
                   }
@@ -650,7 +650,7 @@
                 "titre": {
                   "type": "text",
                   "settings": {
-                    "text": "<h3>Mouvements NH35 et VK63</h3>",
+                    "text": "<h3>Mouvements éprouvés</h3>",
                     "width": "100%",
                     "type_preset": "h6"
                   }
@@ -658,7 +658,7 @@
                 "texte": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Automatique ou méca-quartz : les deux mouvements sur lesquels repose le catalogue.</p>",
+                    "text": "<p>Automatique ou méca-quartz selon le modèle, avec la référence précisée sur chaque fiche.</p>",
                     "text_color": "{{ settings.color_palette.color1 }}",
                     "width": "100%"
                   }

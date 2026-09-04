@@ -52,7 +52,7 @@
             "constrain_to_viewport": false,
             "media_radius": 12,
             "extend_media": false,
-            "zoom": false,
+            "zoom": true,
             "video_loop": false,
             "hide_variants": true,
             "padding-block-start": 0,
@@ -195,6 +195,11 @@
               },
               "blocks": {}
             },
+            "bkr_order_note": {
+              "type": "bkr-order-note",
+              "settings": {},
+              "blocks": {}
+            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -302,14 +307,21 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "bkr_product_specs": {
+              "type": "bkr-product-specs",
+              "settings": {},
+              "blocks": {}
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
+            "bkr_order_note",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "text_aEtTtq",
+            "bkr_product_specs"
           ]
         }
       },

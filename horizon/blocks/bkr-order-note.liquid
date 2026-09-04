@@ -1,0 +1,41 @@
+<div class="bkr-order-note" {{ block.shopify_attributes }}>
+  <p class="bkr-order-note__title">Assemblée à la commande</p>
+  <p>
+    BKR Mods vérifie votre commande, puis notre atelier fournisseur assemble et expédie votre montre.
+    Comptez généralement 9 à 10 jours ouvrés pour l'ensemble du processus, dans la limite de 15 jours.
+  </p>
+</div>
+
+{% stylesheet %}
+  .bkr-order-note {
+    padding: 16px 18px;
+    border: 1px solid rgba(28, 90, 75, 0.72);
+    border: 1px solid color-mix(in srgb, #1c5a4b 72%, transparent);
+    border-left: 4px solid #1c5a4b;
+    border-radius: 8px;
+    background: rgba(28, 90, 75, 0.14);
+    background: color-mix(in srgb, #1c5a4b 14%, transparent);
+  }
+
+  .bkr-order-note p {
+    margin: 0;
+  }
+
+  .bkr-order-note__title {
+    margin-bottom: 5px !important;
+    font-weight: 700;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Délai de fabrication",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Délai de fabrication"
+    }
+  ]
+}
+{% endschema %}

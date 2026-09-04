@@ -3,11 +3,17 @@
 Note de reprise. Ce fichier est chargé automatiquement par `CLAUDE.md` : une
 nouvelle session sait donc où on en est sans qu'on ait à le lui raconter.
 
-**À tenir à jour à chaque fin de séance.** Dernière mise à jour : 16 août 2026,
-après la série de retouches demandée par le client (vocabulaire « collection »,
-tri de `/collections`, cartes de l'accueil, dernière image arrondie, lien de
-retour sur la fiche produit, Best-sellers renommée, descriptions de collection,
-suppression d'`arabic-dial` et `automatique-nh35`, animations rallumées).
+**À tenir à jour à chaque fin de séance.** Dernière mise à jour : 4 septembre
+2026, au changement de thème de travail.
+
+**⚠ On a changé de thème de dev.** Le client a fait corriger le thème hors de ce
+dépôt et demande qu'on travaille désormais sur
+**`theme-bkrmods-corrige-horizon`**. Le miroir `horizon/` a été **resynchronisé
+depuis ce thème** ; il ne reflète plus « BKR — dev (Horizon) », qui est gelé.
+Ce que la correction a changé est listé plus bas, section « Ce que le thème
+corrigé a changé » — **le relire avant d'écrire quoi que ce soit sur l'accueil
+ou la fiche produit**, sous peine de réintroduire des phrases qui ont été
+retirées pour de bonnes raisons.
 
 ## Le projet en cinq lignes
 
@@ -24,7 +30,8 @@ gabarit JSON → section sur mesure.**
 
 | | |
 | --- | --- |
-| Thème de dev (écrire ici) | `gid://shopify/OnlineStoreTheme/186469122384` — « BKR — dev (Horizon) », `UNPUBLISHED` |
+| Thème de dev (écrire ici) | `gid://shopify/OnlineStoreTheme/186548322640` — « theme-bkrmods-corrige-horizon », `UNPUBLISHED` |
+| Ancien thème de dev (gelé) | `gid://shopify/OnlineStoreTheme/186469122384` — « BKR — dev (Horizon) », `UNPUBLISHED`. Ne plus y écrire. |
 | Thème live (ne pas toucher) | `gid://shopify/OnlineStoreTheme/186380222800` — « Horizon », `MAIN` |
 | Branche git | `claude/bkrmods-responsive-preview-le1sgn` (part de `claude/bkrmods-color-legal-pages-jwtyai`) |
 | Miroir des fichiers modifiés | `horizon/` (voir `horizon/README.md`) |
@@ -111,6 +118,72 @@ août). Le mot a été changé dans l'entrée de menu `bkr-main`, dans le titre 
 notes ci-dessous et dans `horizon/README.md` au sens de « groupe de
 silhouettes » ; c'est du vocabulaire interne, pas de l'affichage.
 
+## Ce que le thème corrigé a changé
+
+Relevé le 4 septembre par comparaison champ par champ entre l'ancien thème de
+dev et `theme-bkrmods-corrige-horizon`. Ce ne sont pas des retouches de style :
+**la plupart corrigent des affirmations fausses que j'avais écrites.** Ne pas
+les défaire.
+
+### Le modèle de l'entreprise, tel qu'il est maintenant écrit
+
+BKR Mods **ne monte pas les montres**. Le site dit désormais : BKR vérifie la
+commande, puis **un atelier fournisseur assemble et expédie** la montre, en
+**9 à 10 jours ouvrés en général, dans la limite de 15 jours**. C'est le fait à
+retenir — mes textes précédents parlaient d'un montage « à la main », « à
+l'unité », ce qui laissait croire à un atelier BKR.
+
+| Où | Avant (à moi, faux ou trop large) | Après (corrigé) |
+| --- | --- | --- |
+| Barre d'annonce | LIVRAISON SUIVIE • PAIEMENT SÉCURISÉ • COMMANDES PRÉPARÉES AVEC SOIN | ASSEMBLÉES À LA COMMANDE • PAIEMENT SÉCURISÉ • 9 À 10 JOURS OUVRÉS EN GÉNÉRAL |
+| Accueil / Caractéristiques | « Assemblée à la main » — « Chaque pièce est choisie, puis la montre est montée à l'unité. » | « Assemblées à la commande » — « BKR Mods vérifie chaque commande, puis notre atelier fournisseur assemble et expédie la montre. » |
+| Accueil / Caractéristiques | « Mouvements NH35 et VK63 » — « les deux mouvements sur lesquels repose le catalogue » | « Mouvements éprouvés » — « Automatique ou méca-quartz selon le modèle, avec la référence précisée sur chaque fiche. » |
+| Accueil / Qu'est-ce qu'une Seiko Mod ? | texte sur une base Seiko remontée pièce par pièce | texte sur l'assemblage à la commande par l'atelier fournisseur, à partir de composants sélectionnés |
+
+La deuxième ligne du tableau réglait un vrai problème : affirmer un montage
+maison quand l'assemblage est sous-traité, c'est exactement le genre de phrase
+que le skill `bkr-garde-fous` interdit. La troisième évite d'annoncer deux
+calibres pour tout le catalogue.
+
+### Les autres changements
+
+- **Section « Les plus recherchées. » → « Nos modèles disponibles. »**, et elle
+  pointe maintenant sur `seiko-mod` et non plus sur `best-sellers`. C'est la
+  bonne réponse au trou noir que j'avais signalé : plutôt que de remplir une
+  sélection « les plus recherchées » avec des montres jamais vendues, on dit ce
+  qui est vrai — voilà ce qui est disponible. **La collection `best-sellers`
+  n'est donc plus branchée nulle part.**
+- **`/collections` ne liste plus que trois collections** : `jour-date`,
+  `chronographe-vk63`, `lunette-tournante` — les trois qui ont des produits.
+  Les cinq vides ont été retirées de la liste. Elles existent toujours et
+  peuvent revenir dans `collection_list` dès qu'elles auront des montres.
+- **Zoom plein écran rétabli sur la fiche produit** (`zoom: true`). Le client
+  l'avait fait couper en août ; c'est un choix qui a été repris, ne pas le
+  recouper de sa propre initiative.
+- **Corps de texte : 14 → 16 px** (`type_size_paragraph`), dans `current` et
+  dans le preset.
+
+### Deux blocs Liquid sur mesure, à connaître
+
+Ce sont les premiers fichiers `.liquid` créés pour ce projet. Tous deux sont
+posés dans `_product-details` sur la fiche produit.
+
+- **`blocks/bkr-order-note.liquid`** — l'encadré « Assemblée à la commande » qui
+  annonce le délai. Fond vert à 14 %, filet vert à gauche : le vert reste un
+  accent et ne porte pas de texte, conforme à la charte.
+- **`blocks/bkr-product-specs.liquid`** — le tableau « Caractéristiques ». Il lit
+  les metafields `bkr.*` et **ne rend une ligne que si le metafield est
+  rempli** : mouvement, référence, type, réserve de marche, diamètre, épaisseur,
+  boîtier, verre, bracelet, couleur et style de cadran, étanchéité. Rien n'est
+  inventé, rien n'est écrit en dur. C'est exactement le mécanisme qui manquait —
+  **les fiches produit se remplissent maintenant en renseignant les metafields
+  côté Shopify**, sans toucher au thème.
+  Il porte aussi une ligne de réassurance : « Paiement sécurisé · Retour sous
+  14 jours selon conditions · Garantie légale de 2 ans ». Les deux durées sont
+  celles du droit français (rétractation à distance, garantie légale de
+  conformité) — elles tiennent, mais elles devront **concorder avec les pages
+  légales** quand elles seront rédigées.
+
 ## Charte
 
 Noir profond `#0E0E0E` · Blanc cassé `#F3F3F1` · Vert Racing `#1C5A4B`.
@@ -139,10 +212,11 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   **cadrage portrait de la même image** en mobile (`image_1_mobile`, avec
   `custom_mobile_media: true`). Sans ce second cadrage, le `cover` d'Horizon ne
   gardait que du bois : ni dégradé vert, ni écrin BKR.
-- **Accueil / Best-sellers** — `product-list` sur la collection manuelle
-  `best-sellers`, carrousel sous 750 px. La collection s'appelle **« Les plus
-  recherchées »** depuis le 16 août (le handle, lui, ne bouge pas) : le client
-  voulait que le nom affiché dans les menus soit celui du titre de la section.
+- **Accueil / Nos modèles disponibles** — `product-list`, carrousel sous 750 px.
+  S'appelait « Les plus recherchées. » et pointait sur la collection manuelle
+  `best-sellers` ; le thème corrigé l'a rebranchée sur **`seiko-mod`** et
+  retitrée. Voir « Ce que le thème corrigé a changé ». La collection
+  `best-sellers` existe toujours mais **n'est plus affichée nulle part**.
 - **Accueil / Collections** — « Choisissez votre style. », trois cartes
   éditoriales natives (`collection-card` accepte `text`, `button`, `group`,
   `collection-title` comme enfants) dans une section `_blocks`. Depuis le 16
@@ -168,13 +242,17 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   dans l'éditeur.
 - **Accueil / Caractéristiques** — « Sur chaque montre. », trois points
   (assemblage, mouvements, paiement). Volontairement trois et pas six : les
-  autres auraient été des promesses non confirmées.
+  autres auraient été des promesses non confirmées. **Les deux premiers ont été
+  réécrits par le thème corrigé** — assemblage à la commande par l'atelier
+  fournisseur, mouvements « éprouvés » plutôt que NH35 et VK63 annoncés pour
+  tout le catalogue.
 - **Accueil / Newsletter** — bloc natif `email-signup`, bouton intégré au champ,
   centrée. Aucune promesse de remise ni de fréquence.
 - **Gabarit produit** — `templates/product.json`. Galerie en **carrousel** avec
   vignettes sous l'image (desktop) et points (mobile), format portrait fixe
-  `1/1.25`, et **zoom plein écran coupé** (`zoom: false`) — les trois à la
-  demande du client. Le bloc `disclosures` vide et son titre anglais ont été
+  `1/1.25`. Le **zoom plein écran**, coupé en août à la demande du client, a
+  été **rétabli** par le thème corrigé (`zoom: true`) : ne pas le recouper de sa
+  propre initiative. Le bloc `disclosures` vide et son titre anglais ont été
   retirés, et « You may also like » est devenu « Dans le même esprit. ».
   Depuis le 16 août, une section `_blocks` **« retour »** est posée tout en haut
   du gabarit, avant la galerie : un simple bouton `button-unstyled` intitulé
@@ -188,8 +266,11 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   `<h1>` + description), puis `main-collection` avec filtres et tri natifs.
   Vérifié en capture aux quatre largeurs sur `/collections/jour-date` et
   `/collections/boitier-carre`.
-- **Page `/collections`** — `templates/list-collections.json` ne rend plus que
-  les **huit silhouettes**. Elle affichait les douze collections plus la
+- **Page `/collections`** — `templates/list-collections.json` ne rend que les
+  collections choisies à la main. Le thème corrigé les a ramenées de huit à
+  **trois** : `jour-date`, `chronographe-vk63`, `lunette-tournante` — celles qui
+  ont des produits. Les cinq autres reviennent dans `collection_list` dès
+  qu'elles auront des montres. Historique : Elle affichait les douze collections plus la
   « Page d'accueil » de Shopify ; le client voulait retirer Page d'accueil,
   Best-sellers, Arabic Dial, Automatiques NH35 et Toutes les Seiko Mods (les
   deux du milieu ont depuis été supprimées tout court).
@@ -314,11 +395,11 @@ la proportion habituelle d'un menu mobile, et le client n'a rien dit dessus.
 
 | Quoi | Pourquoi ça bloque |
 | --- | --- |
-| **Descriptions des six fiches** | vides. Rien ne sera écrit sans les caractéristiques du fournisseur — pas de mouvement, d'étanchéité ni de matériau inventés. Le cadran du Masterteiko affiche « 300m » : ce n'est pas une source, ça ne se recopie pas en étanchéité. |
+| **Caractéristiques des six fiches** | Le mécanisme est prêt : le bloc `bkr-product-specs` affiche une ligne par metafield `bkr.*` rempli, et rien quand il est vide. **Il ne manque plus que les données du fournisseur.** Rien ne sera écrit sans les caractéristiques du fournisseur — pas de mouvement, d'étanchéité ni de matériau inventés. Le cadran du Masterteiko affiche « 300m » : ce n'est pas une source, ça ne se recopie pas en étanchéité. |
 | **Origine de l'image du Hero** | le fichier déposé s'appelle « ChatGPT Image 16 août 2026 » : c'est un **rendu génératif**, pas une photo. Il montre un écrin siglé BKR et des montres qui ne sont pas celles du catalogue. Le client l'a fourni pour cet usage ; le point lui a été signalé une fois. Les garde-fous interdisent « les rendus générés présentés comme des photos » — à re-trancher avec lui avant l'ouverture publique. |
 | **Qualité des premières photos** | les quatre PNG livrés en premier font 311 à 400 px de large, pour ~2000 px attendus. Trois sont encore en ligne (Dayko noir, bleu roi, olive). Le second envoi est à ≈1120 × 1400 px, exploitable. Elles portent aussi un filigrane d'un tiers, et le cadran affiche « OYSTER PERPETUAL », « DAY-DATE » et « SUPERLATIVE CHRONOMETER OFFICIALLY CERTIFIED » sous le logo Seiko. Le client a demandé de les mettre en place malgré le filigrane ; il n'a pas répondu sur le texte du cadran. **Ne pas relancer de soi-même, mais ne pas non plus considérer le sujet comme tranché.** |
 | **Photos** | Hero et cartes de collection affichent toujours les placeholders Shopify. Les contrastes mesurés le sont donc sur des images bouche-trou très claires — c'est le pire cas, ce qui va dans le bon sens. |
-| **`best-sellers` est vide** | la collection n'a **aucun produit**, et la section « Les plus recherchées. » de l'accueil affiche donc son titre puis un grand trou noir — vérifié en capture le 16 août aux quatre largeurs. Ce n'est pas un bug du gabarit : Horizon ne rend rien quand la collection choisie est vide. Le client a tranché le 16 août : **on garde la collection**, renommée « Les plus recherchées » (handle inchangé). Reste à **choisir les montres qui y entrent** — c'est sa décision, pas la nôtre : y verser d'office les six reviendrait à appeler « les plus recherchées » des produits qui n'ont pas encore été vendus une seule fois. Deux suffisent à combler le trou. |
+| **`best-sellers` n'est plus utilisée** | le trou noir de l'accueil est réglé autrement : la section pointe désormais sur `seiko-mod`. La collection reste vide et n'est plus branchée nulle part. **Rien à faire tant que le client ne veut pas d'une vraie sélection** — et le jour où il en voudra une, elle ne pourra pas s'appeler « les plus recherchées » avant la première vente. |
 | **Page « Politique d'expédition »** | elle n'existe pas. Ne pas la rédiger — c'est un texte juridique. |
 | **URL des réseaux sociaux** | champs volontairement vides. |
 | **Semrush** | à ré-authentifier. |
@@ -353,4 +434,4 @@ fichier, et les skills de `.claude/skills/` sont détectés automatiquement.
 
 Un premier message du type « on reprend le projet BKR, section suivante de
 l'accueil » est assez. Pour vérifier que le contexte est bien passé, demander sur
-quel thème on écrit : la bonne réponse est `186469122384`, `UNPUBLISHED`.
+quel thème on écrit : la bonne réponse est `186548322640`, `UNPUBLISHED`.

@@ -7,7 +7,7 @@ d'origine, non copié dans le dépôt pour éviter un fork inutile à maintenir.
 | | |
 | --- | --- |
 | Thème de dev | **BKR — dev (Horizon)** |
-| ID | `gid://shopify/OnlineStoreTheme/186469122384` |
+| ID | `gid://shopify/OnlineStoreTheme/186548322640` |
 | Statut | `UNPUBLISHED` |
 | Base | Horizon (Theme Store 2481), copie du thème live |
 | Thème live | **Horizon**, `186380222800`, `MAIN` — non modifié |

@@ -15,7 +15,7 @@ jamais par du CSS ou du Liquid sur mesure.
 | | |
 | --- | --- |
 | Thème de développement | **BKR — dev (Horizon)** |
-| ID | `gid://shopify/OnlineStoreTheme/186469122384` |
+| ID | `gid://shopify/OnlineStoreTheme/186548322640` |
 | Thème live | **Horizon**, `gid://shopify/OnlineStoreTheme/186380222800`, rôle `MAIN` |
 
 Écrire uniquement sur le thème de dev. Ne jamais publier un thème. Avant une
