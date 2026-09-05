@@ -219,6 +219,10 @@ Détail dans le skill `bkr-charte` et dans `horizon/README.md`.
   différence d'un bloc `text` ordinaire.
   Vérifié : rotation mesurée sur 18 s (les trois messages puis retour au
   premier), et une seule ligne à 375, 390 et 430 px pour les trois textes.
+  **Le délai annoncé est 8 à 9 jours ouvrés**, tranché par le client le
+  5 septembre. `blocks/bkr-order-note.liquid` a été aligné le même jour — il
+  disait 9 à 10. Le thème ne mentionne le délai qu'à ces deux endroits, vérifié
+  par recherche sur tout le miroir.
 
   **« GRATUITE EN FRANCE » et pas « GRATUITE » tout court.** Les tarifs de
   livraison ont été relevés avant d'écrire : France, Standard **offert dès 65 €**
@@ -431,6 +435,56 @@ la proportion habituelle d'un menu mobile, et le client n'a rien dit dessus.
 | **URL des réseaux sociaux** | champs volontairement vides. |
 | **Semrush** | à ré-authentifier. |
 | **Collection `frontpage` à dépublier** | Shopify crée d'office une collection « Page d'accueil », vide. Elle **ne s'affiche plus sur `/collections`** depuis le 16 août (la page ne liste que les huit handles choisis), mais elle reste **publiée** : son URL répond, et elle ressortira partout où l'on branchera une liste automatique. `publishableUnpublish` a été retenté deux fois : le connecteur le refuse par politique (« Unpublishing is blocked »), ce n'est pas un incident réseau. **Seul geste possible, côté client** : Collections → Page d'accueil → Publication → décocher « Boutique en ligne ». |
+
+## Les pages Shopify contredisent le reste du site
+
+Relevé le 5 septembre en vérifiant où le délai de livraison était annoncé. Les
+pages `faq`, `livraison-et-retours` et `cgv` ont été écrites avant les
+corrections d'août, et **personne ne les a reprises depuis**. Elles disent
+aujourd'hui autre chose que le thème et que les réglages Shopify. Ce sont des
+pages contractuelles : je ne les réécris pas, mais elles ne peuvent pas rester
+en l'état avant l'ouverture.
+
+**1. Le délai est cohérent, lui.** CGV article 5, FAQ et « Livraison et
+retours » annoncent une livraison **sous 15 jours**. Le thème dit « 8 à 9 jours
+ouvrés en général, dans la limite de 15 jours ». Les deux tiennent ensemble :
+l'engagement contractuel reste 15 jours, le reste est une estimation. Rien à
+changer.
+
+**2. La zone de livraison, en revanche, ne tient pas.** La FAQ (« Nous livrons
+actuellement en France métropolitaine uniquement ») et l'article 5 des CGV
+(« La livraison est assurée en France métropolitaine ») disent France
+seulement — alors que **deux zones étrangères sont actives dans Shopify** :
+UE à 22 €, International à 29 €. Un client belge peut commander aujourd'hui,
+payer 22 € de port, et se retrouver avec des CGV qui ne prévoient pas sa
+livraison. **Soit on coupe les deux zones, soit on réécrit les deux pages.**
+
+**3. « La livraison est gratuite » est écrit sans condition.** FAQ : « Combien
+coûte la livraison ? Rien. » CGV article 3 : « Le prix affiché comprend la
+livraison ». Or le tarif France n'est offert **qu'à partir de 65 €** (7,99 € en
+dessous), et l'Express est à 10,99 €. Comme les montres sont à 190 €, c'est vrai
+en pratique pour toute commande de montre — mais la phrase ne le dit pas, et
+elle deviendrait fausse le jour où un accessoire à moins de 65 € entre au
+catalogue.
+
+**4. Le plus gênant : la FAQ et les CGV affirment les caractéristiques que le
+reste du projet refuse d'écrire.** La FAQ annonce « **acier inoxydable 904L**,
+avec **verre saphir** », « entre **39 et 40 mm** », « les boîtiers sont prévus
+pour **100 mètres** ». Les CGV répètent les 100 mètres. Ce sont exactement les
+valeurs que le skill `bkr-garde-fous` interdit d'avancer sans confirmation du
+fournisseur — **jamais 904L par défaut** y figure mot pour mot. Résultat : le
+site affirme sur ses pages d'aide ce que ses fiches produit se refusent à
+afficher, faute de données. **À faire confirmer par le fournisseur, ou à
+retirer des pages.**
+
+**5. La FAQ décrit encore l'ancien modèle.** Elle parle d'une montre « ouverte
+et reconstruite », « assemblée à la main », dont « le mouvement est conservé » —
+c'est la formulation que la correction d'août a justement retirée de l'accueil
+au profit de l'assemblage à la commande par un atelier fournisseur. Les deux
+récits cohabitent aujourd'hui sur le même site.
+
+Aucune de ces cinq lignes n'a été modifiée : ce sont des pages légales et
+commerciales, elles relèvent du client.
 
 ## Règles absolues
 
